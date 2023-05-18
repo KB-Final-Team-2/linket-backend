@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spacebetween.linket.mapper.AttendanceMapper">
+    <!--Staff가 Part 직원들의 출근 여부를 조회합니다.-->
+    <select id="getAllAtts" resultType="map">
+        select *
+        from
+        attendance
+    </select>
+
+    <!-- Part 직원이 자신의 출근 현황을 조회합니다. -->
+    <select id="getMyAtt" parameterType="string" resultType="map">
+        select *
+        from attendance
+        where att_email=#{VALUES}
+    </select>
+</mapper>
