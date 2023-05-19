@@ -21,7 +21,7 @@ public class AuthDAOImplTest {
     //회원가입 테스트
     @Test
     public void testSignup() throws Exception{
-        UserJoinDto userJoinDto = new UserJoinDto("eee@eee.com","1234","doyeon","1999-07-01",1,"010-1111-1111",'F',"staff", LocalDateTime.now(),LocalDateTime.now(),'N',LocalDateTime.now(),1);
+        UserJoinDto userJoinDto = new UserJoinDto("aaa@aaa.com","1234","doyeon","1999-07-01",1,"010-1111-1111",'F',"part","111111-111111",LocalDateTime.now(),LocalDateTime.now(),'N',LocalDateTime.now(),1);
         int rowCnt = authDAO.signup(userJoinDto);
         assertTrue(rowCnt==1);
     }
@@ -48,5 +48,12 @@ public class AuthDAOImplTest {
 
         System.out.println(userJoinDto.getEmail());
         assertTrue(userJoinDto.getEmail().equals("aaa@aaa.com"));
+    }
+
+    //사용자 회원 탈퇴 테스트
+    @Test
+    public void testDeleteUser() throws Exception{
+        int rowCnt = authDAO.deleteUser("aaa@aaa.com");
+        assertTrue(rowCnt==1);
     }
 }

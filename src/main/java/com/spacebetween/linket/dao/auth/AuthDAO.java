@@ -8,4 +8,5 @@ public interface AuthDAO {
     int signup(UserJoinDto userJoinDto) throws Exception;
     UserJoinDto login(HashMap<String, String> hashMap) throws Exception;
     UserJoinDto checkEmail(String email) throws Exception;
+    int deleteUser(String email) throws Exception;
 }
