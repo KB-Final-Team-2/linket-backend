@@ -12,6 +12,7 @@ public class User {
     private String phone; // 전화번호
     private char gender; // 성별
     private String role; // 사용자 권한 (admin, member, staff, part)
+    private String account; // part-time 계좌
     private LocalDateTime regDate; // 회원가입일자
     private LocalDateTime withdrawDate; // 회원탈퇴일자
     private char enabled; // 회원 탈퇴여부
