@@ -3,28 +3,5 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spacebetween.linket.mapper.UserMapper">
-    <!-- 회원가입 -->
-    <insert id="signup" parameterType="UserJoinDto">
-        insert into linket.user (email, password, user_name, birthdate, agreement, phone, gender, role, reg_date, withdraw_date,
-                                 enabled, last_updated_date, user_company_id)
-        values (#{email},#{password},#{userName},#{birthdate},#{agreement},#{phone},#{gender},#{role},#{regDate},#{withdrawDate},
-                #{enabled}, #{lastUpdatedDate}, #{companyId})
-    </insert>
 
-
-    <!-- 로그인 -->
-    <select id="login" parameterType="hashmap" resultType="UserJoinDto">
-        SELECT
-            email, password
-        FROM user
-        WHERE email=#{email} AND password=#{password}
-    </select>
-
-    <!-- 이메일 중복 체크 -->
-    <select id="checkEmail" parameterType="string" resultType="UserJoinDto">
-        SELECT
-            email
-        FROM user
-        WHERE email=#{email}
-    </select>
 </mapper>
