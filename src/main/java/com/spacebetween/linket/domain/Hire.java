@@ -6,6 +6,7 @@ public class Hire {
     private Long hireId;
     private Long eventId;
     private Long companyId;
+    private String workName;
     private Integer workHour;
     private LocalDateTime workStartDay;
     private LocalDateTime workEndDay;
