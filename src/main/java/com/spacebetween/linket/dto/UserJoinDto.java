@@ -11,13 +11,14 @@ public class UserJoinDto {
     private String phone; // 전화번호
     private char gender; // 성별
     private String role; // 사용자 권한 (admin, member, staff, part)
+    private String account;
     private LocalDateTime regDate; // 회원가입일자
     private LocalDateTime withdrawDate; // 회원탈퇴일자
     private char enabled; // 회원 탈퇴여부
     private LocalDateTime lastUpdatedDate; // 회원정보 수정일자
     private long companyId;
 
-    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, LocalDateTime regDate, LocalDateTime withdrawDate, char enabled, LocalDateTime lastUpdatedDate, long companyId) {
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, String account, LocalDateTime regDate, LocalDateTime withdrawDate, char enabled, LocalDateTime lastUpdatedDate, long companyId) {
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -26,6 +27,7 @@ public class UserJoinDto {
         this.phone = phone;
         this.gender = gender;
         this.role = role;
+        this.account = account;
         this.regDate = regDate;
         this.withdrawDate = withdrawDate;
         this.enabled = enabled;
@@ -101,6 +103,9 @@ public class UserJoinDto {
         this.role = role;
     }
 
+    public String getAccount(){ return account; }
+    public void setAccount(String account){ this.account = account; }
+
     public LocalDateTime getRegDate() {
         return regDate;
     }
@@ -147,11 +152,12 @@ public class UserJoinDto {
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
-                ", birthDate='" + birthdate + '\'' +
+                ", birthdate='" + birthdate + '\'' +
                 ", agreement=" + agreement +
                 ", phone='" + phone + '\'' +
                 ", gender=" + gender +
                 ", role='" + role + '\'' +
+                ", account='" + account + '\'' +
                 ", regDate=" + regDate +
                 ", withdrawDate=" + withdrawDate +
                 ", enabled=" + enabled +

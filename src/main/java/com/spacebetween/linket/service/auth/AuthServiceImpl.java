@@ -26,4 +26,9 @@ public class AuthServiceImpl implements AuthService{
     public UserJoinDto checkEmail(String email) throws Exception {
         return authDAO.checkEmail(email);
     }
+
+    @Override
+    public int deleteUser(String email) throws Exception {
+        return authDAO.deleteUser(email);
+    }
 }
