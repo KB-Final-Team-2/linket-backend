@@ -6,6 +6,7 @@ public class HireJoinDto {
     private Long hireId;
     private Long eventId;
     private Long companyId;
+    private String workName;
     private Integer workHour;
     private LocalDateTime workStartDay;
     private LocalDateTime workEndDay;
@@ -15,10 +16,11 @@ public class HireJoinDto {
 
     public HireJoinDto(){}
 
-    public HireJoinDto(Long hireId, Long eventId, Long companyId, Integer workHour, LocalDateTime workStartDay, LocalDateTime workEndDay, Integer pay, String edu, LocalDateTime regDate) {
+    public HireJoinDto(Long hireId, Long eventId, Long companyId, String workName, Integer workHour, LocalDateTime workStartDay, LocalDateTime workEndDay, Integer pay, String edu, LocalDateTime regDate) {
         this.hireId = hireId;
         this.eventId = eventId;
         this.companyId = companyId;
+        this.workName = workName;
         this.workHour = workHour;
         this.workStartDay = workStartDay;
         this.workEndDay = workEndDay;
@@ -50,6 +52,8 @@ public class HireJoinDto {
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
+    public String getWorkName(){ return workName; }
+    public void setWorkName(String workName){this.workName=workName;}
 
     public Integer getWorkHour() {
         return workHour;
@@ -105,6 +109,7 @@ public class HireJoinDto {
                 "hireId=" + hireId +
                 ", eventId=" + eventId +
                 ", companyId=" + companyId +
+                ", workName='" + workName + '\'' +
                 ", workHour=" + workHour +
                 ", workStartDay=" + workStartDay +
                 ", workEndDay=" + workEndDay +
