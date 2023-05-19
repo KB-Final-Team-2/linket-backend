@@ -43,6 +43,10 @@ public class UserDAOImplTest {
         hashMap.put("phone","010-3333-3333");
         hashMap.put("password", "1111");
         int rowCnt = userDAO.updateUser(hashMap);
+
+        UserJoinDto userJoinDto = userDAO.getUser("aaa@aaa.com");
+        System.out.println(userJoinDto);
+
         assertTrue(rowCnt==1);
     }
 }

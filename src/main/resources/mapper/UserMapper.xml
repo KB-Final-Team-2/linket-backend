@@ -14,14 +14,14 @@
     <select id="checkUserPwd" parameterType="map" resultType="UserJoinDto">
         SELECT * FROM
         user
-        WHERE email={VALUES} AND password=#{VALUES}
+        WHERE email=#{email} AND password=#{password}
     </select>
 
     <!-- 사용자가 회원프로필에서 전화번호와 비밀번호를 수정합니다. -->
     <update id="updateUser" parameterType="map">
         UPDATE user
         SET
-        phone=#{VALUES}, password=#{VALUES}
-        WHERE email=#{VALUES}
+        phone=#{phone}, password=#{password}
+        WHERE email=#{email}
     </update>
 </mapper>
