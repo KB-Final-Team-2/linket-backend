@@ -23,7 +23,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int updateUser(HashMap<String, String> hashMap) throws Exception {
-        return userDAO.updateUser(hashMap);
+    public int updateUserPhone(HashMap<String, String> hashMap) throws Exception {
+        return userDAO.updateUserPhone(hashMap);
     }
+
+    @Override
+    public int updateUserPassword(HashMap<String, String> hashMap) throws Exception {
+        return userDAO.updateUserPassword(hashMap);
+    }
+
+
 }

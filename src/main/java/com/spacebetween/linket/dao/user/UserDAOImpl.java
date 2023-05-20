@@ -23,7 +23,12 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public int updateUser(HashMap<String, String> hashMap) throws Exception {
-        return sqlSession.update(NS+"updateUser",hashMap);
+    public int updateUserPhone(HashMap<String, String> hashMap) throws Exception {
+        return sqlSession.update(NS+"updateUserPhone", hashMap);
+    }
+
+    @Override
+    public int updateUserPassword(HashMap<String, String> hashMap) throws Exception {
+        return sqlSession.update(NS+"updateUserPassword", hashMap);
     }
 }
