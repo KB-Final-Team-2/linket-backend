@@ -70,7 +70,7 @@ public class TicketController {
             return new ResponseEntity<>(null,header, HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/user/{ticketId}")
+    @PostMapping ("/user/{ticketId}")
     public ResponseEntity<String> deleteTicket(@PathVariable Long ticketId) throws Exception{
 
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
