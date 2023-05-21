@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spacebetween.linket.mapper.ReviewMapper">
+
+    <resultMap type="ReviewJoinDto" id="reviewSelectRM">
+        <result property="reviewId" column="review_id"/>
+        <result property="ticketId" column="review_ticket_id"/>
+        <result property="eventId" column="review_event_id"/>
+        <result property="companyId" column="review_company_id"/>
+        <result property="rateFacilChair" column="rate_facil_chair"/>
+        <result property="rateFacilRest" column="rate_facil_rest"/>
+        <result property="rateStaffIn" column="rate_staff_in"/>
+        <result property="rateStaffTicket" column="rate_staff_ticket"/>
+        <result property="rateEventContent" column="rate_event_content"/>
+        <result property="rateEventGo" column="rate_event_go"/>
+        <result property="reviewEtc" column="review_etc"/>
+        <result property="regDate" column="reg_date"/>
+    </resultMap>
+
+    <!-- member가 리뷰를 등록합니다. -->
+    <insert id="registerReview" parameterType="ReviewJoinDto">
+        INSERT INTO linket.review (review_ticket_id, review_event_id, review_company_id, rate_facil_chair, rate_facil_rest,
+                                   rate_staff_in, rate_staff_ticket, rate_event_content, rate_event_go, review_etc, reg_date)
+        VALUES (#{ticketId}, #{eventId}, #{companyId}, #{rateFacilChair}, #{rateFacilRest},
+                #{rateStaffIn}, #{rateStaffTicket}, #{rateEventContent}, #{rateEventGo}, #{reviewEtc}, #{regDate})
+    </insert>
+
+
+    <!-- Staff가 등록한 종료된 행사 중 선택한 행사의 리뷰 통계를 조회합니다. -->
+    <select id="getReviewStatus" parameterType="long" resultMap="reviewSelectRM">
+        SELECT rate_facil_chair, rate_facil_rest, rate_staff_in, rate_staff_ticket,
+               rate_event_content, rate_event_go, review_etc, reg_date
+        FROM review
+        WHERE
+            review_event_id=#{eventId}
+    </select>
+
+</mapper>
