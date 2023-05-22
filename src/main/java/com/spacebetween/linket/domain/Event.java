@@ -17,4 +17,5 @@ public class Event {
     private LocalDateTime regDate; // 등록일자
     private LocalDateTime lastUpdatedDate; // 수정일자
     private LocalDateTime deletedDate; // 삭제일자
+    private String link; // 링크
 }

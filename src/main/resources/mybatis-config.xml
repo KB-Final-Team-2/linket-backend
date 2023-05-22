@@ -4,7 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="UserJoinDto" type="com.spacebetween.linket.dto.UserJoinDto"/>
         <typeAlias alias="AttendanceJoinDto" type="com.spacebetween.linket.dto.AttendanceJoinDto"/>
+        <typeAlias alias="CompanyJoinDto" type="com.spacebetween.linket.dto.CompanyJoinDto"/>
+        <typeAlias alias="EventJoinDto" type="com.spacebetween.linket.dto.EventJoinDto"/>
+        <typeAlias alias="HireJoinDto" type="com.spacebetween.linket.dto.HireJoinDto"/>
+        <typeAlias alias="NoticeJoinDto" type="com.spacebetween.linket.dto.NoticeJoinDto"/>
+        <typeAlias alias="ReviewJoinDto" type="com.spacebetween.linket.dto.ReviewJoinDto"/>
+        <typeAlias alias="TicketJoinDto" type="com.spacebetween.linket.dto.TicketJoinDto"/>
+        <typeAlias alias="UserJoinDto" type="com.spacebetween.linket.dto.UserJoinDto"/>
     </typeAliases>
 </configuration>
