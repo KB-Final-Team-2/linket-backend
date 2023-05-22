@@ -33,12 +33,12 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public List<Map<String,String>> getAllEvents(long companyId) throws Exception {
+    public List<Map<String, String>> getAllEvents(long companyId) throws Exception {
         return sqlSession.selectList(NS + "getAllEvents", companyId);
     }
 
     @Override
-    public Map<String,String> getEvent(long eventId) throws Exception {
+    public Map<String, String> getEvent(long eventId) throws Exception {
         return sqlSession.selectOne(NS + "getEvent", eventId);
     }
 
@@ -48,12 +48,12 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public List<Map<String,String>> getAllHires(long eventId) throws Exception {
+    public List<Map<String, String>> getAllHires(long eventId) throws Exception {
         return sqlSession.selectList(NS + "getAllHires", eventId);
     }
 
     @Override
-    public Map<String,String> getHire(long hireId) throws Exception {
+    public Map<String, String> getHire(long hireId) throws Exception {
         return sqlSession.selectOne(NS + "getHire", hireId);
     }
 
@@ -62,5 +62,20 @@ public class EventDAOImpl implements EventDAO {
         return sqlSession.delete(NS + "deleteHire", hireId);
     }
 
+    //도연추가
+    @Override
+    public int selectUsers(Long eventId) throws Exception {
+        return sqlSession.selectOne(NS + "selectUsers", eventId);
+    }
+
+    @Override
+    public EventJoinDto selCloseEvent(Long eventId) throws Exception {
+        return sqlSession.selectOne(NS + "selCloseEvent", eventId);
+    }
+
+    @Override
+    public HireJoinDto getEventIdHire(Long eventId) throws Exception {
+        return sqlSession.selectOne(NS + "getEventIdHire", eventId);
+    }
 
 }
