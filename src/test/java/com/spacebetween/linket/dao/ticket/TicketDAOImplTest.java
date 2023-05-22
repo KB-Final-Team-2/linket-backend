@@ -45,19 +45,28 @@ public class TicketDAOImplTest {
 
     //티켓 단일 조회 테스트
     @Test
-    public void getTicket() throws Exception{
+    public void testGetTicket() throws Exception{
         Map<String,String> ticketMap = ticketDAO.getTicket(1L);
         System.out.println(ticketMap);
     }
 
     //티켓 삭제 테스트
     @Test
-    public void deleteTicket() throws Exception {
+    public void TestDeleteTicket() throws Exception {
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
         ticketJoinDto.setTicketId(2L);
         ticketJoinDto.setTicketStatus('N');
 
         int rowCnt = ticketDAO.deleteTicket(ticketJoinDto);
         assertTrue(rowCnt == 1);
+    }
+
+    @Test
+    public void testGetTicketStatus() throws Exception{
+        List<Map<String,String>> ticketList = ticketDAO.getTicketStatus(1L);
+        System.out.println();
+
+        for(Map<String,String> map : ticketList)
+            System.out.println(map);
     }
 }
