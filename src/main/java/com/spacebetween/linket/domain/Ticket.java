@@ -13,4 +13,5 @@ public class Ticket {
     private char ticketStatus; // 티켓 사용가능여부 (default: 'Y')
     private LocalDateTime regDate; // 티켓등록일자
     private LocalDateTime lastUpdatedDate; // 수정일자
+    private String seat; // 좌석
 }
