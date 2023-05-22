@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class TicketDAOImpl implements TicketDAO{
@@ -22,12 +23,12 @@ public class TicketDAOImpl implements TicketDAO{
     }
 
     @Override
-    public List<TicketJoinDto> getAllTickets(String email) throws Exception {
+    public List<Map<String,String>> getAllTickets(String email) throws Exception {
         return sqlSession.selectList(NS+"getAllTickets",email);
     }
 
     @Override
-    public TicketJoinDto getTicket(Long ticketId) throws Exception {
+    public Map<String,String> getTicket(Long ticketId) throws Exception {
         return sqlSession.selectOne(NS+"getTicket",ticketId);
     }
 

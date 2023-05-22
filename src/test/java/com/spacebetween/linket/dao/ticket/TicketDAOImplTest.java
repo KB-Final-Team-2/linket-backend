@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -24,8 +25,8 @@ public class TicketDAOImplTest {
     @Test
     public void testRegisterTicket() throws Exception{
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
-        ticketJoinDto.setEmail("staff@test.com");
-        ticketJoinDto.setTicketId(10L);
+        ticketJoinDto.setEmail("member@test.com");
+        ticketJoinDto.setTicketId(2L);
 
         int rowCnt = ticketDAO.registerTicket(ticketJoinDto);
         assertTrue(rowCnt==1);
@@ -34,26 +35,26 @@ public class TicketDAOImplTest {
     //티켓 전체 조회 테스트
     @Test
     public void testGetAllTickets() throws Exception{
-        List<TicketJoinDto> ticketList = ticketDAO.getAllTickets("member@test.com");
+        List<Map<String,String>> ticketList = ticketDAO.getAllTickets("member@test.com");
         System.out.println();
 
-        for(TicketJoinDto ticketJoinDto : ticketList)
-            System.out.println(ticketJoinDto);
+        for(Map<String,String> map : ticketList)
+            System.out.println(map);
 
     }
 
     //티켓 단일 조회 테스트
     @Test
     public void getTicket() throws Exception{
-        TicketJoinDto ticketJoinDto = ticketDAO.getTicket(1L);
-        System.out.println(ticketJoinDto);
+        Map<String,String> ticketMap = ticketDAO.getTicket(1L);
+        System.out.println(ticketMap);
     }
 
     //티켓 삭제 테스트
     @Test
     public void deleteTicket() throws Exception {
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
-        ticketJoinDto.setTicketId(10L);
+        ticketJoinDto.setTicketId(2L);
         ticketJoinDto.setTicketStatus('N');
 
         int rowCnt = ticketDAO.deleteTicket(ticketJoinDto);

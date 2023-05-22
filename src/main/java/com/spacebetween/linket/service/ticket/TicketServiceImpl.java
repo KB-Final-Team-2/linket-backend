@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -19,12 +20,12 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<TicketJoinDto> getAllTickets(String email) throws Exception {
+    public List<Map<String,String>> getAllTickets(String email) throws Exception {
         return ticketDAO.getAllTickets(email);
     }
 
     @Override
-    public TicketJoinDto getTicket(Long ticketId) throws Exception {
+    public Map<String,String> getTicket(Long ticketId) throws Exception {
         return ticketDAO.getTicket(ticketId);
     }
 
