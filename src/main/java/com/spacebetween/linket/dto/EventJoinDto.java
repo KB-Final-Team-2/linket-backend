@@ -38,6 +38,13 @@ public class EventJoinDto {
         this.link = link;
     }
 
+    public EventJoinDto(LocalDateTime regDate, String eventName, String place, String eventDesc){
+        this.regDate = regDate;
+        this.eventName = eventName;
+        this.place = place;
+        this.eventDesc = eventDesc;
+    }
+
     //registerEvent()
     public EventJoinDto(Long companyId, String eventName, String eventType, String startDate, String endDate, String place, String eventInq, String eventImage, String eventDesc, LocalDateTime regDate, LocalDateTime lastUpdatedDate, String link) {
         this.companyId = companyId;
