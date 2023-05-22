@@ -1,5 +1,6 @@
 package com.spacebetween.linket.dao.event;
 
+import com.spacebetween.linket.dao.attendance.AttendanceDAO;
 import com.spacebetween.linket.dto.EventJoinDto;
 import com.spacebetween.linket.dto.HireJoinDto;
 import org.junit.Test;
@@ -110,6 +111,23 @@ public class EventDAOImplTest {
         int rowCnt = eventDAO.deleteHire(670L);
         assertTrue(rowCnt == 1);
 
+    }
+
+    //Satff가 종료된 행사중 하나를 선택하여 상세 조회 Test
+    @Test
+    public void testReviewController() throws Exception{
+        int userCnt = eventDAO.selectUsers(3L); // eventId 3에 대한 attendance 인원
+        EventJoinDto eventJoinDto = eventDAO.selCloseEvent(3L);
+
+        HireJoinDto hireJoinDto = eventDAO.getEventIdHire(3L);
+        int totalPay = userCnt * hireJoinDto.getPay() * hireJoinDto.getWorkHour();
+
+        System.out.println("등록일자:"+eventJoinDto.getRegDate());
+        System.out.println("행사 기간:"+eventJoinDto.getEventName());
+        System.out.println("행사 장소:"+eventJoinDto.getPlace());
+        System.out.println("참여 인원:"+userCnt);
+        System.out.println("총 인건비:"+totalPay);
+        System.out.println("행사 설명:"+eventJoinDto.getEventDesc());
     }
 
 

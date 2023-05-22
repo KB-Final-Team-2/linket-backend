@@ -16,16 +16,23 @@ public interface EventService {
 
     int deleteEvent(EventJoinDto eventJoinDto) throws Exception;
 
-    List<Map<String,String>> getAllEvents(long companyId) throws Exception;
+    List<Map<String, String>> getAllEvents(long companyId) throws Exception;
 
-    Map<String,String> getEvent(long eventId) throws Exception;
+    Map<String, String> getEvent(long eventId) throws Exception;
 
     int registerHire(HireJoinDto hireJoinDto) throws Exception;
 
-    List<Map<String,String>> getAllHires(long eventId) throws Exception;
+    List<Map<String, String>> getAllHires(long eventId) throws Exception;
 
-    Map<String,String> getHire(long hireId) throws Exception;
+    Map<String, String> getHire(long hireId) throws Exception;
 
     int deleteHire(long hireId) throws Exception;
+
+    //도연
+    int selectUsers(Long eventId) throws Exception;
+
+    EventJoinDto selCloseEvent(Long eventId) throws Exception;
+
+    HireJoinDto getEventIdHire(Long eventId) throws Exception;
 
 }
