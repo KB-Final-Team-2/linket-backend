@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -19,7 +20,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewJoinDto> getReviewStatus(Long eventId) throws Exception {
+    public List<Map<String,String>> getReviewStatus(Long eventId) throws Exception {
         return reviewDAO.getReviewStatus(eventId);
     }
 }

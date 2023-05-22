@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -22,7 +23,7 @@ public class ReviewDAOImplTest {
     public void testRegisterReview() throws Exception{
         ReviewJoinDto reviewJoinDto = new ReviewJoinDto(
                 2L,1L,12345L,3,3,3,
-                3,3,2,"", LocalDateTime.now());
+                3,3,2,"");
 
         int rowCnt = reviewDAO.registerReview(reviewJoinDto);
         assertTrue(rowCnt==1);
@@ -30,8 +31,8 @@ public class ReviewDAOImplTest {
 
     @Test
     public void getReviewStatus() throws Exception{
-        List<ReviewJoinDto> reviewList = reviewDAO.getReviewStatus(1L);
-        for (ReviewJoinDto reviewJoinDto : reviewList) {
+        List<Map<String,String>> reviewList = reviewDAO.getReviewStatus(1L);
+        for (Map<String,String> reviewJoinDto : reviewList) {
             System.out.println(reviewJoinDto);
         }
     }

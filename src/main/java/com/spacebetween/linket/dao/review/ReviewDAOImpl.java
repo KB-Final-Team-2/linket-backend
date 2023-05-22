@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ReviewDAOImpl implements ReviewDAO{
@@ -20,7 +21,7 @@ public class ReviewDAOImpl implements ReviewDAO{
     }
 
     @Override
-    public List<ReviewJoinDto> getReviewStatus(Long eventId) throws Exception {
+    public List<Map<String,String>> getReviewStatus(Long eventId) throws Exception {
         return sqlSession.selectList(NS+"getReviewStatus",eventId);
     }
 }

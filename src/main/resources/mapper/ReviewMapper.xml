@@ -24,12 +24,12 @@
         INSERT INTO linket.review (review_ticket_id, review_event_id, review_company_id, rate_facil_chair, rate_facil_rest,
                                    rate_staff_in, rate_staff_ticket, rate_event_content, rate_event_go, review_etc, reg_date)
         VALUES (#{ticketId}, #{eventId}, #{companyId}, #{rateFacilChair}, #{rateFacilRest},
-                #{rateStaffIn}, #{rateStaffTicket}, #{rateEventContent}, #{rateEventGo}, #{reviewEtc}, #{regDate})
+                #{rateStaffIn}, #{rateStaffTicket}, #{rateEventContent}, #{rateEventGo}, #{reviewEtc}, NOW())
     </insert>
 
 
     <!-- Staff가 등록한 종료된 행사 중 선택한 행사의 리뷰 통계를 조회합니다. -->
-    <select id="getReviewStatus" parameterType="long" resultMap="reviewSelectRM">
+    <select id="getReviewStatus" parameterType="long" resultType="map">
         SELECT rate_facil_chair, rate_facil_rest, rate_staff_in, rate_staff_ticket,
                rate_event_content, rate_event_go, review_etc, reg_date
         FROM review
