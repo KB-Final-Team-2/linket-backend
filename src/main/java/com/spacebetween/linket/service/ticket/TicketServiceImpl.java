@@ -34,5 +34,10 @@ public class TicketServiceImpl implements TicketService {
         return ticketDAO.deleteTicket(ticketJoinDto);
     }
 
+    @Override
+    public List<Map<String, String>> getTicketStatus(Long eventId) throws Exception {
+        return ticketDAO.getTicketStatus(eventId);
+    }
+
 
 }

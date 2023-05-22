@@ -36,4 +36,11 @@ public class TicketDAOImpl implements TicketDAO{
     public int deleteTicket(TicketJoinDto ticketJoinDto) throws Exception {
         return sqlSession.delete(NS+"deleteTicket", ticketJoinDto);
     }
+
+    @Override
+    public List<Map<String, String>> getTicketStatus(Long eventId) throws Exception {
+        return sqlSession.selectList(NS+"getTicketStatus", eventId);
+    }
+
+
 }

@@ -23,17 +23,26 @@
 
     <!-- 티켓 단일 조회 -->
     <select id="getTicket" parameterType="long" resultType="map">
-        SELECT d.event_name, d.event_type, d.start_date, d.end_date, d.place, d.event_desc, e.serial_num
+        SELECT d.event_name, d.event_type, d.start_date, d.end_date, d.place, d.event_desc, d.link, e.serial_num
         FROM event d
         RIGHT OUTER JOIN ticket e ON d.event_id = e.ticket_event_id
-        WHERE ticket_id=#{ticketId}
+        WHERE e.ticket_id=#{ticketId}
     </select>
 
     <!-- 등록 티켓 삭제 -->
     <update id="deleteTicket" parameterType="TicketJoinDto">
         UPDATE ticket
         SET
-            ticket_status='N', last_updated_date= NOW()
+            ticket_status='N', last_updated_date = NOW()
         WHERE ticket_id=#{ticketId}
     </update>
+    
+    <!-- 종료된 행사 - 관람객 통계-->
+    <select id="getTicketStatus" parameterType="long" resultType="map">
+        SELECT d.gender, d.birthdate
+        FROM user d
+        RIGHT OUTER JOIN ticket e ON d.email = e.ticket_email
+        WHERE e.ticket_event_id = #{eventId}
+    </select>
+    
 </mapper>
