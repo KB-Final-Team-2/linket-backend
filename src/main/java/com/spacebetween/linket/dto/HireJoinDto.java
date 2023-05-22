@@ -29,6 +29,19 @@ public class HireJoinDto {
         this.regDate = regDate;
     }
 
+    //registerHire()
+    public HireJoinDto(Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, LocalDateTime regDate) {
+        this.eventId = eventId;
+        this.companyId = companyId;
+        this.workName = workName;
+        this.workHour = workHour;
+        this.workStartDay = workStartDay;
+        this.workEndDay = workEndDay;
+        this.pay = pay;
+        this.edu = edu;
+        this.regDate = regDate;
+    }
+
     public Long getHireId() {
         return hireId;
     }
