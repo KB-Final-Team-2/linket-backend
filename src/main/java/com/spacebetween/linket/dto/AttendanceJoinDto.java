@@ -33,6 +33,25 @@ public class AttendanceJoinDto {
         this.regDate = regDate;
     }
 
+    public AttendanceJoinDto(Long hireId, Long eventId, Long companyId, String email, int attDate, LocalDateTime attStartDatetime, LocalDateTime attEndDatetime, char attStartBnt, char attEndBnt, LocalDateTime regDate) {
+        this.hireId = hireId;
+        this.eventId = eventId;
+        this.companyId = companyId;
+        this.email = email;
+        this.attDate = attDate;
+        this.attStartDatetime = attStartDatetime;
+        this.attEndDatetime = attEndDatetime;
+        this.attStartBnt = attStartBnt;
+        this.attEndBnt = attEndBnt;
+        this.regDate = regDate;
+    }
+
+    public AttendanceJoinDto(String email, Long eventId){
+        this.email = email;
+        this.eventId = eventId;
+    }
+
+
     public Long getAttId() {
         return attId;
     }

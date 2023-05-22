@@ -38,17 +38,19 @@ public class EventJoinDto {
         this.link = link;
     }
 
-    //register
-    public EventJoinDto(Long companyId, String eventName, String eventType, String place, String eventInq, char eventStatus, String startDate, String endDate, LocalDateTime regDate, String link) {
+    //registerEvent()
+    public EventJoinDto(Long companyId, String eventName, String eventType, String startDate, String endDate, String place, String eventInq, String eventImage, String eventDesc, LocalDateTime regDate, LocalDateTime lastUpdatedDate, String link) {
         this.companyId = companyId;
         this.eventName = eventName;
         this.eventType = eventType;
-        this.place = place;
-        this.eventInq = eventInq;
-        this.eventStatus = eventStatus;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.place = place;
+        this.eventInq = eventInq;
+        this.eventImage = eventImage;
+        this.eventDesc = eventDesc;
         this.regDate = regDate;
+        this.lastUpdatedDate = lastUpdatedDate;
         this.link = link;
     }
 
@@ -57,20 +59,21 @@ public class EventJoinDto {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventType = eventType;
-        this.place = place;
-        this.eventImage = eventImage;
-        this.eventInq = eventInq;
-        this.eventDesc = eventDesc;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.place = place;
+        this.eventInq = eventInq;
+        this.eventImage = eventImage;
+        this.eventDesc = eventDesc;
         this.lastUpdatedDate = lastUpdatedDate;
         this.link = link;
     }
     //deleteEvent()
-    public EventJoinDto(Long eventId, char eventStatus ,LocalDateTime lastUpdatedDate) {
+    public EventJoinDto(Long eventId, char eventStatus ,LocalDateTime lastUpdatedDate,  LocalDateTime deletedDate) {
         this.eventId = eventId;
         this.eventStatus = eventStatus;
         this.lastUpdatedDate = lastUpdatedDate;
+        this.deletedDate = deletedDate;
     }
 
     public Long getEventId() {
