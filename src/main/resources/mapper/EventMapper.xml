@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spacebetween.linket.mapper.EventMapper">
+
+    <resultMap type="EventJoinDto" id="eventSelectRM">
+        <result property="eventId" column="event_id"/>
+        <result property="companyId" column="event_company_id"/>
+        <result property="eventName" column="event_name"/>
+        <result property="eventType" column="event_type"/>
+        <result property="place" column="place"/>
+        <result property="eventImage" column="event_image"/>
+        <result property="eventInq" column="event_inq"/>
+        <result property="eventDesc" column="event_desc"/>
+        <result property="eventStatus" column="event_status"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="regDate" column="reg_date"/>
+        <result property="lastUpdatedDate" column="last_updated_date"/>
+        <result property="deletedDate" column="deleted_date"/>
+        <result property="link" column="link"/>
+    </resultMap>
+
+    <resultMap type="HireJoinDto" id="hireSelectRM">
+        <result property="hireId" column="hire_id"/>
+        <result property="eventId" column="hire_event_id"/>
+        <result property="companyId" column="hire_company_id"/>
+        <result property="workName" column="work_name"/>
+        <result property="workHour" column="work_hour"/>
+        <result property="workStartDay" column="work_start_day"/>
+        <result property="workEndDay" column="work_end_day"/>
+        <result property="pay" column="pay"/>
+        <result property="edu" column="edu"/>
+        <result property="regDate" column="reg_date"/>
+    </resultMap>
+
+
+    <!-- Staff가 행사 등록 -->
+    <insert id="registerEvent" parameterType="EventJoinDto">
+        insert into linket.Event(event_company_id, event_name, event_type, start_date, end_date, place, event_inq, event_image,
+                                 event_desc, reg_date,last_updated_date, link)
+        values (#{companyId} ,#{eventName}, #{eventType}, #{startDate}, #{endDate}, #{place}, #{eventInq}, #{eventImage},
+                #{eventDesc},  #{regDate}, #{lastUpdatedDate}, #{link})
+    </insert>
+
+    <!-- Staff가 행사 수정 -->
+    <update id="updateEvent" parameterType="EventJoinDto">
+        update event
+        set event_name        = #{eventName},
+            event_type        = #{eventType},
+            place             = #{place},
+            event_image       = #{eventImage},
+            event_inq         = #{eventInq},
+            event_desc        = #{eventDesc},
+            start_date        = #{startDate},
+            end_date          = #{endDate},
+            last_updated_date = #{lastUpdatedDate},
+            link              = #{link}
+        where event_id = #{eventId}
+    </update>
+
+    <!-- Staff가 행사 삭제 -->
+    <update id="deleteEvent" parameterType="EventJoinDto">
+        update event
+        set event_status = #{eventStatus},
+            deleted_date = #{deletedDate}
+
+        where event_id = #{eventId}
+    </update>
+
+    <!-- Staff가  등록한 모든 행사 조회 -->
+    <select id="getAllEvents" parameterType="long" resultType="map">
+        select event_type, event_name, event_id
+        from event
+        where event_company_id = #{eventCompanyId} and event_status = 'Y'
+        order by reg_date desc
+    </select>
+
+    <!-- Staff가  등록한 행사 상세 조회 -->
+    <select id="getEvent" parameterType="long" resultType="map">
+        select reg_date, start_date, end_date, place, event_image, event_inq, event_desc, event_id
+        from event
+        where event_id = #{eventId}
+    </select>
+
+
+    <!-- 공고 -->
+    <!-- Staff가 공고 등록 -->
+    <insert id="registerHire" parameterType="HireJoinDto">
+        insert into Linket.hire(hire_id, hire_event_id, hire_company_id, work_name, work_hour, work_start_day,
+                                work_end_day, pay, edu, reg_date)
+        values (#{hireId}, #{eventId}, #{companyId}, #{workName}, #{workHour}, #{workStartDay}, #{workEndDay}, #{pay},
+                #{edu}, #{regDate})
+    </insert>
+
+    <!-- Staff가 등록한 공고 전체 조회 -->
+    <select id="getAllHires" parameterType="long" resultType="map">
+        select work_name, hire_id
+        from hire
+        where hire_event_id = #{VALUES}
+        order by reg_date desc
+    </select>
+
+    <!-- Staff가 공고 상세 조회 -->
+    <select id="getHire" parameterType="long" resultType="map">
+        select d.work_name, d.work_start_day, d.work_end_day, d.work_hour, d.pay, e.event_inq, d.hire_id, d.reg_date, d.edu
+        from hire d
+        Right Outer Join event e on d.hire_event_id = e.event_id
+        where hire_id = #{hire_id}
+    </select>
+
+    <!-- Staff가 공고 선택 삭제 -->
+    <delete id="deleteHire" parameterType="long">
+        delete
+        from hire
+        where hire_id = #{VALUES}
+    </delete>
+
+
+</mapper>
