@@ -3,28 +3,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spacebetween.linket.mapper.UserMapper">
-    <!-- 회원가입 -->
-    <insert id="signup" parameterType="UserJoinDto">
-        insert into linket.user (email, password, user_name, birthdate, agreement, phone, gender, role, reg_date, withdraw_date,
-                                 enabled, last_updated_date, user_company_id)
-        values (#{email},#{password},#{userName},#{birthdate},#{agreement},#{phone},#{gender},#{role},#{regDate},#{withdrawDate},
-                #{enabled}, #{lastUpdatedDate}, #{companyId})
-    </insert>
+    <!-- 사용자가 회원프로필을 조회합니다. -->
+    <select id="getUser" parameterType="string" resultType="UserJoinDto">
+        SELECT * FROM
+        user
+        WHERE email=#{VALUES}
+    </select>
 
-
-    <!-- 로그인 -->
-    <select id="login" parameterType="hashmap" resultType="UserJoinDto">
-        SELECT
-            email, password
-        FROM user
+    <!-- 사용자가 회원 프로필을 조회하기 위해 비밀번호를 확인합니다. -->
+    <select id="checkUserPwd" parameterType="map" resultType="UserJoinDto">
+        SELECT * FROM
+        user
         WHERE email=#{email} AND password=#{password}
     </select>
 
-    <!-- 이메일 중복 체크 -->
-    <select id="checkEmail" parameterType="string" resultType="UserJoinDto">
-        SELECT
-            email
-        FROM user
+    <!-- 사용자가 회원프로필에서 전화번호를 수정합니다. -->
+    <update id="updateUserPhone" parameterType="map">
+        UPDATE user
+        SET
+        phone=#{phone}
         WHERE email=#{email}
-    </select>
+    </update>
+
+    <!-- 사용자가 회원프로필에서 비밀번호를 수정합니다. -->
+    <update id="updateUserPassword" parameterType="map">
+        UPDATE user
+        SET
+        password=#{password}
+        WHERE email=#{email}
+    </update>
 </mapper>
