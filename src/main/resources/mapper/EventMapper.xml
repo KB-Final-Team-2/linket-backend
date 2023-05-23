@@ -35,6 +35,23 @@
         <result property="regDate" column="reg_date"/>
     </resultMap>
 
+    <resultMap type="EventJoinDto" id="eventMap">
+        <result column="event_id" property="eventId"/>
+        <result column="event_company_id" property="companyId"/>
+        <result column="event_name" property="eventName"/>
+        <result column="event_type" property="eventType"/>
+        <result column="place" property="place"/>
+        <result column="event_image" property="eventImage"/>
+        <result column="event_inq" property="eventInq"/>
+        <result column="event_desc" property="eventDesc"/>
+        <result column="event_status" property="eventStatus"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="reg_date" property="regDate"/>
+        <result column="last_updated_date" property="lastUpdatedDate"/>
+        <result column="deleted_date" property="deletedDate"/>
+        <result column="link" property="link"/>
+    </resultMap>
 
     <!-- Staff가 행사 등록 -->
     <insert id="registerEvent" parameterType="EventJoinDto">
