@@ -8,16 +8,29 @@ public class HireJoinDto {
     private Long companyId;
     private String workName;
     private Integer workHour;
-    private LocalDateTime workStartDay;
-    private LocalDateTime workEndDay;
+    private String workStartDay;
+    private String workEndDay;
     private Integer pay;
     private String edu;
     private LocalDateTime regDate;
 
     public HireJoinDto(){}
 
-    public HireJoinDto(Long hireId, Long eventId, Long companyId, String workName, Integer workHour, LocalDateTime workStartDay, LocalDateTime workEndDay, Integer pay, String edu, LocalDateTime regDate) {
+    public HireJoinDto(Long hireId, Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, LocalDateTime regDate) {
         this.hireId = hireId;
+        this.eventId = eventId;
+        this.companyId = companyId;
+        this.workName = workName;
+        this.workHour = workHour;
+        this.workStartDay = workStartDay;
+        this.workEndDay = workEndDay;
+        this.pay = pay;
+        this.edu = edu;
+        this.regDate = regDate;
+    }
+
+    //registerHire()
+    public HireJoinDto(Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, LocalDateTime regDate) {
         this.eventId = eventId;
         this.companyId = companyId;
         this.workName = workName;
@@ -63,19 +76,19 @@ public class HireJoinDto {
         this.workHour = workHour;
     }
 
-    public LocalDateTime getWorkStartDay() {
+    public String getWorkStartDay() {
         return workStartDay;
     }
 
-    public void setWorkStartDay(LocalDateTime workStartDay) {
+    public void setWorkStartDay(String workStartDay) {
         this.workStartDay = workStartDay;
     }
 
-    public LocalDateTime getWorkEndDay() {
+    public String getWorkEndDay() {
         return workEndDay;
     }
 
-    public void setWorkEndDay(LocalDateTime workEndDay) {
+    public void setWorkEndDay(String workEndDay) {
         this.workEndDay = workEndDay;
     }
 

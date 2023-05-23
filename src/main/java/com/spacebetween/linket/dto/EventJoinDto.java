@@ -18,10 +18,9 @@ public class EventJoinDto {
     private LocalDateTime regDate; // 등록일자
     private LocalDateTime lastUpdatedDate; // 수정일자
     private LocalDateTime deletedDate; // 삭제일자
+    private String link; // 링크
 
-    public EventJoinDto(){}
-
-    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, LocalDateTime regDate, LocalDateTime lastUpdatedDate, LocalDateTime deletedDate) {
+    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, LocalDateTime regDate, LocalDateTime lastUpdatedDate, LocalDateTime deletedDate, String link) {
         this.eventId = eventId;
         this.companyId = companyId;
         this.eventName = eventName;
@@ -34,6 +33,52 @@ public class EventJoinDto {
         this.startDate = startDate;
         this.endDate = endDate;
         this.regDate = regDate;
+        this.lastUpdatedDate = lastUpdatedDate;
+        this.deletedDate = deletedDate;
+        this.link = link;
+    }
+
+    public EventJoinDto(LocalDateTime regDate, String eventName, String place, String eventDesc){
+        this.regDate = regDate;
+        this.eventName = eventName;
+        this.place = place;
+        this.eventDesc = eventDesc;
+    }
+
+    //registerEvent()
+    public EventJoinDto(Long companyId, String eventName, String eventType, String startDate, String endDate, String place, String eventInq, String eventImage, String eventDesc, LocalDateTime regDate, LocalDateTime lastUpdatedDate, String link) {
+        this.companyId = companyId;
+        this.eventName = eventName;
+        this.eventType = eventType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.place = place;
+        this.eventInq = eventInq;
+        this.eventImage = eventImage;
+        this.eventDesc = eventDesc;
+        this.regDate = regDate;
+        this.lastUpdatedDate = lastUpdatedDate;
+        this.link = link;
+    }
+
+    // updateEvent()
+    public EventJoinDto(Long eventId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, String startDate, String endDate, LocalDateTime lastUpdatedDate, String link) {
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.eventType = eventType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.place = place;
+        this.eventInq = eventInq;
+        this.eventImage = eventImage;
+        this.eventDesc = eventDesc;
+        this.lastUpdatedDate = lastUpdatedDate;
+        this.link = link;
+    }
+    //deleteEvent()
+    public EventJoinDto(Long eventId, char eventStatus ,LocalDateTime lastUpdatedDate,  LocalDateTime deletedDate) {
+        this.eventId = eventId;
+        this.eventStatus = eventStatus;
         this.lastUpdatedDate = lastUpdatedDate;
         this.deletedDate = deletedDate;
     }
@@ -150,6 +195,10 @@ public class EventJoinDto {
         this.deletedDate = deletedDate;
     }
 
+    public String getLink() { return link; }
+
+    public void setLink(String link) {this.link = link;}
+
     @Override
     public String toString() {
         return "EventJoinDto{" +
@@ -167,6 +216,7 @@ public class EventJoinDto {
                 ", regDate=" + regDate +
                 ", lastUpdatedDate=" + lastUpdatedDate +
                 ", deletedDate=" + deletedDate +
+                ", link='" + link + '\'' +
                 '}';
     }
 }

@@ -8,8 +8,8 @@ public class Hire {
     private Long companyId;
     private String workName;
     private Integer workHour;
-    private LocalDateTime workStartDay;
-    private LocalDateTime workEndDay;
+    private String workStartDay;
+    private String workEndDay;
     private Integer pay;
     private String edu;
     private LocalDateTime regDate;

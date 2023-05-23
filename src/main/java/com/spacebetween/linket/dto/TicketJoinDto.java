@@ -12,10 +12,11 @@ public class TicketJoinDto {
     private char ticketStatus; // 티켓 사용가능여부 (default: 'Y')
     private LocalDateTime regDate; // 티켓등록일자
     private LocalDateTime lastUpdatedDate; // 수정일자
+    private String seat; //  좌석
 
     public TicketJoinDto(){}
 
-    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, char ticketReg, char ticketStatus, LocalDateTime regDate, LocalDateTime lastUpdatedDate) {
+    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, char ticketReg, char ticketStatus, LocalDateTime regDate, LocalDateTime lastUpdatedDate, String seat) {
         this.ticketId = ticketId;
         this.eventId = eventId;
         this.companyId = companyId;
@@ -25,6 +26,7 @@ public class TicketJoinDto {
         this.ticketStatus = ticketStatus;
         this.regDate = regDate;
         this.lastUpdatedDate = lastUpdatedDate;
+        this.seat = seat;
     }
 
     public Long getTicketId() {
@@ -99,6 +101,10 @@ public class TicketJoinDto {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
+    public String getSeat() { return seat; }
+
+    public void setSeat(String seat) { this.seat = seat;}
+
     @Override
     public String toString() {
         return "TicketJoinDto{" +
@@ -111,6 +117,7 @@ public class TicketJoinDto {
                 ", ticketStatus=" + ticketStatus +
                 ", regDate=" + regDate +
                 ", lastUpdatedDate=" + lastUpdatedDate +
+                ", seat='" + seat + '\'' +
                 '}';
     }
 }

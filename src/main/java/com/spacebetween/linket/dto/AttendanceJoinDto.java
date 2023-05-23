@@ -9,7 +9,7 @@ public class AttendanceJoinDto {
     private Long eventId;
     private Long companyId;
     private String email;
-    private LocalDate attDate; // 참여일
+    private int attDate; // 참여일
     private LocalDateTime attStartDatetime; // 출석일시
     private LocalDateTime attEndDatetime; // 퇴근일시
     private char attStartBnt; // 출석 버튼 활성화
@@ -19,7 +19,7 @@ public class AttendanceJoinDto {
     //기본 생성자
     public AttendanceJoinDto(){}
 
-    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, LocalDate attDate, LocalDateTime attStartDatetime, LocalDateTime attEndDatetime, char attStartBnt, char attEndBnt, LocalDateTime regDate) {
+    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, int attDate, LocalDateTime attStartDatetime, LocalDateTime attEndDatetime, char attStartBnt, char attEndBnt, LocalDateTime regDate) {
         this.attId = attId;
         this.hireId = hireId;
         this.eventId = eventId;
@@ -32,6 +32,25 @@ public class AttendanceJoinDto {
         this.attEndBnt = attEndBnt;
         this.regDate = regDate;
     }
+
+    public AttendanceJoinDto(Long hireId, Long eventId, Long companyId, String email, int attDate, LocalDateTime attStartDatetime, LocalDateTime attEndDatetime, char attStartBnt, char attEndBnt, LocalDateTime regDate) {
+        this.hireId = hireId;
+        this.eventId = eventId;
+        this.companyId = companyId;
+        this.email = email;
+        this.attDate = attDate;
+        this.attStartDatetime = attStartDatetime;
+        this.attEndDatetime = attEndDatetime;
+        this.attStartBnt = attStartBnt;
+        this.attEndBnt = attEndBnt;
+        this.regDate = regDate;
+    }
+
+    public AttendanceJoinDto(String email, Long eventId){
+        this.email = email;
+        this.eventId = eventId;
+    }
+
 
     public Long getAttId() {
         return attId;
@@ -73,11 +92,11 @@ public class AttendanceJoinDto {
         this.email = email;
     }
 
-    public LocalDate getAttDate() {
+    public int getAttDate() {
         return attDate;
     }
 
-    public void setAttDate(LocalDate attDate) {
+    public void setAttDate(int attDate) {
         this.attDate = attDate;
     }
 

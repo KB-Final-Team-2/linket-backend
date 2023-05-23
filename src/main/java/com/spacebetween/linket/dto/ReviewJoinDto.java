@@ -32,6 +32,19 @@ public class ReviewJoinDto {
         this.regDate = regDate;
     }
 
+    public ReviewJoinDto(Long ticketId, Long eventId, Long companyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc) {
+        this.ticketId = ticketId;
+        this.eventId = eventId;
+        this.companyId = companyId;
+        this.rateFacilChair = rateFacilChair;
+        this.rateFacilRest = rateFacilRest;
+        this.rateStaffIn = rateStaffIn;
+        this.rateStaffTicket = rateStaffTicket;
+        this.rateEventContent = rateEventContent;
+        this.rateEventGo = rateEventGo;
+        this.reviewEtc = reviewEtc;
+    }
+
     public Long getReviewId() {
         return reviewId;
     }
