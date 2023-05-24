@@ -28,7 +28,7 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
-    public int deleteUser(String email) throws Exception {
-        return authDAO.deleteUser(email);
+    public int updateUser(String email) throws Exception {
+        return authDAO.updateUser(email);
     }
 }
