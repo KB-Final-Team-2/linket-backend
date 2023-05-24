@@ -48,11 +48,13 @@ public class AuthController {
 
         UserJoinDto passObj = authService.login(hashMap);
 
+
         try {
             if(email.equals(userJoinDto.getEmail()) &&
                     password.equals(userJoinDto.getPassword())) { //로그인 성공
                 session.setAttribute("email", email);
                 session.setAttribute("password", password);
+
 
                 //test
                 System.out.println(userJoinDto.getEmail() + " " + userJoinDto.getPassword());
