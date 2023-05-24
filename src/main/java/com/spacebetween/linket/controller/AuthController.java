@@ -49,6 +49,7 @@ public class AuthController {
         if(email.equals(userJoinDto.getEmail()) &&
             password.equals(userJoinDto.getPassword())){ //로그인 성공
             session.setAttribute("email",email);
+            session.setAttribute("password",password);
 
             //test
             //System.out.println(userJoinDto.getEmail()+" "+userJoinDto.getPassword());
