@@ -12,13 +12,13 @@ public class UserJoinDto {
     private char gender; // 성별
     private String role; // 사용자 권한 (admin, member, staff, part)
     private String account;
-    private LocalDateTime regDate; // 회원가입일자
-    private LocalDateTime withdrawDate; // 회원탈퇴일자
+    private String regDate; // 회원가입일자
+    private String withdrawDate; // 회원탈퇴일자
     private char enabled; // 회원 탈퇴여부
-    private LocalDateTime lastUpdatedDate; // 회원정보 수정일자
+    private String lastUpdatedDate; // 회원정보 수정일자
     private long companyId;
 
-    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, String account, LocalDateTime regDate, LocalDateTime withdrawDate, char enabled, LocalDateTime lastUpdatedDate, long companyId) {
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, String account, String regDate, String withdrawDate, char enabled, String lastUpdatedDate, long companyId) {
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -29,6 +29,22 @@ public class UserJoinDto {
         this.role = role;
         this.account = account;
         this.regDate = regDate;
+        this.withdrawDate = withdrawDate;
+        this.enabled = enabled;
+        this.lastUpdatedDate = lastUpdatedDate;
+        this.companyId = companyId;
+    }
+
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, String account, String withdrawDate, char enabled, String lastUpdatedDate, long companyId) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
+        this.birthdate = birthdate;
+        this.agreement = agreement;
+        this.phone = phone;
+        this.gender = gender;
+        this.role = role;
+        this.account = account;
         this.withdrawDate = withdrawDate;
         this.enabled = enabled;
         this.lastUpdatedDate = lastUpdatedDate;
@@ -103,22 +119,27 @@ public class UserJoinDto {
         this.role = role;
     }
 
-    public String getAccount(){ return account; }
-    public void setAccount(String account){ this.account = account; }
+    public String getAccount() {
+        return account;
+    }
 
-    public LocalDateTime getRegDate() {
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
-    public LocalDateTime getWithdrawDate() {
+    public String getWithdrawDate() {
         return withdrawDate;
     }
 
-    public void setWithdrawDate(LocalDateTime withdrawDate) {
+    public void setWithdrawDate(String withdrawDate) {
         this.withdrawDate = withdrawDate;
     }
 
@@ -130,11 +151,11 @@ public class UserJoinDto {
         this.enabled = enabled;
     }
 
-    public LocalDateTime getLastUpdatedDate() {
+    public String getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
-    public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+    public void setLastUpdatedDate(String lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
@@ -158,10 +179,10 @@ public class UserJoinDto {
                 ", gender=" + gender +
                 ", role='" + role + '\'' +
                 ", account='" + account + '\'' +
-                ", regDate=" + regDate +
-                ", withdrawDate=" + withdrawDate +
+                ", regDate='" + regDate + '\'' +
+                ", withdrawDate='" + withdrawDate + '\'' +
                 ", enabled=" + enabled +
-                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", lastUpdatedDate='" + lastUpdatedDate + '\'' +
                 ", companyId=" + companyId +
                 '}';
     }
