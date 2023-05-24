@@ -28,9 +28,4 @@ public class AuthDAOImpl implements AuthDAO{
     public UserJoinDto checkEmail(String email) throws Exception {
         return sqlSession.selectOne(NS+"checkEmail", email);
     }
-
-    @Override
-    public int deleteUser(String email) throws Exception {
-        return sqlSession.delete(NS+"deleteUser", email);
-    }
 }
