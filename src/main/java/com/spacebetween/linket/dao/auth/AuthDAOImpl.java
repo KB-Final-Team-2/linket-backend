@@ -30,7 +30,7 @@ public class AuthDAOImpl implements AuthDAO{
     }
 
     @Override
-    public int deleteUser(String email) throws Exception {
-        return sqlSession.delete(NS+"deleteUser", email);
+    public int updateUser(String email) throws Exception {
+        return sqlSession.update(NS+"updateUser", email);
     }
 }
