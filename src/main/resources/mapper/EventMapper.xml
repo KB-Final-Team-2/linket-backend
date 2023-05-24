@@ -4,7 +4,7 @@
 
 <mapper namespace="com.spacebetween.linket.mapper.EventMapper">
 
-    <resultMap type="EventJoinDto" id="eventSelectRM">
+    <resultMap type="EventJoinDto" id="eventMap">
         <result property="eventId" column="event_id"/>
         <result property="companyId" column="event_company_id"/>
         <result property="eventName" column="event_name"/>
@@ -22,7 +22,7 @@
         <result property="link" column="link"/>
     </resultMap>
 
-    <resultMap type="HireJoinDto" id="hireSelectRM">
+    <resultMap type="HireJoinDto" id="hireMap">
         <result property="hireId" column="hire_id"/>
         <result property="eventId" column="hire_event_id"/>
         <result property="companyId" column="hire_company_id"/>
