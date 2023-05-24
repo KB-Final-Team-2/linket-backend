@@ -1,4 +1,4 @@
-package com.spacebetween.linket.domain;
+package com.spacebetween.linket.dto;
 
 import java.time.LocalDateTime;
 

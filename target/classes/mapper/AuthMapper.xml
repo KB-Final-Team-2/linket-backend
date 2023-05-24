@@ -4,9 +4,9 @@
 <mapper namespace="com.spacebetween.linket.mapper.AuthMapper">
     <!-- 회원가입 -->
     <insert id="signup" parameterType="UserJoinDto">
-        insert into linket.user (email, password, user_name, birthdate, agreement, phone, gender, role, account, reg_date, withdraw_date,
+        insert into linket.user (email, password, user_name, birthdate, agreement, phone, gender, role, reg_date, withdraw_date,
                                  enabled, last_updated_date, user_company_id)
-        values (#{email},#{password},#{userName},#{birthdate},#{agreement},#{phone},#{gender},#{role},#{account},#{regDate},#{withdrawDate},
+        values (#{email},#{password},#{userName},#{birthdate},#{agreement},#{phone},#{gender},#{role},#{regDate},#{withdrawDate},
                 #{enabled}, #{lastUpdatedDate}, #{companyId})
     </insert>
 
@@ -26,12 +26,4 @@
         FROM user
         WHERE email=#{email}
     </select>
-
-    <!-- 사용자 회원 탈퇴 -->
-    <delete id="deleteUser" parameterType="string">
-        DELETE
-        FROM
-        user
-        WHERE email=#{VALUES}
-    </delete>
 </mapper>
