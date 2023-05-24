@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Map;
 
@@ -31,9 +31,23 @@ public class ReviewDAOImplTest {
 
     @Test
     public void getReviewStatus() throws Exception{
-        List<Map<String,String>> reviewList = reviewDAO.getReviewStatus(1L);
-        for (Map<String,String> reviewJoinDto : reviewList) {
+        List<Map<String, Object>> reviewList = reviewDAO.getReviewStatus(1L);
+        for (Map<String, Object> reviewJoinDto : reviewList) {
             System.out.println(reviewJoinDto);
+        }
+    }
+
+    @Test
+    public void checkReview() throws Exception{
+        int result = reviewDAO.checkReview(2L);
+        System.out.println(result);
+    }
+
+    @Test
+    public void getAllReviews() throws Exception{
+        List<Map<String, Object>> reviewList = reviewDAO.getAllReviews("member@test.com");
+        for (Map<String, Object> review : reviewList) {
+            System.out.println(review);
         }
     }
 
