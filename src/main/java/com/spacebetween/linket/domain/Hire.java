@@ -1,6 +1,5 @@
 package com.spacebetween.linket.domain;
 
-import java.time.LocalDateTime;
 
 public class Hire {
     private Long hireId;
@@ -12,5 +11,5 @@ public class Hire {
     private String workEndDay;
     private Integer pay;
     private String edu;
-    private LocalDateTime regDate;
+    private String regDate;
 }
