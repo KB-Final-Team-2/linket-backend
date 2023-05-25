@@ -9,16 +9,16 @@ public class UserJoinDto {
     private String birthdate; // 생년월일
     private int agreement; // 개인정보동의 표시 (default: false)
     private String phone; // 전화번호
-    private char gender; // 성별
+    private String gender; // 성별
     private String role; // 사용자 권한 (admin, member, staff, part)
     private String account;
     private String regDate; // 회원가입일자
     private String withdrawDate; // 회원탈퇴일자
-    private char enabled; // 회원 탈퇴여부
+    private String enabled; // 회원 탈퇴여부
     private String lastUpdatedDate; // 회원정보 수정일자
     private long companyId;
 
-    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, String account, String regDate, String withdrawDate, char enabled, String lastUpdatedDate, long companyId) {
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, String gender, String role, String account, String regDate, String withdrawDate, String enabled, String lastUpdatedDate, long companyId) {
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -35,7 +35,7 @@ public class UserJoinDto {
         this.companyId = companyId;
     }
 
-    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, char gender, String role, String account, String withdrawDate, char enabled, String lastUpdatedDate, long companyId) {
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, String gender, String role, String account, String withdrawDate, String enabled, String lastUpdatedDate, long companyId) {
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -103,11 +103,11 @@ public class UserJoinDto {
         this.phone = phone;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -143,11 +143,11 @@ public class UserJoinDto {
         this.withdrawDate = withdrawDate;
     }
 
-    public char getEnabled() {
+    public String getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(char enabled) {
+    public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
 
