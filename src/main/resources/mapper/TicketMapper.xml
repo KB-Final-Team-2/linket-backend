@@ -4,17 +4,31 @@
 
 <mapper namespace="com.spacebetween.linket.mapper.TicketMapper">
 
+    <!-- 티켓 등록 여부-->
+    <select id="checkTicket" parameterType="String" resultType="String">
+        SELECT
+            CASE
+                WHEN ticket_reg = 'N' THEN 'able'
+                WHEN ticket_reg = 'Y' THEN 'used'
+                END AS result
+        FROM ticket
+        WHERE serial_num = #{serialNum};
+    </select>
+
     <!-- 티켓 등록 -->
     <update id="registerTicket" parameterType="TicketJoinDto">
         UPDATE ticket
         SET
             ticket_email=#{email}, ticket_reg='Y', last_updated_date= NOW()
-        WHERE ticket_id=#{ticketId}
+        WHERE serial_num=#{serialNum}
     </update>
 
     <!-- 티켓 전체 조회 -->
     <select id="getAllTickets" parameterType="string" resultType="map">
-        SELECT d.event_name, e.ticket_id
+        SELECT d.event_name,d.event_type,d.place,d.event_image,d.event_inq,d.event_desc,d.event_status,
+               d.start_date, d.end_date, d.link, e.ticket_id, e.ticket_event_id, e.ticket_company_id,
+               e.ticket_email, e.serial_num, e.ticket_reg, e.ticket_status,
+               DATE_FORMAT(e.reg_date, '%Y-%m-%d-%H-%i') AS reg_date, DATE_FORMAT(e.last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date, e.seat
         FROM event d
         RIGHT OUTER JOIN ticket e ON d.event_id = e.ticket_event_id
         WHERE e.ticket_email=#{email} AND e.ticket_reg='Y' AND e.ticket_status='Y'
@@ -23,7 +37,10 @@
 
     <!-- 티켓 단일 조회 -->
     <select id="getTicket" parameterType="long" resultType="map">
-        SELECT d.event_name, d.event_type, d.start_date, d.end_date, d.place, d.event_desc, d.link, e.serial_num
+        SELECT d.event_name,d.event_type,d.place,d.event_image,d.event_inq,d.event_desc,d.event_status,
+               d.start_date, d.end_date, d.link, e.ticket_id, e.ticket_event_id, e.ticket_company_id,
+               e.ticket_email, e.serial_num, e.ticket_reg, e.ticket_status,
+               DATE_FORMAT(e.reg_date, '%Y-%m-%d-%H-%i') AS reg_date, DATE_FORMAT(e.last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date, e.seat
         FROM event d
         RIGHT OUTER JOIN ticket e ON d.event_id = e.ticket_event_id
         WHERE e.ticket_id=#{ticketId}
@@ -39,7 +56,10 @@
     
     <!-- 종료된 행사 - 관람객 통계-->
     <select id="getTicketStatus" parameterType="long" resultType="map">
-        SELECT d.gender, d.birthdate
+        SELECT d.password, d.user_name, d.birthdate, d.agreement, d.phone, d.gender, d.role, d.account, d.withdraw_date,
+               d.enabled, e.ticket_id, e.ticket_event_id, e.ticket_company_id,
+               e.ticket_email, e.serial_num, e.ticket_reg, e.ticket_status,
+               DATE_FORMAT(e.reg_date, '%Y-%m-%d-%H-%i') AS reg_date, DATE_FORMAT(e.last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date, e.seat
         FROM user d
         RIGHT OUTER JOIN ticket e ON d.email = e.ticket_email
         WHERE e.ticket_event_id = #{eventId}
