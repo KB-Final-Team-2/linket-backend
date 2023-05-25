@@ -4,37 +4,41 @@
 
 <mapper namespace="com.spacebetween.linket.mapper.ReviewMapper">
 
-    <resultMap type="ReviewJoinDto" id="reviewSelectRM">
-        <result property="reviewId" column="review_id"/>
-        <result property="ticketId" column="review_ticket_id"/>
-        <result property="eventId" column="review_event_id"/>
-        <result property="companyId" column="review_company_id"/>
-        <result property="rateFacilChair" column="rate_facil_chair"/>
-        <result property="rateFacilRest" column="rate_facil_rest"/>
-        <result property="rateStaffIn" column="rate_staff_in"/>
-        <result property="rateStaffTicket" column="rate_staff_ticket"/>
-        <result property="rateEventContent" column="rate_event_content"/>
-        <result property="rateEventGo" column="rate_event_go"/>
-        <result property="reviewEtc" column="review_etc"/>
-        <result property="regDate" column="reg_date"/>
-    </resultMap>
-
     <!-- member가 리뷰를 등록합니다. -->
     <insert id="registerReview" parameterType="ReviewJoinDto">
         INSERT INTO linket.review (review_ticket_id, review_event_id, review_company_id, rate_facil_chair, rate_facil_rest,
                                    rate_staff_in, rate_staff_ticket, rate_event_content, rate_event_go, review_etc, reg_date)
         VALUES (#{ticketId}, #{eventId}, #{companyId}, #{rateFacilChair}, #{rateFacilRest},
-                #{rateStaffIn}, #{rateStaffTicket}, #{rateEventContent}, #{rateEventGo}, #{reviewEtc}, NOW())
+                #{rateStaffIn}, #{rateStaffTicket}, #{rateEventContent}, #{rateEventGo}, #{reviewEtc}, DEFAULT)
     </insert>
-
 
     <!-- Staff가 등록한 종료된 행사 중 선택한 행사의 리뷰 통계를 조회합니다. -->
     <select id="getReviewStatus" parameterType="long" resultType="map">
-        SELECT rate_facil_chair, rate_facil_rest, rate_staff_in, rate_staff_ticket,
-               rate_event_content, rate_event_go, review_etc, reg_date
+        SELECT
+            review_id,review_ticket_id, review_event_id, review_company_id,rate_facil_chair, rate_facil_rest, rate_staff_in, rate_staff_ticket,
+            rate_event_content, rate_event_go, review_etc, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') AS reg_date
         FROM review
         WHERE
-            review_event_id=#{eventId}
+            review_event_id = #{eventId}
     </select>
 
+
+    <!--member의 리뷰가 중복인지 확인합니다.-->
+    <select id="checkReview" parameterType="long" resultType="int">
+        SELECT COUNT(review_ticket_id)
+        FROM review
+        WHERE
+            review_ticket_id=#{ticketId}
+    </select>
+
+    <!--  member가 자신의 리뷰를 모두 조회합니다.  -->
+    <select id="getAllReviews" parameterType="string" resultType="map">
+        SELECT d.review_id, d.review_ticket_id, d.review_event_id,d.review_company_id, d.rate_facil_chair, d.rate_facil_rest, d.rate_staff_in,
+               d.rate_staff_ticket, d.rate_event_content, d.rate_event_go, d.review_etc, DATE_FORMAT(d.reg_date, '%Y-%m-%d-%H-%i') AS reg_date,
+               f.event_name, f.event_type, place, f.event_image, f.event_inq, f.event_desc,f.event_status,f.start_date,f.end_date, DATE_FORMAT(f.deleted_date, '%Y-%m-%d-%H-%i') AS deleted_date,f.link
+        FROM review d
+            RIGHT JOIN ticket e ON d.review_ticket_id = e.ticket_id
+            RIGHT JOIN event f ON d.review_event_id = f.event_id
+        WHERE e.ticket_email = #{email}
+    </select>
 </mapper>

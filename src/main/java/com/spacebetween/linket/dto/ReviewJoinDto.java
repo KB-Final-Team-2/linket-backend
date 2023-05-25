@@ -1,6 +1,5 @@
 package com.spacebetween.linket.dto;
 
-import java.time.LocalDateTime;
 
 public class ReviewJoinDto {
     private Long reviewId; // 리뷰 아이디 자동생성
@@ -14,10 +13,10 @@ public class ReviewJoinDto {
     private Integer rateEventContent;
     private Integer rateEventGo;
     private String reviewEtc;
-    private LocalDateTime regDate;
+    private String regDate;
     public ReviewJoinDto(){}
 
-    public ReviewJoinDto(Long reviewId, Long ticketId, Long eventId, Long companyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc, LocalDateTime regDate) {
+    public ReviewJoinDto(Long reviewId, Long ticketId, Long eventId, Long companyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc, String regDate) {
         this.reviewId = reviewId;
         this.ticketId = ticketId;
         this.eventId = eventId;
@@ -133,11 +132,11 @@ public class ReviewJoinDto {
         this.reviewEtc = reviewEtc;
     }
 
-    public LocalDateTime getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
