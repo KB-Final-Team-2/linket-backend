@@ -15,17 +15,22 @@ public class TicketServiceImpl implements TicketService {
     TicketDAO ticketDAO;
 
     @Override
+    public String checkTicket(String serialNum) throws Exception {
+        return ticketDAO.checkTicket(serialNum);
+    }
+
+    @Override
     public int registerTicket(TicketJoinDto ticketJoinDto) throws Exception {
         return ticketDAO.registerTicket(ticketJoinDto);
     }
 
     @Override
-    public List<Map<String,String>> getAllTickets(String email) throws Exception {
+    public List<Map<String,Object>> getAllTickets(String email) throws Exception {
         return ticketDAO.getAllTickets(email);
     }
 
     @Override
-    public Map<String,String> getTicket(Long ticketId) throws Exception {
+    public Map<String,Object> getTicket(Long ticketId) throws Exception {
         return ticketDAO.getTicket(ticketId);
     }
 
@@ -35,7 +40,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Map<String, String>> getTicketStatus(Long eventId) throws Exception {
+    public List<Map<String,Object>> getTicketStatus(Long eventId) throws Exception {
         return ticketDAO.getTicketStatus(eventId);
     }
 

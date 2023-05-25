@@ -1,6 +1,5 @@
 package com.spacebetween.linket.domain;
 
-import java.time.LocalDateTime;
 
 public class Review {
 
@@ -15,5 +14,5 @@ public class Review {
     private Integer rateEventContent;
     private Integer rateEventGo;
     private String reviewEtc;
-    private LocalDateTime regDate;
+    private String regDate;
 }

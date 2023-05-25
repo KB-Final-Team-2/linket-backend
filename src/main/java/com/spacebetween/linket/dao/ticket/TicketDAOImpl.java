@@ -18,17 +18,22 @@ public class TicketDAOImpl implements TicketDAO{
     private SqlSession sqlSession;
 
     @Override
+    public String checkTicket(String serialNum) throws Exception {
+        return sqlSession.selectOne(NS+"checkTicket",serialNum);
+    }
+
+    @Override
     public int registerTicket(TicketJoinDto ticketJoinDto) throws Exception {
         return sqlSession.insert(NS+"registerTicket", ticketJoinDto);
     }
 
     @Override
-    public List<Map<String,String>> getAllTickets(String email) throws Exception {
+    public List<Map<String,Object>> getAllTickets(String email) throws Exception {
         return sqlSession.selectList(NS+"getAllTickets",email);
     }
 
     @Override
-    public Map<String,String> getTicket(Long ticketId) throws Exception {
+    public Map<String,Object> getTicket(Long ticketId) throws Exception {
         return sqlSession.selectOne(NS+"getTicket",ticketId);
     }
 
@@ -38,7 +43,7 @@ public class TicketDAOImpl implements TicketDAO{
     }
 
     @Override
-    public List<Map<String, String>> getTicketStatus(Long eventId) throws Exception {
+    public List<Map<String,Object>> getTicketStatus(Long eventId) throws Exception {
         return sqlSession.selectList(NS+"getTicketStatus", eventId);
     }
 

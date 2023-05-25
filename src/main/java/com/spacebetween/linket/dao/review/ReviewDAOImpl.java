@@ -21,7 +21,17 @@ public class ReviewDAOImpl implements ReviewDAO{
     }
 
     @Override
-    public List<Map<String,String>> getReviewStatus(Long eventId) throws Exception {
+    public List<Map<String, Object>> getReviewStatus(Long eventId) throws Exception {
         return sqlSession.selectList(NS+"getReviewStatus",eventId);
+    }
+
+    @Override
+    public int checkReview(Long ticketId) throws Exception {
+        return sqlSession.selectOne(NS+"checkReview",ticketId);
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllReviews(String email) throws Exception {
+        return sqlSession.selectList(NS+"getAllReviews",email);
     }
 }

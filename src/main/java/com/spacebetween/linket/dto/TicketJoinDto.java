@@ -1,6 +1,5 @@
 package com.spacebetween.linket.dto;
 
-import java.time.LocalDateTime;
 
 public class TicketJoinDto {
     private Long ticketId; // 티켓 아이디 자동생성
@@ -10,13 +9,13 @@ public class TicketJoinDto {
     private String serialNum; // 일련번호
     private char ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
     private char ticketStatus; // 티켓 사용가능여부 (default: 'Y')
-    private LocalDateTime regDate; // 티켓등록일자
-    private LocalDateTime lastUpdatedDate; // 수정일자
+    private String regDate; // 티켓등록일자
+    private String lastUpdatedDate; // 수정일자
     private String seat; //  좌석
 
     public TicketJoinDto(){}
 
-    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, char ticketReg, char ticketStatus, LocalDateTime regDate, LocalDateTime lastUpdatedDate, String seat) {
+    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, char ticketReg, char ticketStatus, String regDate, String lastUpdatedDate, String seat) {
         this.ticketId = ticketId;
         this.eventId = eventId;
         this.companyId = companyId;
@@ -85,19 +84,19 @@ public class TicketJoinDto {
         this.ticketStatus = ticketStatus;
     }
 
-    public LocalDateTime getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
-    public LocalDateTime getLastUpdatedDate() {
+    public String getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
-    public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+    public void setLastUpdatedDate(String lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 

@@ -21,6 +21,14 @@ public class TicketDAOImplTest {
     @Autowired
     TicketDAO ticketDAO;
 
+
+    //티켓 등록여부 테스트
+    @Test
+    public void testCheckTicket() throws Exception{
+        String result = ticketDAO.checkTicket("12345");
+        System.out.println(result);
+    }
+
     //티켓 생성 테스트
     @Test
     public void testRegisterTicket() throws Exception{
@@ -35,10 +43,10 @@ public class TicketDAOImplTest {
     //티켓 전체 조회 테스트
     @Test
     public void testGetAllTickets() throws Exception{
-        List<Map<String,String>> ticketList = ticketDAO.getAllTickets("member@test.com");
+        List<Map<String,Object>> ticketList = ticketDAO.getAllTickets("member@test.com");
         System.out.println();
 
-        for(Map<String,String> map : ticketList)
+        for(Map<String,Object> map : ticketList)
             System.out.println(map);
 
     }
@@ -46,7 +54,7 @@ public class TicketDAOImplTest {
     //티켓 단일 조회 테스트
     @Test
     public void testGetTicket() throws Exception{
-        Map<String,String> ticketMap = ticketDAO.getTicket(1L);
+        Map<String,Object> ticketMap = ticketDAO.getTicket(1L);
         System.out.println(ticketMap);
     }
 
@@ -63,10 +71,10 @@ public class TicketDAOImplTest {
 
     @Test
     public void testGetTicketStatus() throws Exception{
-        List<Map<String,String>> ticketList = ticketDAO.getTicketStatus(1L);
+        List<Map<String,Object>> ticketList = ticketDAO.getTicketStatus(1L);
         System.out.println();
 
-        for(Map<String,String> map : ticketList)
+        for(Map<String,Object> map : ticketList)
             System.out.println(map);
     }
 }
