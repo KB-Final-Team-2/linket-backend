@@ -1,6 +1,5 @@
 package com.spacebetween.linket.domain;
 
-import java.time.LocalDateTime;
 
 public class User {
 
@@ -13,10 +12,10 @@ public class User {
     private char gender; // 성별
     private String role; // 사용자 권한 (admin, member, staff, part)
     private String account; // part-time 계좌
-    private LocalDateTime regDate; // 회원가입일자
-    private LocalDateTime withdrawDate; // 회원탈퇴일자
+    private String regDate; // 회원가입일자
+    private String withdrawDate; // 회원탈퇴일자
     private char enabled; // 회원 탈퇴여부
-    private LocalDateTime lastUpdatedDate; // 회원정보 수정일자
+    private String lastUpdatedDate; // 회원정보 수정일자
 
     private int companyId;
 }
