@@ -21,7 +21,7 @@ public class AuthDAOImplTest {
     //회원가입 테스트
     @Test
     public void testSignup() throws Exception{
-        UserJoinDto userJoinDto = new UserJoinDto("ccc@ccc.com","1234","doyeon","1999-07-01",1,"010-1111-1111",'F',"member","11111",null,'Y',null,0);
+        UserJoinDto userJoinDto = new UserJoinDto("ccc@ccc.com","1234","doyeon","1999-07-01",1,"010-1111-1111","F","member","11111",null,"Y",null,0);
         int rowCnt = authDAO.signup(userJoinDto);
         assertTrue(rowCnt==1);
     }
