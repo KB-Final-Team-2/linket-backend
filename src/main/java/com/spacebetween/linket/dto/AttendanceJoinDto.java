@@ -9,31 +9,18 @@ public class AttendanceJoinDto {
     private Long eventId;
     private Long companyId;
     private String email;
-    private int attDate; // 참여일
-    private LocalDateTime attStartDatetime; // 출석일시
-    private LocalDateTime attEndDatetime; // 퇴근일시
+    private String attDate; // 참여일
+    private String attStartDatetime; // 출석일시
+    private String attEndDatetime; // 퇴근일시
     private char attStartBnt; // 출석 버튼 활성화
     private char attEndBnt; // 퇴근 버튼 활성화
-    private LocalDateTime regDate;
+    private String regDate;
 
     //기본 생성자
     public AttendanceJoinDto(){}
 
-    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, int attDate, LocalDateTime attStartDatetime, LocalDateTime attEndDatetime, char attStartBnt, char attEndBnt, LocalDateTime regDate) {
+    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, String attDate, String attStartDatetime, String attEndDatetime, char attStartBnt, char attEndBnt, String regDate) {
         this.attId = attId;
-        this.hireId = hireId;
-        this.eventId = eventId;
-        this.companyId = companyId;
-        this.email = email;
-        this.attDate = attDate;
-        this.attStartDatetime = attStartDatetime;
-        this.attEndDatetime = attEndDatetime;
-        this.attStartBnt = attStartBnt;
-        this.attEndBnt = attEndBnt;
-        this.regDate = regDate;
-    }
-
-    public AttendanceJoinDto(Long hireId, Long eventId, Long companyId, String email, int attDate, LocalDateTime attStartDatetime, LocalDateTime attEndDatetime, char attStartBnt, char attEndBnt, LocalDateTime regDate) {
         this.hireId = hireId;
         this.eventId = eventId;
         this.companyId = companyId;
@@ -92,27 +79,27 @@ public class AttendanceJoinDto {
         this.email = email;
     }
 
-    public int getAttDate() {
+    public String getAttDate() {
         return attDate;
     }
 
-    public void setAttDate(int attDate) {
+    public void setAttDate(String attDate) {
         this.attDate = attDate;
     }
 
-    public LocalDateTime getAttStartDatetime() {
+    public String getAttStartDatetime() {
         return attStartDatetime;
     }
 
-    public void setAttStartDatetime(LocalDateTime attStartDatetime) {
+    public void setAttStartDatetime(String attStartDatetime) {
         this.attStartDatetime = attStartDatetime;
     }
 
-    public LocalDateTime getAttEndDatetime() {
+    public String getAttEndDatetime() {
         return attEndDatetime;
     }
 
-    public void setAttEndDatetime(LocalDateTime attEndDatetime) {
+    public void setAttEndDatetime(String attEndDatetime) {
         this.attEndDatetime = attEndDatetime;
     }
 
@@ -132,11 +119,11 @@ public class AttendanceJoinDto {
         this.attEndBnt = attEndBnt;
     }
 
-    public LocalDateTime getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
@@ -148,12 +135,12 @@ public class AttendanceJoinDto {
                 ", eventId=" + eventId +
                 ", companyId=" + companyId +
                 ", email='" + email + '\'' +
-                ", attDate=" + attDate +
-                ", attStartDatetime=" + attStartDatetime +
-                ", attEndDatetime=" + attEndDatetime +
+                ", attDate='" + attDate + '\'' +
+                ", attStartDatetime='" + attStartDatetime + '\'' +
+                ", attEndDatetime='" + attEndDatetime + '\'' +
                 ", attStartBnt=" + attStartBnt +
                 ", attEndBnt=" + attEndBnt +
-                ", regDate=" + regDate +
+                ", regDate='" + regDate + '\'' +
                 '}';
     }
 }

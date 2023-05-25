@@ -2,18 +2,113 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="com.spacebetween.linket.mapper.AttendanceMapper">
+    <resultMap type="AttendanceJoinDto" id="attMap">
+        <result column="att_id" property="attId"/>
+        <result column="att_hire_id" property="hireId"/>
+        <result column="att_event_id" property="eventId"/>
+        <result column="att_company_id" property="companyId"/>
+        <result column="att_email" property="email"/>
+        <result column="att_date" property="attDate"/>
+        <result column="att_start_datetime" property="attStartDatetime"/>
+        <result column="att_end_datetime" property="attEndDatetime"/>
+        <result column="att_start_bnt" property="attStartBnt"/>
+        <result column="att_end_bnt" property="attEndBnt"/>
+        <result column="reg_date" property="regDate"/>
+    </resultMap>
+
+    <resultMap type="HireJoinDto" id="hireMap">
+        <result column="hire_id" property="hireId"/>
+        <result column="hire_event_id" property="eventId"/>
+        <result column="hire_company_id" property="companyId"/>
+        <result column="work_name" property="workName"/>
+        <result column="work_hour" property="workHour"/>
+        <result column="work_start_day" property="workStartDay"/>
+        <result column="work_end_day" property="workEndDay"/>
+        <result column="pay" property="pay"/>
+        <result column="edu" property="edu"/>
+        <result column="reg_date" property="regDate"/>
+    </resultMap>
+
+
     <!--Staff가 Part 직원들의 출근 여부를 조회합니다.-->
-    <select id="getAllAtts" resultType="map">
-        select *
-        from
-        attendance
+    <select id="getAllAtts" parameterType="long" resultType="map">
+        SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i'), DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i'),
+               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
+        FROM
+            attendance
+        WHERE att_event_id=#{VALUES}
     </select>
 
+    <!-- Staff가 해당 event에 해당하는 part-time에 출근 버튼을 활성화 / 비활성화 합니다. -->
+    <update id="startBnt" parameterType="AttendanceJoinDto">
+        UPDATE attendance
+        SET att_start_bnt=#{attStartBnt}
+        WHERE att_event_id=#{eventId} AND att_date=#{attDate}
+    </update>
+
+    <!-- Staff가 해당 event에 해당하는 part-time에 퇴근 버튼을 활성화 / 비활성화 합니다. -->
+    <update id="endBnt" parameterType="AttendanceJoinDto">
+        UPDATE attendance
+        SET att_end_bnt=#{attEndBnt}
+        WHERE att_event_id=#{eventId} AND att_date=#{attDate}
+    </update>
+
     <!-- Part 직원이 자신의 출근 현황을 조회합니다. -->
-    <select id="getMyAtt" parameterType="string" resultType="map">
-        select *
-        from attendance
-        where att_email=#{VALUES}
+    <select id="getMyAtt" parameterType="AttendanceJoinDto" resultType="map">
+        SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i'), DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i'),
+               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
+        FROM
+            attendance
+        WHERE att_email=#{email} AND att_event_id=#{eventId} AND att_date=#{attDate}
     </select>
+
+    <!-- Part 직원이 출근 확인 버튼을 눌러 근무를 시작합니다. -->
+    <update id="startOfWork" parameterType="AttendanceJoinDto">
+        UPDATE attendance
+        SET att_start_datetime=now()
+        WHERE att_email=#{email} AND att_event_id=#{eventId} AND att_date=#{attDate}
+    </update>
+
+    <!-- Part 직원이 퇴근 확인 버튼을 눌러 근무를 끝냅니다. -->
+    <update id="endOfWork" parameterType="AttendanceJoinDto">
+        UPDATE attendance
+        SET att_end_datetime=now()
+        WHERE att_email=#{email} AND att_event_id=#{eventId} AND att_date=#{attDate}
+    </update>
+
+    <!-- 여기서부터 세건 오빠 부분 -->
+    <!-- 해당하는 공고 정보를 가져옵니다. -->
+    <select id="getHire" parameterType="long" resultType="map">
+        SELECT hire_id, hire_event_id, hire_company_id, work_name, work_hour,
+               DATE_FORMAT(work_start_day, '%Y-%m-%d-%H-%i') as work_start_day, DATE_FORMAT(work_end_day, '%Y-%m-%d-%H-%i') as work_end_day,
+               pay, edu, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
+        FROM hire
+        WHERE hire_id=#{VALUES}
+    </select>
+
+    <!-- Part 자신이 참여하는 행사 공고에 등록합니다. -->
+    <insert id="joinPtHire" parameterType="map">
+        insert into attendance (att_event_id, att_company_id, att_hire_id, att_email, att_date, att_start_datetime,
+                                att_end_datetime, att_start_bnt, att_end_bnt, reg_date)
+        values (#{att_event_id},#{att_company_id},#{att_hire_id},#{att_email},#{att_date}, #{att_start_datetime}, #{att_end_datetime}, #{att_start_bnt}, #{att_end_bnt}, now());
+    </insert>
+
+    <!-- Part 직원이 등록한 모든 행사 공고를 조회합니다. -->
+    <select id="getPtHires" parameterType="string" resultType="map">
+        select
+            DISTINCT hire.hire_id, hire.hire_event_id, hire.hire_company_id, hire.work_name, hire.work_hour, DATE_FORMAT(hire.work_start_day, '%Y-%m-%d-%H-%i'), DATE_FORMAT(hire.work_end_day, '%Y-%m-%d-%H-%i'), hire.edu, DATE_FORMAT(hire.reg_date, '%Y-%m-%d-%H-%i')
+        from hire
+                 left join attendance
+                           on attendance.att_hire_id = hire.hire_id
+        where att_email = #{VALUES}
+    </select>
+
+    <!-- Part 직원이 등록한 행사 중 선택한 행사 공고를 삭제합니다. -->
+    <delete id="deletePtHire" parameterType="AttendanceJoinDto">
+        DELETE FROM
+            attendance
+        WHERE att_email = #{email} AND att_event_id = #{eventId} AND att_hire_id = #{hireId}
+    </delete>
 </mapper>
