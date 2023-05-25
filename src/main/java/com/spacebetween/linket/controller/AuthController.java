@@ -58,6 +58,11 @@ public class AuthController {
             session.setAttribute("email", email);
             session.setAttribute("password", password);
 
+            if(map.get("agreement").equals("1"))
+                map.put("agreement", new Boolean(true));
+            else
+                map.put("agreement", new Boolean(false));
+
             return new ResponseEntity<>(map, header, HttpStatus.OK);
         } else{
             return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
