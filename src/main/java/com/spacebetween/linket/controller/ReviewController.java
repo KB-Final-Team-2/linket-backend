@@ -37,6 +37,7 @@ public class ReviewController {
     @PostMapping("/member/{ticketId}/review")
     public ResponseEntity<ReviewJoinDto> registerReview(@RequestBody ReviewJoinDto reviewJoinDto,@PathVariable Long ticketId) throws Exception{
         int cnt = reviewService.checkReview(ticketId);
+
         if(cnt==0) {// 해당하는 티켓의 리뷰 존재하지 않음.
             int rowCnt = reviewService.registerReview(reviewJoinDto);
             System.out.println(rowCnt);
@@ -65,8 +66,8 @@ public class ReviewController {
 
     @GetMapping("/member/reviews")
     public ResponseEntity<List<Map<String, Object>>> getAllReviews(HttpSession session) throws Exception{
-//        String email = (String)session.getAttribute("email");
-        String email = "member@test.com";
+        String email = (String)session.getAttribute("email");
+//        String email = "red1@member.com";
         List<Map<String, Object>> reviewList = reviewService.getAllReviews(email);
 
         try {
