@@ -74,7 +74,7 @@
     </update>
 
     <!-- Staff가  등록한 모든 행사 조회 -->
-    <select id="getAllEvents" parameterType="long" resultType="map">
+    <select id="getAllEvents" parameterType="long" resultType="CamelHashMap">
         select event_id,
                event_company_id,
                event_name,
@@ -96,7 +96,7 @@
     </select>
 
     <!-- Staff가  등록한 행사 상세 조회 -->
-    <select id="getEvent" parameterType="long" resultType="map">
+    <select id="getEvent" parameterType="long" resultType="CamelHashMap">
         select event_id,
                event_company_id,
                event_name,
@@ -128,7 +128,7 @@
     </insert>
 
     <!-- Staff가 등록한 공고 전체 조회 -->
-    <select id="getAllHires" parameterType="long" resultType="map">
+    <select id="getAllHires" parameterType="long" resultType="CamelHashMap">
         select hire_id,
                hire_event_id,
                hire_company_id,
@@ -145,7 +145,7 @@
     </select>
 
     <!-- Staff가 공고 상세 조회 DATE_FORMAT(d.reg_date, '%Y-%m-%d-%H-%i') AS reg_date-->
-    <select id="getHire" parameterType="long" resultType="map">
+    <select id="getHire" parameterType="long" resultType="CamelHashMap">
         select d.hire_id,
                d.hire_event_id,
                d.hire_company_id,
@@ -195,7 +195,7 @@
         WHERE event_id = #{VALUES}
     </select>
 
-    <select id="selCloseEvent" parameterType="long" resultType="map">
+    <select id="selCloseEvent" parameterType="long" resultType="CamelHashMap">
         SELECT event_id,
                event_company_id,
                event_name,
@@ -215,7 +215,7 @@
         WHERE event_id = #{VALUES}
     </select>
 
-    <select id="getEventIdHire" parameterType="long" resultType="map">
+    <select id="getEventIdHire" parameterType="long" resultType="CamelHashMap">
         SELECT hire_id,
                hire_event_id,
                hire_company_id,

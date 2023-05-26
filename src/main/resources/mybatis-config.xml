@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
     <typeAliases>
         <typeAlias alias="AttendanceJoinDto" type="com.spacebetween.linket.dto.AttendanceJoinDto"/>
         <typeAlias alias="CompanyJoinDto" type="com.spacebetween.linket.dto.CompanyJoinDto"/>
@@ -12,5 +13,7 @@
         <typeAlias alias="ReviewJoinDto" type="com.spacebetween.linket.dto.ReviewJoinDto"/>
         <typeAlias alias="TicketJoinDto" type="com.spacebetween.linket.dto.TicketJoinDto"/>
         <typeAlias alias="UserJoinDto" type="com.spacebetween.linket.dto.UserJoinDto"/>
+        <typeAlias alias="CamelHashMap" type="com.spacebetween.linket.dto.CamelHashMap"/>
     </typeAliases>
+
 </configuration>
