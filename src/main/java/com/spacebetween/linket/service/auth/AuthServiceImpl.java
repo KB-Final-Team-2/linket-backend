@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthServiceImpl implements AuthService{
@@ -18,7 +19,7 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
-    public UserJoinDto login(HashMap<String, String> hashMap) throws Exception {
+    public Map<String,Object> login(HashMap<String, String> hashMap) throws Exception {
         return authDAO.login(hashMap);
     }
 
