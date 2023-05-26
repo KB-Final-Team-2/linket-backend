@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 public class AuthDAOImpl implements AuthDAO{
@@ -20,7 +21,7 @@ public class AuthDAOImpl implements AuthDAO{
     }
 
     @Override
-    public UserJoinDto login(HashMap<String, String> hashMap) throws Exception {
+    public Map<String,Object> login(HashMap<String, String> hashMap) throws Exception {
         return sqlSession.selectOne(NS+"login", hashMap);
     }
 
