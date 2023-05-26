@@ -84,10 +84,10 @@ public class AttendanceController {
             return new ResponseEntity<>(fail,header,HttpStatus.BAD_REQUEST);
         }
     }
-    @PostMapping("/part-time/{eventId}")
-    public ResponseEntity<Map<String, Object>> getMyAtt(@PathVariable Long eventId, @RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
+    @PostMapping("/part-time/{hireId}")
+    public ResponseEntity<Map<String, Object>> getMyAtt(@PathVariable Long hireId, @RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
         attendanceJoinDto.setEmail((String)session.getAttribute("email"));
-        attendanceJoinDto.setEventId(eventId);
+        attendanceJoinDto.setEventId(hireId);
 
         Map<String,Object> map = attendanceService.getMyAtt(attendanceJoinDto);
         String startStr = (String)map.get("att_start_bnt");
@@ -202,7 +202,7 @@ public class AttendanceController {
         }
     }
 
-    @GetMapping("/pt/{email}")
+    @GetMapping("/part-time/{email}")
     public ResponseEntity<List<Map<String,Object>>> getPtHires(@PathVariable String email) throws Exception{
         email += ".com";
         List<Map<String,Object>> list = attendanceService.getPtHires(email);
@@ -213,11 +213,11 @@ public class AttendanceController {
             return new ResponseEntity<>(null,header,HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/pt/{eventId}")
-    public ResponseEntity<String> deletePtHire(@PathVariable Long eventId, @RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
+    @DeleteMapping("/part-time/{hireId}")
+    public ResponseEntity<String> deletePtHire(@PathVariable Long hireId, @RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
 //        attendanceJoinDto.setEmail((String)session.getAttribute("email"));
         attendanceJoinDto.setEmail("bbb@bbb.com");
-        attendanceJoinDto.setEventId(eventId);
+        attendanceJoinDto.setEventId(hireId);
 
         int rowCnt = attendanceService.deletePtHire(attendanceJoinDto);
 
