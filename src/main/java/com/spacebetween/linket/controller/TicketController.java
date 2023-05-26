@@ -25,10 +25,6 @@ public class TicketController {
         header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
     }
 
-    private ResponseEntity<String> handleException(Exception e, ErrorCode errorCode) {
-        return ResponseEntity.status(errorCode.getStatus()).body(errorCode.getMessage());
-    }
-
     @Autowired
     private TicketService ticketService;
 
@@ -37,11 +33,12 @@ public class TicketController {
         티켓 등록 API + 중복여부 확인
     */
     @PatchMapping("/user/{serialNum}")
-    public ResponseEntity<String> registerTicket(@RequestBody TicketJoinDto ticketJoinDto, @PathVariable String serialNum, HttpSession session) throws Exception {
+    public ResponseEntity<String> registerTicket(@PathVariable String serialNum, HttpSession session) throws Exception {
         String result = ticketService.checkTicket(serialNum);
         if (result.equals("able")) {
             String email = (String) session.getAttribute("email");
-//        String email = "member@test.com";
+            TicketJoinDto ticketJoinDto = new TicketJoinDto();
+//        String email = "red1@member.com";
             ticketJoinDto.setEmail(email);
             ticketJoinDto.setSerialNum(serialNum);
             int rowCnt = ticketService.registerTicket(ticketJoinDto);
@@ -63,8 +60,8 @@ public class TicketController {
     */
     @GetMapping("/user/list")
     public ResponseEntity<List<Map<String, Object>>> getAllTickets(HttpSession session) throws Exception {
-//        String email = (String)session.getAttribute("email");
-        String email = "member@test.com";
+        String email = (String)session.getAttribute("email");
+//        String email = "red1@member.com";
         try {
             List<Map<String, Object>> tickets = ticketService.getAllTickets(email);
             return ResponseEntity.ok().headers(header).body(tickets);
