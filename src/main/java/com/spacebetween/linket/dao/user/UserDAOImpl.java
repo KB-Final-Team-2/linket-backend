@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.Map;
+
 @Repository
 public class UserDAOImpl implements UserDAO{
     public static final String NS = "com.spacebetween.linket.mapper.UserMapper.";
@@ -13,12 +15,12 @@ public class UserDAOImpl implements UserDAO{
     private SqlSession sqlSession;
 
     @Override
-    public UserJoinDto getUser(String email) throws Exception {
+    public Map<String,Object> getUser(String email) throws Exception {
         return sqlSession.selectOne(NS+"getUser", email);
     }
 
     @Override
-    public UserJoinDto checkUserPwd(HashMap<String, String> hashMap) throws Exception {
+    public Map<String,Object> checkUserPwd(HashMap<String, String> hashMap) throws Exception {
         return sqlSession.selectOne(NS+"checkUserPwd", hashMap);
     }
 

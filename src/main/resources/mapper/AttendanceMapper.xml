@@ -33,7 +33,7 @@
 
 
     <!--Staff가 Part 직원들의 출근 여부를 조회합니다.-->
-    <select id="getAllAtts" parameterType="long" resultType="map">
+    <select id="getAllAtts" parameterType="long" resultType="CamelHashMap">
         SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i'), DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i'),
                DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
         FROM
@@ -56,7 +56,7 @@
     </update>
 
     <!-- Part 직원이 자신의 출근 현황을 조회합니다. -->
-    <select id="getMyAtt" parameterType="AttendanceJoinDto" resultType="map">
+    <select id="getMyAtt" parameterType="AttendanceJoinDto" resultType="CamelHashMap">
         SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i'), DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i'),
                DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
         FROM
@@ -80,7 +80,7 @@
 
     <!-- 여기서부터 세건 오빠 부분 -->
     <!-- 해당하는 공고 정보를 가져옵니다. -->
-    <select id="getHire" parameterType="long" resultType="map">
+    <select id="getHire" parameterType="long" resultType="CamelHashMap">
         SELECT hire_id, hire_event_id, hire_company_id, work_name, work_hour,
                DATE_FORMAT(work_start_day, '%Y-%m-%d-%H-%i') as work_start_day, DATE_FORMAT(work_end_day, '%Y-%m-%d-%H-%i') as work_end_day,
                pay, edu, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
@@ -96,7 +96,7 @@
     </insert>
 
     <!-- Part 직원이 등록한 모든 행사 공고를 조회합니다. -->
-    <select id="getPtHires" parameterType="string" resultType="map">
+    <select id="getPtHires" parameterType="string" resultType="CamelHashMap">
         select
             DISTINCT hire.hire_id, hire.hire_event_id, hire.hire_company_id, hire.work_name, hire.work_hour, DATE_FORMAT(hire.work_start_day, '%Y-%m-%d-%H-%i'), DATE_FORMAT(hire.work_end_day, '%Y-%m-%d-%H-%i'), hire.edu, DATE_FORMAT(hire.reg_date, '%Y-%m-%d-%H-%i')
         from hire
