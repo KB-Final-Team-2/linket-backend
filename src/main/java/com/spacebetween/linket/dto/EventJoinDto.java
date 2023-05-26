@@ -10,7 +10,7 @@ public class EventJoinDto {
     private String eventImage; // 행사 이미지
     private String eventInq; // 행사 대표문의처
     private String eventDesc; // 행사 설명
-    private char eventStatus; // 진행 여부 (default: 'Y')
+    private String eventStatus; // 진행 여부 (default: 'Y')
     private String startDate; // 행사 시작일자
     private String endDate; // 행사 종료일자
     private String regDate; // 등록일자
@@ -21,7 +21,7 @@ public class EventJoinDto {
     public EventJoinDto() {
     }
 
-    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, String regDate, String deletedDate, String link) {
+    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String deletedDate, String link) {
         this.eventId = eventId;
         this.companyId = companyId;
         this.eventName = eventName;
@@ -120,11 +120,11 @@ public class EventJoinDto {
         this.eventDesc = eventDesc;
     }
 
-    public char getEventStatus() {
+    public String getEventStatus() {
         return eventStatus;
     }
 
-    public void setEventStatus(char eventStatus) {
+    public void setEventStatus(String eventStatus) {
         this.eventStatus = eventStatus;
     }
 

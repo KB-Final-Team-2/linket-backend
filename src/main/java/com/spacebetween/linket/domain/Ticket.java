@@ -8,8 +8,8 @@ public class Ticket {
     private Long companyId;
     private String email;
     private String serialNum; // 일련번호
-    private char ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
-    private char ticketStatus; // 티켓 사용가능여부 (default: 'Y')
+    private String ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
+    private String ticketStatus; // 티켓 사용가능여부 (default: 'Y')
     private String regDate; // 티켓등록일자
     private String lastUpdatedDate; // 수정일자
     private String seat; // 좌석

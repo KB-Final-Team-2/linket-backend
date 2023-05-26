@@ -10,7 +10,7 @@ public class Event {
     private String eventImage; // 행사 이미지
     private String eventInq; // 행사 대표문의처
     private String eventDesc; // 행사 설명
-    private char eventStatus; // 진행 여부 (default: 'Y')
+    private String eventStatus; // 진행 여부 (default: 'Y')
     private String startDate; // 행사 시작일자
     private String endDate; // 행사 종료일자
     private String regDate; // 등록일자

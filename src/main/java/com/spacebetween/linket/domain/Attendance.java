@@ -9,8 +9,8 @@ public class Attendance {
     private String email;
     private String attStartDatetime; // 출석일시
     private String attEndDatetime; // 퇴근일시
-    private char attStartBnt; // 출석 버튼 활성화
-    private char attEndBnt; // 퇴근 버튼 활성화
+    private String attStartBnt; // 출석 버튼 활성화
+    private String attEndBnt; // 퇴근 버튼 활성화
     private String regDate;
 
 }
