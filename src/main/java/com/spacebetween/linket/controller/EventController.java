@@ -38,7 +38,7 @@ public class EventController {
 //    }
 
     //Test success..
-    @PostMapping("/registerEvent")
+    @PostMapping("/register")
     public ResponseEntity<String> registerEvent(@RequestBody EventJoinDto eventJoinDto) throws Exception {
 
         int rowCnt = eventService.registerEvent(eventJoinDto);
@@ -173,10 +173,10 @@ public class EventController {
 
         long pay = 0;
         long workHour = 0;
-        for(Map<String,Object> map : list) {
+        for (Map<String, Object> map : list) {
 //            System.out.println(map);
-            pay += (long)map.get("pay");
-            workHour += (int)map.get("work_hour");
+            pay += (long) map.get("pay");
+            workHour += (int) map.get("work_hour");
         }
 
         String startDay = ((String) map1.get("start_date"));
@@ -189,11 +189,11 @@ public class EventController {
         long diffDays = diffSec / (24 * 60 * 60) + 1;
 
         //등록 일자, 행사 기간, 행사 장소, 참여 인원(관람객, 파트타임), 총 인건비, 행사 설명
-        Map<String,Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
         //등록일자
         result.put("reg_date", map1.get("DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')"));
         //행사 장소
-        result.put("place", map1.get("event_id"));
+        result.put("place", map1.get("place"));
         //행사 기간
         result.put("start_date", startDay);
         result.put("end_date", endDay);
@@ -201,20 +201,23 @@ public class EventController {
         Map<String, Object> hashMap1 = new HashMap<>();
         hashMap1.put("role", "member");
         hashMap1.put("eventId", eventId);
+
         int countMember = eventService.countUser(hashMap1);
         result.put("countMember", countMember);
         //파트 인원
         Map<String, Object> hashMap2 = new HashMap<>();
         hashMap2.put("role", "part");
         hashMap2.put("eventId", eventId);
+
         int countPart = eventService.countUser(hashMap2);
-        result.put("countPart",countPart);
+        result.put("countPart", countPart);
         //총 인원
+
         int countUser = countMember + countPart;
-        result.put("countUser",countUser);
+        result.put("countUser", countUser);
 
         long totalPay = countUser * pay * workHour * diffDays;
-        result.put("totalPay",totalPay);
+        result.put("totalPay", totalPay);
         result.put("event_desc", map1.get("event_desc"));
 
         return new ResponseEntity<>(result, header, HttpStatus.OK);
