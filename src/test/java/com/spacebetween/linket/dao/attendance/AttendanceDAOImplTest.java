@@ -30,7 +30,7 @@ public class AttendanceDAOImplTest {
     @Test
     public void testStartBnt() throws Exception{
         AttendanceJoinDto attendanceJoinDto = new AttendanceJoinDto();
-        attendanceJoinDto.setAttStartBnt('Y');
+        attendanceJoinDto.setAttStartBnt("Y");
         attendanceJoinDto.setEventId(5L);
         attendanceJoinDto.setAttDate("2022-11-11");
 
@@ -41,7 +41,7 @@ public class AttendanceDAOImplTest {
     @Test
     public void testEndBnt() throws Exception{
         AttendanceJoinDto attendanceJoinDto = new AttendanceJoinDto();
-        attendanceJoinDto.setAttEndBnt('Y');
+        attendanceJoinDto.setAttEndBnt("Y");
         attendanceJoinDto.setEventId(5L);
         attendanceJoinDto.setAttDate("2022-11-11");
 

@@ -7,15 +7,15 @@ public class TicketJoinDto {
     private Long companyId;
     private String email;
     private String serialNum; // 일련번호
-    private char ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
-    private char ticketStatus; // 티켓 사용가능여부 (default: 'Y')
+    private String ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
+    private String ticketStatus; // 티켓 사용가능여부 (default: 'Y')
     private String regDate; // 티켓등록일자
     private String lastUpdatedDate; // 수정일자
     private String seat; //  좌석
 
     public TicketJoinDto(){}
 
-    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, char ticketReg, char ticketStatus, String regDate, String lastUpdatedDate, String seat) {
+    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, String ticketReg, String ticketStatus, String regDate, String lastUpdatedDate, String seat) {
         this.ticketId = ticketId;
         this.eventId = eventId;
         this.companyId = companyId;
@@ -68,19 +68,19 @@ public class TicketJoinDto {
         this.serialNum = serialNum;
     }
 
-    public char getTicketReg() {
+    public String getTicketReg() {
         return ticketReg;
     }
 
-    public void setTicketReg(char ticketReg) {
+    public void setTicketReg(String ticketReg) {
         this.ticketReg = ticketReg;
     }
 
-    public char getTicketStatus() {
+    public String getTicketStatus() {
         return ticketStatus;
     }
 
-    public void setTicketStatus(char ticketStatus) {
+    public void setTicketStatus(String ticketStatus) {
         this.ticketStatus = ticketStatus;
     }
 
