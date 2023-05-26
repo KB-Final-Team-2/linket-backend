@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 public class AuthController {
     private static HttpHeaders header;
-    static{
+    static {
         header = new HttpHeaders();
         header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
     }
@@ -27,22 +27,23 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UserJoinDto userJoinDto) throws Exception {
+    public ResponseEntity<String> signup(@RequestBody UserJoinDto userJoinDto) throws Exception{
         int rowCnt = authService.signup(userJoinDto);
 
-        if (rowCnt == 1) { // 회원가입 성공
+        if(rowCnt==1) { // 회원가입 성공
             String success = new String("success");
-            return new ResponseEntity<>(success, header, HttpStatus.OK);
-    }
+            return new ResponseEntity<>(success,header,HttpStatus.OK);
+        }
 
         else { // 회원가입 실패 (client가 정보 잘못 입력)
             String fail = new String("fail");
-            return new ResponseEntity<>(fail, header, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(fail, header,HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String,Object>> login(@RequestBody UserJoinDto userJoinDto, HttpSession session) throws Exception{
+      
         HashMap<String,String> hashMap = new HashMap<>();
         String email = userJoinDto.getEmail();
         String password = userJoinDto.getPassword();
@@ -51,7 +52,6 @@ public class AuthController {
         hashMap.put("password", password);
 
         Map<String,Object> map = authService.login(hashMap);
-
 
         if(email.equals(map.get("email")) &&
                 password.equals(map.get("password"))) { //로그인 성공
@@ -64,20 +64,21 @@ public class AuthController {
                 map.put("agreement", new Boolean(false));
 
             return new ResponseEntity<>(map, header, HttpStatus.OK);
-        } else{
+        } else {
             return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
         }
     }
+      
     @PostMapping("/check-email")
     public ResponseEntity<String> checkEmail(@RequestBody UserJoinDto userJoinDto) throws Exception{
         String email = userJoinDto.getEmail();
         UserJoinDto passObj = authService.checkEmail(email);
 
-        if(email.equals(userJoinDto.getEmail())){//이메일이 중복됨
+        if(email.equals(userJoinDto.getEmail())){ //이메일이 중복됨
             String success = new String("success");
             return new ResponseEntity<>(success, header, HttpStatus.OK);
         }
-        else{//이메일이 중복되지 않음
+        else { //이메일이 중복되지 않음
             String fail = new String("fail");
             return new ResponseEntity<>(fail, header, HttpStatus.BAD_REQUEST);
         }
@@ -101,7 +102,7 @@ public class AuthController {
             String success = new String("success");
             return new ResponseEntity<>(success, header, HttpStatus.OK);
         }
-        else{
+        else {
             String fail = new String("fail");
             return new ResponseEntity<>(fail, header, HttpStatus.BAD_REQUEST);
         }
