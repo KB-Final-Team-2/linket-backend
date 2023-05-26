@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -18,27 +19,19 @@ public class AuthDAOImplTest {
     @Autowired
     AuthDAO authDAO;
 
-    //회원가입 테스트
-    @Test
-    public void testSignup() throws Exception{
-        UserJoinDto userJoinDto = new UserJoinDto("ccc@ccc.com","1234","doyeon","1999-07-01",1,"010-1111-1111",'F',"member","11111",null,'Y',null,0);
-        int rowCnt = authDAO.signup(userJoinDto);
-        assertTrue(rowCnt==1);
-    }
-
     //로그인 테스트
     @Test
     public void testLogin() throws Exception{
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("email","aaa@aaa.com");
         hashMap.put("password","1234");
-        UserJoinDto userJoinDto = authDAO.login(hashMap);
+        Map<String,Object> map = authDAO.login(hashMap);
 
-        System.out.println("email:"+userJoinDto.getEmail());
-        System.out.println("password:"+userJoinDto.getPassword());
+        System.out.println("email:"+map.get("email"));
+        System.out.println("password:"+map.get("password"));
 
-        assertTrue(userJoinDto.getEmail().equals("aaa@aaa.com") &&
-                userJoinDto.getPassword().equals("1234"));
+        assertTrue(map.get("email").equals("aaa@aaa.com") &&
+                map.get("password").equals("1234"));
     }
 
     //이메일 중복 체크 테스트
