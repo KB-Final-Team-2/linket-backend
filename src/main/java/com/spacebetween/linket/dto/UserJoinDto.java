@@ -176,12 +176,12 @@ public class UserJoinDto {
                 ", birthdate='" + birthdate + '\'' +
                 ", agreement=" + agreement +
                 ", phone='" + phone + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
                 ", role='" + role + '\'' +
                 ", account='" + account + '\'' +
                 ", regDate='" + regDate + '\'' +
                 ", withdrawDate='" + withdrawDate + '\'' +
-                ", enabled=" + enabled +
+                ", enabled='" + enabled + '\'' +
                 ", lastUpdatedDate='" + lastUpdatedDate + '\'' +
                 ", companyId=" + companyId +
                 '}';

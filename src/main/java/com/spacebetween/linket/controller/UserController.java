@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/user")
 public class UserController {
     private static HttpHeaders header;
     static{
@@ -26,18 +27,24 @@ public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping
-    public ResponseEntity<UserJoinDto> getUser(HttpSession session) throws Exception{
+    public ResponseEntity<Map<String,Object>> getUser(HttpSession session) throws Exception{
         String email = (String)session.getAttribute("email");
-        UserJoinDto userJoinDto = userService.getUser(email);
+        Map<String,Object> map = userService.getUser(email);
 
-        if(email.equals(userJoinDto.getEmail()))
-            return new ResponseEntity<>(userJoinDto, header, HttpStatus.OK);
+        if("aaa@aaa.com".equals(map.get("email"))) {
+            if(map.get("agreement").equals("1"))
+                map.put("agreement", new Boolean(true));
+            else
+                map.put("agreement", new Boolean(false));
+
+            return new ResponseEntity<>(map, header, HttpStatus.OK);
+        }
         else
             return new ResponseEntity<>(null,header, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/{password}")
-    public ResponseEntity<UserJoinDto> checkUserPwd(@PathVariable String password, HttpSession session) throws Exception{
+    public ResponseEntity<Map<String,Object>> checkUserPwd(@PathVariable String password, HttpSession session) throws Exception{
         //session에서 얻어온 email 정보
         String sessionEmail = (String)session.getAttribute("email");
         //session에서 얻어온 password 정보
@@ -47,9 +54,14 @@ public class UserController {
         hashMap.put("email", sessionEmail);
         hashMap.put("password", sessionPassword);
 
-        UserJoinDto userJoinDto = userService.checkUserPwd(hashMap);
-        if(password.equals(userJoinDto.getPassword())){ // password 확인 성공
-            return new ResponseEntity<>(userJoinDto, header, HttpStatus.OK);
+        Map<String,Object> map = userService.checkUserPwd(hashMap);
+        if(password.equals(map.get("password"))){ // password 확인 성공
+            if(map.get("agreement").equals("1"))
+                map.put("agreement", new Boolean(true));
+            else
+                map.put("agreement", new Boolean(false));
+
+            return new ResponseEntity<>(map, header, HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
