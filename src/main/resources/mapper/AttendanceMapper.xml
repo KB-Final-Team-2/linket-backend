@@ -61,7 +61,7 @@
                DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
         FROM
             attendance
-        WHERE att_email=#{email} AND att_event_id=#{eventId} AND att_date=#{attDate}
+        WHERE att_email=#{email} AND att_hire_id=#{hireId} AND att_date=#{attDate}
     </select>
 
     <!-- Part 직원이 출근 확인 버튼을 눌러 근무를 시작합니다. -->
@@ -109,6 +109,6 @@
     <delete id="deletePtHire" parameterType="AttendanceJoinDto">
         DELETE FROM
             attendance
-        WHERE att_email = #{email} AND att_event_id = #{eventId} AND att_hire_id = #{hireId}
+        WHERE att_email = #{email} AND att_hire_id = #{hireId}
     </delete>
 </mapper>
