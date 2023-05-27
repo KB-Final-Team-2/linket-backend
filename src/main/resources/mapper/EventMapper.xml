@@ -39,11 +39,9 @@
     <!-- Staff가 행사 등록 -->
     <insert id="registerEvent" parameterType="EventJoinDto">
         insert into linket.Event(event_company_id, event_name, event_type, start_date, end_date, place, event_inq,
-                                 event_image,
-                                 event_desc, reg_date, last_updated_date, link)
+                                 event_image, event_desc, reg_date, link)
         values (#{companyId}, #{eventName}, #{eventType}, #{startDate}, #{endDate}, #{place}, #{eventInq},
-                #{eventImage},
-                #{eventDesc}, #{regDate}, #{lastUpdatedDate}, #{link})
+                #{eventImage}, #{eventDesc}, DEFAULT, #{link})
     </insert>
 
     <!-- Staff가 행사 수정 -->
@@ -57,72 +55,123 @@
             event_desc        = #{eventDesc},
             start_date        = #{startDate},
             end_date          = #{endDate},
-            last_updated_date = #{lastUpdatedDate},
+            last_updated_date = DEFAULT,
             link              = #{link}
+
         where event_id = #{eventId}
+          and event_status = 'Y'
     </update>
 
     <!-- Staff가 행사 삭제 -->
     <update id="deleteEvent" parameterType="EventJoinDto">
         update event
-        set event_status = #{eventStatus},
-            deleted_date = #{deletedDate}
+        set event_status      = 'N',
+            last_updated_date = DEFAULT,
+            deleted_date      = DEFAULT
 
         where event_id = #{eventId}
+          and event_status = 'Y'
     </update>
 
     <!-- Staff가  등록한 모든 행사 조회 -->
-    <select id="getAllEvents" parameterType="long" resultType="map">
-        select event_type, event_name, event_id
-        from event
-        where event_company_id = #{eventCompanyId}
-          and event_status = 'Y'
-        order by reg_date desc
-    </select>
-
-    <!-- Staff가  등록한 행사 상세 조회 -->
-    <select id="getEvent" parameterType="long" resultType="map">
-        select reg_date,
-               start_date,
-               end_date,
+    <select id="getAllEvents" parameterType="long" resultType="CamelHashMap">
+        select event_id,
+               event_company_id,
+               event_name,
+               event_type,
                place,
                event_image,
                event_inq,
                event_desc,
-               event_id
+               event_status,
+               start_date,
+               end_date,
+               DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')          AS reg_date,
+               DATE_FORMAT(last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date,
+               DATE_FORMAT(deleted_date, '%Y-%m-%d-%H-%i')      AS deleted_date,
+               link
+        from event
+        where event_company_id = #{eventCompanyId}
+        order by reg_date desc
+    </select>
+
+    <!-- Staff가  등록한 행사 상세 조회 -->
+    <select id="getEvent" parameterType="long" resultType="CamelHashMap">
+        select event_id,
+               event_company_id,
+               event_name,
+               event_type,
+               place,
+               event_image,
+               event_inq,
+               event_desc,
+               event_status,
+               start_date,
+               end_date,
+               DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')          AS reg_date,
+               DATE_FORMAT(last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date,
+               DATE_FORMAT(deleted_date, '%Y-%m-%d-%H-%i')      AS deleted_date,
+               link
         from event
         where event_id = #{eventId}
+          and event_status = 'Y'
     </select>
 
 
     <!-- 공고 -->
     <!-- Staff가 공고 등록 -->
     <insert id="registerHire" parameterType="HireJoinDto">
-        insert into Linket.hire(hire_id, hire_event_id, hire_company_id, work_name, work_hour, work_start_day,
+        insert into Linket.hire(hire_event_id, hire_company_id, work_name, work_hour, work_start_day,
                                 work_end_day, pay, edu, reg_date)
-        values (#{hireId}, #{eventId}, #{companyId}, #{workName}, #{workHour}, #{workStartDay}, #{workEndDay}, #{pay},
-                #{edu}, #{regDate})
+        values (#{eventId}, #{companyId}, #{workName}, #{workHour}, #{workStartDay}, #{workEndDay}, #{pay},
+                #{edu}, DEFAULT)
     </insert>
 
     <!-- Staff가 등록한 공고 전체 조회 -->
-    <select id="getAllHires" parameterType="long" resultType="map">
-        select work_name, hire_id
+    <select id="getAllHires" parameterType="long" resultType="CamelHashMap">
+        select hire_id,
+               hire_event_id,
+               hire_company_id,
+               work_name,
+               work_hour,
+               DATE_FORMAT(work_start_day, '%Y-%m-%d-%H-%i') AS work_start_day,
+               DATE_FORMAT(work_end_day, '%Y-%m-%d-%H-%i')   AS work_end_day,
+               pay,
+               edu,
+               DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')       AS reg_date
         from hire
         where hire_event_id = #{VALUES}
         order by reg_date desc
     </select>
 
-    <!-- Staff가 공고 상세 조회 -->
-    <select id="getHire" parameterType="long" resultType="map">
-        select d.work_name,
-               d.work_start_day,
-               d.work_end_day,
+    <!-- Staff가 공고 상세 조회 DATE_FORMAT(d.reg_date, '%Y-%m-%d-%H-%i') AS reg_date-->
+    <select id="getHire" parameterType="long" resultType="CamelHashMap">
+        select d.hire_id,
+               d.hire_event_id,
+               d.hire_company_id,
+               d.work_name,
                d.work_hour,
+               DATE_FORMAT(d.work_start_day, '%Y-%m-%d-%H-%i')    AS work_start_day,
+               DATE_FORMAT(d.work_end_day, '%Y-%m-%d-%H-%i')      AS work_end_day,
                d.pay,
+               d.edu,
+               DATE_FORMAT(d.reg_date, '%Y-%m-%d-%H-%i')          AS reg_date,
+               e.event_id,
+               e.event_company_id,
+               e.event_name,
+               e.event_type,
+               e.place,
+               e.event_image,
                e.event_inq,
-               d.hire_id,
-               d.reg_date,
-               d.edu
+               e.event_desc,
+               e.event_status,
+               e.start_date,
+               e.end_date,
+               DATE_FORMAT(e.reg_date, '%Y-%m-%d-%H-%i')          AS reg_date,
+               DATE_FORMAT(e.last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date,
+               DATE_FORMAT(e.deleted_date, '%Y-%m-%d-%H-%i')      AS deleted_date,
+               e.link
+
         from hire d
                  Right Outer Join event e on d.hire_event_id = e.event_id
         where hire_id = #{hire_id}
@@ -135,29 +184,52 @@
         where hire_id = #{VALUES}
     </delete>
 
+
     <!-- Staff가 등록한 종료된 행사 중 선택한 행사의 상세 정보를 조회합니다.
     (행사명, 등록일자, 행사기간, 행사장소, 파트타이머 수, 총 인건비) -->
     <select id="selectUsers" parameterType="long" resultType="int">
         SELECT COUNT(*)
-        FROM attendance
-                 LEFT JOIN hire
-                           ON attendance.att_event_id = hire_event_id
+        FROM user
                  LEFT JOIN event
-                           ON hire.hire_event_id = event.event_id
-        WHERE att_event_id = #{VALUES}
+                           ON user.user_company_id = event.event_company_id
+        WHERE event_id = #{VALUES}
     </select>
 
-    <select id="selCloseEvent" parameterType="long" resultMap="eventMap">
-        SELECT reg_date, event_name, place, event_desc
+    <select id="selCloseEvent" parameterType="long" resultType="CamelHashMap">
+        SELECT event_id,
+               event_company_id,
+               event_name,
+               event_type,
+               place,
+               event_image,
+               event_inq,
+               event_desc,
+               event_status,
+               start_date,
+               end_date,
+               DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i'),
+               DATE_FORMAT(last_updated_date, '%Y-%m-%d-%H-%i'),
+               DATE_FORMAT(deleted_date, '%Y-%m-%d-%H-%i'),
+               link
         FROM event
         WHERE event_id = #{VALUES}
     </select>
 
-    <select id="getEventIdHire" parameterType="long" resultMap="hireMap">
-        SELECT pay, work_hour
+    <select id="getEventIdHire" parameterType="long" resultType="CamelHashMap">
+        SELECT hire_id,
+               hire_event_id,
+               hire_company_id,
+               work_name,
+               work_hour,
+               DATE_FORMAT(work_start_day, '%Y-%m-%d-%H-%i'),
+               DATE_FORMAT(work_end_day, '%Y-%m-%d-%H-%i'),
+               pay,
+               edu,
+               DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
         FROM hire
         WHERE hire_event_id = #{VALUES}
     </select>
+
 
     <select id="selectPlaceId" parameterType="EventJoinDto" resultType="string">
         select place_id

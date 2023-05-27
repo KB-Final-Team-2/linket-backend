@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -13,12 +14,12 @@ public class UserServiceImpl implements UserService{
     private UserDAO userDAO;
 
     @Override
-    public UserJoinDto getUser(String email) throws Exception {
+    public Map<String,Object> getUser(String email) throws Exception {
         return userDAO.getUser(email);
     }
 
     @Override
-    public UserJoinDto checkUserPwd(HashMap<String, String> hashMap) throws Exception {
+    public Map<String,Object> checkUserPwd(HashMap<String, String> hashMap) throws Exception {
         return userDAO.checkUserPwd(hashMap);
     }
 

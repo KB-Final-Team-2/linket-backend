@@ -63,7 +63,7 @@ public class TicketDAOImplTest {
     public void TestDeleteTicket() throws Exception {
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
         ticketJoinDto.setTicketId(2L);
-        ticketJoinDto.setTicketStatus('N');
+        ticketJoinDto.setTicketStatus("N");
 
         int rowCnt = ticketDAO.deleteTicket(ticketJoinDto);
         assertTrue(rowCnt == 1);

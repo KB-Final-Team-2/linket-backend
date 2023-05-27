@@ -1,7 +1,5 @@
 package com.spacebetween.linket.dto;
 
-import java.time.LocalDateTime;
-
 public class HireJoinDto {
     private Long hireId;
     private Long eventId;
@@ -12,11 +10,11 @@ public class HireJoinDto {
     private String workEndDay;
     private Integer pay;
     private String edu;
-    private LocalDateTime regDate;
+    private String regDate;
 
     public HireJoinDto(){}
 
-    public HireJoinDto(Long hireId, Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, LocalDateTime regDate) {
+    public HireJoinDto(Long hireId, Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, String regDate) {
         this.hireId = hireId;
         this.eventId = eventId;
         this.companyId = companyId;
@@ -30,9 +28,7 @@ public class HireJoinDto {
     }
 
     //registerHire()
-    public HireJoinDto(Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, LocalDateTime regDate) {
-        this.eventId = eventId;
-        this.companyId = companyId;
+    public HireJoinDto(String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, String regDate) {
         this.workName = workName;
         this.workHour = workHour;
         this.workStartDay = workStartDay;
@@ -108,11 +104,11 @@ public class HireJoinDto {
         this.edu = edu;
     }
 
-    public LocalDateTime getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 

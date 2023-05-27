@@ -12,14 +12,14 @@ public class AttendanceJoinDto {
     private String attDate; // 참여일
     private String attStartDatetime; // 출석일시
     private String attEndDatetime; // 퇴근일시
-    private char attStartBnt; // 출석 버튼 활성화
-    private char attEndBnt; // 퇴근 버튼 활성화
+    private String attStartBnt; // 출석 버튼 활성화
+    private String attEndBnt; // 퇴근 버튼 활성화
     private String regDate;
 
     //기본 생성자
     public AttendanceJoinDto(){}
 
-    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, String attDate, String attStartDatetime, String attEndDatetime, char attStartBnt, char attEndBnt, String regDate) {
+    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, String attDate, String attStartDatetime, String attEndDatetime, String attStartBnt, String attEndBnt, String regDate) {
         this.attId = attId;
         this.hireId = hireId;
         this.eventId = eventId;
@@ -103,19 +103,19 @@ public class AttendanceJoinDto {
         this.attEndDatetime = attEndDatetime;
     }
 
-    public char getAttStartBnt() {
+    public String getAttStartBnt() {
         return attStartBnt;
     }
 
-    public void setAttStartBnt(char attStartBnt) {
+    public void setAttStartBnt(String attStartBnt) {
         this.attStartBnt = attStartBnt;
     }
 
-    public char getAttEndBnt() {
+    public String getAttEndBnt() {
         return attEndBnt;
     }
 
-    public void setAttEndBnt(char attEndBnt) {
+    public void setAttEndBnt(String attEndBnt) {
         this.attEndBnt = attEndBnt;
     }
 

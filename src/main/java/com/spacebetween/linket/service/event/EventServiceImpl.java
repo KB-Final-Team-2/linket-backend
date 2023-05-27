@@ -1,6 +1,5 @@
 package com.spacebetween.linket.service.event;
 
-import com.spacebetween.linket.dao.attendance.AttendanceDAO;
 import com.spacebetween.linket.dao.event.EventDAO;
 import com.spacebetween.linket.dto.EventJoinDto;
 import com.spacebetween.linket.dto.HireJoinDto;
@@ -31,12 +30,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Map<String, String>> getAllEvents(long companyId) throws Exception {
+    public List<Map<String, Object>> getAllEvents(Long companyId) throws Exception {
         return eventDAO.getAllEvents(companyId);
     }
 
     @Override
-    public Map<String, String> getEvent(long eventId) throws Exception {
+    public Map<String, Object> getEvent(Long eventId) throws Exception {
         return eventDAO.getEvent(eventId);
     }
 
@@ -46,33 +45,32 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Map<String, String>> getAllHires(long eventId) throws Exception {
+    public List<Map<String, Object>> getAllHires(Long eventId) throws Exception {
         return eventDAO.getAllHires(eventId);
     }
 
     @Override
-    public Map<String, String> getHire(long hireId) throws Exception {
+    public Map<String, Object> getHire(Long hireId) throws Exception {
         return eventDAO.getHire(hireId);
     }
 
     @Override
-    public int deleteHire(long hireId) throws Exception {
+    public int deleteHire(Long hireId) throws Exception {
         return eventDAO.deleteHire(hireId);
     }
 
-    //도연
     @Override
     public int selectUsers(Long eventId) throws Exception {
         return eventDAO.selectUsers(eventId);
     }
 
     @Override
-    public EventJoinDto selCloseEvent(Long eventId) throws Exception {
+    public Map<String, Object> selCloseEvent(Long eventId) throws Exception {
         return eventDAO.selCloseEvent(eventId);
     }
 
     @Override
-    public HireJoinDto getEventIdHire(Long eventId) throws Exception {
+    public List<Map<String, Object>> getEventIdHire(Long eventId) throws Exception {
         return eventDAO.getEventIdHire(eventId);
     }
 
@@ -80,4 +78,5 @@ public class EventServiceImpl implements EventService {
     public String selectPlaceId(EventJoinDto eventJoinDto) throws Exception{
         return eventDAO.selectPlaceId(eventJoinDto);
     }
+
 }
