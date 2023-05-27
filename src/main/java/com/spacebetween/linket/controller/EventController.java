@@ -1,6 +1,7 @@
 package com.spacebetween.linket.controller;
 
 import com.spacebetween.linket.dto.EventJoinDto;
+import com.spacebetween.linket.dto.HireJoinDto;
 import com.spacebetween.linket.service.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -90,16 +92,7 @@ public class EventController {
         System.out.println(answer);
         return new ResponseEntity<>(answer, header, HttpStatus.OK);
     }
-}
 
-=======
-//    //서버연결 Test success..
-//    @GetMapping
-//    public String Hello() throws Exception {
-//        return "hello...server..connected";
-//    }
-
-    //Test success..
     @PostMapping("/register")
     public ResponseEntity<String> registerEvent(@RequestBody EventJoinDto eventJoinDto) throws Exception {
 

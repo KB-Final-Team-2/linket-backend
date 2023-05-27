@@ -237,4 +237,12 @@
         where place=#{place} and event_id=#{eventId}
     </select>
 
+    <!-- 이 부분 다시 추가 -->
+    <select id="countUser" parameterType="java.util.HashMap" resultType="int">
+        SELECT COUNT(*)
+        FROM user
+                 LEFT JOIN  event
+                            on event.event_company_id = user.user_company_id
+        WHERE role=#{role} AND event_id=#{eventId};
+    </select>
 </mapper>

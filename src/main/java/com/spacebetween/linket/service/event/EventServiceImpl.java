@@ -75,6 +75,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public int countUser(Map<String, Object> map) throws Exception {
+        return eventDAO.countUser(map);
+    }
+
+    @Override
     public String selectPlaceId(EventJoinDto eventJoinDto) throws Exception{
         return eventDAO.selectPlaceId(eventJoinDto);
     }
