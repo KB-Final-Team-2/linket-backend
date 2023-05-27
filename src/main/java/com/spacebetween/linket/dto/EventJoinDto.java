@@ -9,6 +9,7 @@ public class EventJoinDto {
     private String eventName; // 행사명
     private String eventType; // 행사 종류
     private String place; // 행사 장소
+    private String placeId; // 행사 장소에 대한 고유 ID
     private String eventImage; // 행사 이미지
     private String eventInq; // 행사 대표문의처
     private String eventDesc; // 행사 설명
@@ -19,6 +20,27 @@ public class EventJoinDto {
     private LocalDateTime lastUpdatedDate; // 수정일자
     private LocalDateTime deletedDate; // 삭제일자
     private String link; // 링크
+
+    public EventJoinDto(){}
+
+    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String placeId, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, LocalDateTime regDate, LocalDateTime lastUpdatedDate, LocalDateTime deletedDate, String link) {
+        this.eventId = eventId;
+        this.companyId = companyId;
+        this.eventName = eventName;
+        this.eventType = eventType;
+        this.place = place;
+        this.placeId = placeId;
+        this.eventImage = eventImage;
+        this.eventInq = eventInq;
+        this.eventDesc = eventDesc;
+        this.eventStatus = eventStatus;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.regDate = regDate;
+        this.lastUpdatedDate = lastUpdatedDate;
+        this.deletedDate = deletedDate;
+        this.link = link;
+    }
 
     public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, LocalDateTime regDate, LocalDateTime lastUpdatedDate, LocalDateTime deletedDate, String link) {
         this.eventId = eventId;
@@ -199,6 +221,14 @@ public class EventJoinDto {
 
     public void setLink(String link) {this.link = link;}
 
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
+
     @Override
     public String toString() {
         return "EventJoinDto{" +
@@ -207,6 +237,7 @@ public class EventJoinDto {
                 ", eventName='" + eventName + '\'' +
                 ", eventType='" + eventType + '\'' +
                 ", place='" + place + '\'' +
+                ", placeId='" + placeId + '\'' +
                 ", eventImage='" + eventImage + '\'' +
                 ", eventInq='" + eventInq + '\'' +
                 ", eventDesc='" + eventDesc + '\'' +

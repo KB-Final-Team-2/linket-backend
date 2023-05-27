@@ -159,5 +159,10 @@
         WHERE hire_event_id = #{VALUES}
     </select>
 
+    <select id="selectPlaceId" parameterType="EventJoinDto" resultType="string">
+        select place_id
+        from event
+        where place=#{place} and event_id=#{eventId}
+    </select>
 
 </mapper>

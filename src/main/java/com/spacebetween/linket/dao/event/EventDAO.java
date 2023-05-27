@@ -33,4 +33,6 @@ public interface EventDAO {
 
     HireJoinDto getEventIdHire(Long eventId) throws Exception;
 
+    //openapi 부분
+    String selectPlaceId(EventJoinDto eventJoinDto) throws Exception;
 }

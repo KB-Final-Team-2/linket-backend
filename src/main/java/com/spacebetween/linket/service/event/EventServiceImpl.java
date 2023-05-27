@@ -76,4 +76,8 @@ public class EventServiceImpl implements EventService {
         return eventDAO.getEventIdHire(eventId);
     }
 
+    @Override
+    public String selectPlaceId(EventJoinDto eventJoinDto) throws Exception{
+        return eventDAO.selectPlaceId(eventJoinDto);
+    }
 }

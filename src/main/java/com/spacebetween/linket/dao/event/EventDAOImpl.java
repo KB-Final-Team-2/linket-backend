@@ -78,4 +78,9 @@ public class EventDAOImpl implements EventDAO {
         return sqlSession.selectOne(NS + "getEventIdHire", eventId);
     }
 
+    //openapi 부분
+    @Override
+    public String selectPlaceId(EventJoinDto eventJoinDto) throws Exception{
+        return sqlSession.selectOne(NS+"selectPlaceId", eventJoinDto);
+    }
 }
