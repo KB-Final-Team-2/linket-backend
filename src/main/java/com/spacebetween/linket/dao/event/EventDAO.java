@@ -34,4 +34,6 @@ public interface EventDAO {
 
     int countUser(Map<String, Object> map) throws Exception;
 
+    //openapi 부분
+    String selectPlaceId(EventJoinDto eventJoinDto) throws Exception;
 }

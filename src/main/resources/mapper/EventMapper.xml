@@ -230,14 +230,11 @@
         WHERE hire_event_id = #{VALUES}
     </select>
 
-    <select id="countUser" parameterType="java.util.HashMap" resultType="int">
-        SELECT COUNT(*)
-        FROM user
-                 LEFT JOIN event
-                           on event.event_company_id = user.user_company_id
-        WHERE role = #{role}
-          AND event_id = #{eventId};
-    </select>
 
+    <select id="selectPlaceId" parameterType="EventJoinDto" resultType="string">
+        select place_id
+        from event
+        where place=#{place} and event_id=#{eventId}
+    </select>
 
 </mapper>

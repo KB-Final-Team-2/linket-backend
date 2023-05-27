@@ -82,4 +82,9 @@ public class EventDAOImpl implements EventDAO {
         return sqlSession.selectOne(NS + "countUser", map);
     }
 
+    //openapi 부분
+    @Override
+    public String selectPlaceId(EventJoinDto eventJoinDto) throws Exception{
+        return sqlSession.selectOne(NS+"selectPlaceId", eventJoinDto);
+    }
 }
