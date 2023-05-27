@@ -21,7 +21,7 @@ public class EventJoinDto {
 
     public EventJoinDto(){}
 
-    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String placeId, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, LocalDateTime regDate, LocalDateTime lastUpdatedDate, LocalDateTime deletedDate, String link) {
+    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String placeId, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String lastUpdatedDate, String deletedDate, String link) {
         this.eventId = eventId;
         this.companyId = companyId;
         this.eventName = eventName;
@@ -40,7 +40,7 @@ public class EventJoinDto {
         this.link = link;
     }
 
-    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, char eventStatus, String startDate, String endDate, LocalDateTime regDate, LocalDateTime lastUpdatedDate, LocalDateTime deletedDate, String link) {
+    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String lastUpdatedDate, String deletedDate, String link) {
 
         this.eventId = eventId;
         this.companyId = companyId;
