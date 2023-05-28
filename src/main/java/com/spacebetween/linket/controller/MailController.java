@@ -1,5 +1,6 @@
 package com.spacebetween.linket.controller;
 
+import com.spacebetween.linket.dto.UserJoinDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,9 @@ public class MailController {
     }
 
     // mailSending 코드
-    @GetMapping("/check-mail/{email}")
-    public ResponseEntity<String> mailSending(@PathVariable String email) {
-
+    @GetMapping("/check-mail/")
+    public ResponseEntity<String> mailSending(@RequestBody UserJoinDto userJoinDto) {
+        String email = userJoinDto.getEmail();
         System.out.println("이메일 전송");
 
         //난수 생성(인증번호)
@@ -39,7 +40,7 @@ public class MailController {
 
         /* 이메일 보내기 */
         String setFrom = "skybluelion96@naver.com"; //보내는 이메일
-        String toMail = email+".com"; //받는 사람 이메일
+        String toMail = email; //받는 사람 이메일
         String title = "LINKET 회원가입 인증번호 발송 이메일입니다.";
         String content =
                 "LINKET 홈페이지를 방문해주셔서 감사합니다." +
