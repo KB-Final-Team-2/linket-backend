@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class TicketDAOImplTest {
+
     @Autowired
     TicketDAO ticketDAO;
 
@@ -25,7 +26,7 @@ public class TicketDAOImplTest {
     //티켓 등록여부 테스트
     @Test
     public void testCheckTicket() throws Exception{
-        String result = ticketDAO.checkTicket("12345");
+        String result = ticketDAO.checkTicket("10001");
         System.out.println(result);
     }
 
@@ -33,7 +34,7 @@ public class TicketDAOImplTest {
     @Test
     public void testRegisterTicket() throws Exception{
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
-        ticketJoinDto.setEmail("member@test.com");
+        ticketJoinDto.setTicketEmail("red1@member.com");
         ticketJoinDto.setTicketId(2L);
 
         int rowCnt = ticketDAO.registerTicket(ticketJoinDto);
@@ -43,7 +44,7 @@ public class TicketDAOImplTest {
     //티켓 전체 조회 테스트
     @Test
     public void testGetAllTickets() throws Exception{
-        List<Map<String,Object>> ticketList = ticketDAO.getAllTickets("member@test.com");
+        List<Map<String,Object>> ticketList = ticketDAO.getAllTickets("red1@member.com");
         System.out.println();
 
         for(Map<String,Object> map : ticketList)
@@ -54,7 +55,7 @@ public class TicketDAOImplTest {
     //티켓 단일 조회 테스트
     @Test
     public void testGetTicket() throws Exception{
-        Map<String,Object> ticketMap = ticketDAO.getTicket(1L);
+        Map<String,Object> ticketMap = ticketDAO.getTicket(10001L);
         System.out.println(ticketMap);
     }
 
@@ -62,7 +63,7 @@ public class TicketDAOImplTest {
     @Test
     public void TestDeleteTicket() throws Exception {
         TicketJoinDto ticketJoinDto = new TicketJoinDto();
-        ticketJoinDto.setTicketId(2L);
+        ticketJoinDto.setTicketId(10001L);
         ticketJoinDto.setTicketStatus("N");
 
         int rowCnt = ticketDAO.deleteTicket(ticketJoinDto);
@@ -71,7 +72,7 @@ public class TicketDAOImplTest {
 
     @Test
     public void testGetTicketStatus() throws Exception{
-        List<Map<String,Object>> ticketList = ticketDAO.getTicketStatus(1L);
+        List<Map<String,Object>> ticketList = ticketDAO.getTicketStatus(10001L);
         System.out.println();
 
         for(Map<String,Object> map : ticketList)

@@ -5,7 +5,7 @@ public class TicketJoinDto {
     private Long ticketId; // 티켓 아이디 자동생성
     private Long ticketEventId;
     private Long ticketCompanyId;
-    private String email;
+    private String ticketEmail;
     private String serialNum; // 일련번호
     private String ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
     private String ticketStatus; // 티켓 사용가능여부 (default: 'Y')
@@ -15,11 +15,11 @@ public class TicketJoinDto {
 
     public TicketJoinDto(){}
 
-    public TicketJoinDto(Long ticketId, Long ticketEventId, Long ticketCompanyId, String email, String serialNum, String ticketReg, String ticketStatus, String regDate, String lastUpdatedDate, String seat) {
+    public TicketJoinDto(Long ticketId, Long ticketEventId, Long ticketCompanyId, String ticketEmail, String serialNum, String ticketReg, String ticketStatus, String regDate, String lastUpdatedDate, String seat) {
         this.ticketId = ticketId;
         this.ticketEventId = ticketEventId;
         this.ticketCompanyId = ticketCompanyId;
-        this.email = email;
+        this.ticketEmail = ticketEmail;
         this.serialNum = serialNum;
         this.ticketReg = ticketReg;
         this.ticketStatus = ticketStatus;
@@ -52,12 +52,12 @@ public class TicketJoinDto {
         this.ticketCompanyId = ticketCompanyId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTicketEmail() {
+        return ticketEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTicketEmail(String ticketEmail) {
+        this.ticketEmail = ticketEmail;
     }
 
     public String getSerialNum() {
@@ -108,14 +108,14 @@ public class TicketJoinDto {
     public String toString() {
         return "TicketJoinDto{" +
                 "ticketId=" + ticketId +
-                ", eventId=" + ticketEventId +
-                ", companyId=" + ticketCompanyId +
-                ", email='" + email + '\'' +
+                ", ticketEventId=" + ticketEventId +
+                ", ticketCompanyId=" + ticketCompanyId +
+                ", ticketEmail='" + ticketEmail + '\'' +
                 ", serialNum='" + serialNum + '\'' +
-                ", ticketReg=" + ticketReg +
-                ", ticketStatus=" + ticketStatus +
-                ", regDate=" + regDate +
-                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", ticketReg='" + ticketReg + '\'' +
+                ", ticketStatus='" + ticketStatus + '\'' +
+                ", regDate='" + regDate + '\'' +
+                ", lastUpdatedDate='" + lastUpdatedDate + '\'' +
                 ", seat='" + seat + '\'' +
                 '}';
     }

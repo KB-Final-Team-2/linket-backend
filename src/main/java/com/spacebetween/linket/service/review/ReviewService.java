@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface ReviewService {
     int registerReview(ReviewJoinDto reviewJoinDto) throws Exception;
-    List<Map<String, Object>> getReviewStatus(Long eventId) throws Exception;
+    List<Map<String, Object>> getReviewStatus(Long reviewEventId) throws Exception;
     int checkReview(Long ticketId) throws Exception;
     List<Map<String, Object>> getAllReviews(String email) throws Exception;
 }

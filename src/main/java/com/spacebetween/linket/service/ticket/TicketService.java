@@ -9,9 +9,9 @@ import java.util.Map;
 public interface TicketService {
     String checkTicket(String serialNum) throws Exception;
     int registerTicket(TicketJoinDto ticketJoinDto) throws Exception;
-    List<Map<String,Object>> getAllTickets(String email) throws Exception;
+    List<Map<String,Object>> getAllTickets(String ticketEmail) throws Exception;
     Map<String,Object> getTicket(Long ticketId) throws Exception;
     int deleteTicket(TicketJoinDto ticketJoinDto) throws Exception;
-    List<Map<String,Object>> getTicketStatus(Long eventId) throws Exception;
+    List<Map<String,Object>> getTicketStatus(Long ticketEventId) throws Exception;
 
 }

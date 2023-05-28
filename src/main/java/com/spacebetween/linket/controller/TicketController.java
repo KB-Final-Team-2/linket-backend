@@ -38,8 +38,8 @@ public class TicketController {
         if (result.equals("able")) {
             String email = (String) session.getAttribute("email");
             TicketJoinDto ticketJoinDto = new TicketJoinDto();
-//        String email = "red1@member.com";
-            ticketJoinDto.setEmail(email);
+//            String email = "red1@member.com";
+            ticketJoinDto.setTicketEmail(email);
             ticketJoinDto.setSerialNum(serialNum);
             int rowCnt = ticketService.registerTicket(ticketJoinDto);
             if (rowCnt == 1) {
@@ -47,7 +47,7 @@ public class TicketController {
                 return new ResponseEntity<>(success, header, HttpStatus.OK);
             } else { // 티켓 등록 실패
                 String fail = new String("fail");
-                return new ResponseEntity<>(ErrorCode.TICKET_NOT_FOUND.getMessage(), header, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(fail, header, HttpStatus.BAD_REQUEST);
             }
         } else {// 티켓 중복
             return new ResponseEntity<>(ErrorCode.ALREADY_SAVED_TICKET.getMessage(), header, HttpStatus.BAD_REQUEST);
