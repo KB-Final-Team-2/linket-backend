@@ -144,9 +144,9 @@ public class ReviewJoinDto {
     public String toString() {
         return "ReviewJoinDto{" +
                 "reviewId=" + reviewId +
-                ", ticketId=" + reviewTicketId +
-                ", eventId=" + reviewEventId +
-                ", companyId=" + reviewCompanyId +
+                ", reviewTicketId=" + reviewTicketId +
+                ", reviewEventId=" + reviewEventId +
+                ", reviewCompanyId=" + reviewCompanyId +
                 ", rateFacilChair=" + rateFacilChair +
                 ", rateFacilRest=" + rateFacilRest +
                 ", rateStaffIn=" + rateStaffIn +
@@ -154,7 +154,7 @@ public class ReviewJoinDto {
                 ", rateEventContent=" + rateEventContent +
                 ", rateEventGo=" + rateEventGo +
                 ", reviewEtc='" + reviewEtc + '\'' +
-                ", regDate=" + regDate +
+                ", regDate='" + regDate + '\'' +
                 '}';
     }
 }

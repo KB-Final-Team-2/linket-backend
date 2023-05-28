@@ -45,7 +45,7 @@ public class ReviewDAOImplTest {
 
     @Test
     public void getAllReviews() throws Exception{
-        List<Map<String, Object>> reviewList = reviewDAO.getAllReviews("member@test.com");
+        List<Map<String, Object>> reviewList = reviewDAO.getAllReviews("member@me.com");
         for (Map<String, Object> review : reviewList) {
             System.out.println(review);
         }

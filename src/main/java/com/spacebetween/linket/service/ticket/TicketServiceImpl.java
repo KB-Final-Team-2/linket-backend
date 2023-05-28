@@ -25,8 +25,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Map<String,Object>> getAllTickets(String email) throws Exception {
-        return ticketDAO.getAllTickets(email);
+    public List<Map<String,Object>> getAllTickets(String ticketEmail) throws Exception {
+        return ticketDAO.getAllTickets(ticketEmail);
     }
 
     @Override
@@ -40,8 +40,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Map<String,Object>> getTicketStatus(Long eventId) throws Exception {
-        return ticketDAO.getTicketStatus(eventId);
+    public List<Map<String,Object>> getTicketStatus(Long ticketEventId) throws Exception {
+        return ticketDAO.getTicketStatus(ticketEventId);
     }
 
 

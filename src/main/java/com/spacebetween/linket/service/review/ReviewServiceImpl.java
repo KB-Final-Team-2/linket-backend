@@ -20,18 +20,18 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Map<String, Object>> getReviewStatus(Long eventId) throws Exception {
-        return reviewDAO.getReviewStatus(eventId);
+    public List<Map<String, Object>> getReviewStatus(Long reviewEventId) throws Exception {
+        return reviewDAO.getReviewStatus(reviewEventId);
     }
 
     @Override
-    public int checkReview(Long ticketId) throws Exception {
-        return reviewDAO.checkReview(ticketId);
+    public int checkReview(Long reviewTicketId) throws Exception {
+        return reviewDAO.checkReview(reviewTicketId);
     }
 
     @Override
-    public List<Map<String, Object>> getAllReviews(String email) throws Exception {
-        return reviewDAO.getAllReviews(email);
+    public List<Map<String, Object>> getAllReviews(String ticketEmail) throws Exception {
+        return reviewDAO.getAllReviews(ticketEmail);
     }
 
 }

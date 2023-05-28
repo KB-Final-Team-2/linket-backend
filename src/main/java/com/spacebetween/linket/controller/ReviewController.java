@@ -16,7 +16,6 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins="*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/review")
 public class ReviewController {
@@ -30,26 +29,33 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    /*
-        리뷰 등록 API
-     */
 
-    @PostMapping("/member/{ticketId}/review")
-    public ResponseEntity<ReviewJoinDto> registerReview(@RequestBody ReviewJoinDto reviewJoinDto,@PathVariable Long ticketId) throws Exception{
+
+    /*
+        리뷰 등록 여부 확인
+     */
+    @PostMapping("/member/{ticketId}/review/check")
+    public ResponseEntity<String> checkReview(@PathVariable Long ticketId) throws Exception{
         int cnt = reviewService.checkReview(ticketId);
 
-        if(cnt==0) {// 해당하는 티켓의 리뷰 존재하지 않음.
-            int rowCnt = reviewService.registerReview(reviewJoinDto);
-            System.out.println(rowCnt);
-            if(rowCnt==1) // 리뷰 등록 성공
-                return new ResponseEntity<>(reviewJoinDto, header, HttpStatus.OK);
-            else // 등록 실패
-                return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
-        }else {// 리뷰 존재
-            ReviewJoinDto result = new ReviewJoinDto();
+        if(cnt==0) {// 리뷰 등록 성공
+            String result = "able";
+            return new ResponseEntity<>(result, header, HttpStatus.OK);
+        }else {// 등록 실패
+            String result = "existed";
             return new ResponseEntity<>(result, header, HttpStatus.BAD_REQUEST);
         }
-
+    }
+    /*
+        리뷰 등록 API
+    */
+    @PostMapping("/member/review")
+    public ResponseEntity<ReviewJoinDto> registerReview(@RequestBody ReviewJoinDto reviewJoinDto) throws Exception{
+        int rowCnt = reviewService.registerReview(reviewJoinDto);
+        if(rowCnt==1) // 리뷰 등록 성공
+            return new ResponseEntity<>(reviewJoinDto, header, HttpStatus.OK);
+        else // 등록 실패
+            return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/staff/{eventId}/status")
@@ -63,13 +69,12 @@ public class ReviewController {
     }
 
 
-
+//member가 자신의 리뷰를 모두 조회합니다.
     @GetMapping("/member/reviews")
     public ResponseEntity<List<Map<String, Object>>> getAllReviews(HttpSession session) throws Exception{
         String email = (String)session.getAttribute("email");
 //        String email = "red1@member.com";
         List<Map<String, Object>> reviewList = reviewService.getAllReviews(email);
-
         try {
             return ResponseEntity.ok().headers(header).body(reviewList);
         } catch (Exception e) {
