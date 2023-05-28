@@ -30,7 +30,8 @@ import java.util.Map;
 public class EventController {
     static StringBuilder urlBuilder = new StringBuilder("https://www.kopis.or.kr/openApi/restful/prfplc");
     private static HttpHeaders header;
-    static{
+
+    static {
         header = new HttpHeaders();
         header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
     }
@@ -57,7 +58,7 @@ public class EventController {
         String result = "";
         String line = "";
 
-        Map<String,Object> answer = new HashMap<String,Object>();
+        Map<String, Object> answer = new HashMap<String, Object>();
 
         while ((line = br.readLine()) != null) {
             if (line.contains("<fcltynm>")) {
@@ -223,19 +224,18 @@ public class EventController {
     @GetMapping("/staff/{eventId}/status")
     public ResponseEntity<Map<String, Object>> getEventStatus(@PathVariable Long eventId) throws Exception {
         Map<String, Object> map1 = eventService.selCloseEvent(eventId);
-//        System.out.println(map1);
+        System.out.println(map1);
         List<Map<String, Object>> list = eventService.getEventIdHire(eventId);
 
         long pay = 0;
         long workHour = 0;
         for (Map<String, Object> map : list) {
-//            System.out.println(map);
             pay += (long) map.get("pay");
-            workHour += (int) map.get("work_hour");
+            workHour += (int) map.get("workHour");
         }
 
-        String startDay = ((String) map1.get("start_date"));
-        String endDay = ((String) map1.get("end_date"));
+        String startDay = ((String) map1.get("startDate"));
+        String endDay = ((String) map1.get("endDate"));
 
         Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(startDay);
         Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(endDay);
@@ -246,12 +246,12 @@ public class EventController {
         //등록 일자, 행사 기간, 행사 장소, 참여 인원(관람객, 파트타임), 총 인건비, 행사 설명
         Map<String, Object> result = new HashMap<>();
         //등록일자
-        result.put("reg_date", map1.get("DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')"));
+        result.put("regDate", map1.get("dateFormat(regDate, '%y-%m-%d-%h-%i')"));
         //행사 장소
         result.put("place", map1.get("place"));
         //행사 기간
-        result.put("start_date", startDay);
-        result.put("end_date", endDay);
+        result.put("startDate", startDay);
+        result.put("endDate", endDay);
         //관람객 인원
         Map<String, Object> hashMap1 = new HashMap<>();
         hashMap1.put("role", "member");
@@ -273,7 +273,7 @@ public class EventController {
 
         long totalPay = countUser * pay * workHour * diffDays;
         result.put("totalPay", totalPay);
-        result.put("event_desc", map1.get("event_desc"));
+        result.put("eventDesc", map1.get("eventDesc"));
 
         return new ResponseEntity<>(result, header, HttpStatus.OK);
     }
