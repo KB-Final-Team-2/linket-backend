@@ -38,9 +38,9 @@
 
     <!-- Staff가 행사 등록 -->
     <insert id="registerEvent" parameterType="EventJoinDto">
-        insert into linket.Event(event_company_id, event_name, event_type, start_date, end_date, place, event_inq,
+        insert into linket.Event(event_company_id, event_name, event_type, start_date, end_date, place, place_id, event_inq,
                                  event_image, event_desc, reg_date, link)
-        values (#{eventCompanyId}, #{eventName}, #{eventType}, #{startDate}, #{endDate}, #{place}, #{eventInq},
+        values (#{eventCompanyId}, #{eventName}, #{eventType}, #{startDate}, #{endDate}, #{place}, #{placeId}, #{eventInq},
                 #{eventImage}, #{eventDesc}, DEFAULT, #{link})
     </insert>
 
@@ -50,12 +50,13 @@
         set event_name        = #{eventName},
             event_type        = #{eventType},
             place             = #{place},
+            place_id          = #{placeId},
             event_image       = #{eventImage},
             event_inq         = #{eventInq},
             event_desc        = #{eventDesc},
             start_date        = #{startDate},
             end_date          = #{endDate},
-            last_updated_date = DEFAULT,
+            last_updated_date = now(),
             link              = #{link}
 
         where event_id = #{eventId}
@@ -66,8 +67,8 @@
     <update id="deleteEvent" parameterType="EventJoinDto">
         update event
         set event_status      = 'N',
-            last_updated_date = DEFAULT,
-            deleted_date      = DEFAULT
+            last_updated_date = now(),
+            deleted_date      = now()
 
         where event_id = #{eventId}
           and event_status = 'Y'
@@ -80,6 +81,7 @@
                event_name,
                event_type,
                place,
+               place_id,
                event_image,
                event_inq,
                event_desc,
@@ -102,6 +104,7 @@
                event_name,
                event_type,
                place,
+               place_id,
                event_image,
                event_inq,
                event_desc,
@@ -161,6 +164,7 @@
                e.event_name,
                e.event_type,
                e.place,
+               e.place_id,
                e.event_image,
                e.event_inq,
                e.event_desc,

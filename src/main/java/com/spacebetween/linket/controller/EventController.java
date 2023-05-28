@@ -94,6 +94,7 @@ public class EventController {
         return new ResponseEntity<>(answer, header, HttpStatus.OK);
     }
 
+    //test success
     @PostMapping("/register")
     public ResponseEntity<String> registerEvent(@RequestBody EventJoinDto eventJoinDto) throws Exception {
 
@@ -108,12 +109,12 @@ public class EventController {
         }
     }
 
-    //Test success..
-    @GetMapping("/getAllEvents/{companyId}")
-    public ResponseEntity<List<Map<String, Object>>> getAllEvents(@PathVariable Long companyId) throws Exception {
+    //Test success
+    @GetMapping("/getAllEvents/{eventCompanyId}")
+    public ResponseEntity<List<Map<String, Object>>> getAllEvents(@PathVariable Long eventCompanyId) throws Exception {
         // companyId와 일치하는 이벤트들울 보여줌 (종류와 이름)
         try {
-            List<Map<String, Object>> eventList = eventService.getAllEvents(companyId);
+            List<Map<String, Object>> eventList = eventService.getAllEvents(eventCompanyId);
             return ResponseEntity.ok().headers(header).body(eventList);
 
         } catch (Exception e) {
@@ -122,7 +123,7 @@ public class EventController {
         }
     }
 
-    //Test success..
+    //Test success
     @GetMapping("/getEvent/{eventId}")
     public ResponseEntity<Map<String, Object>> getEvent(@PathVariable Long eventId) throws Exception {
         //eventId와 일치하는 이벤트의 상세정보 조회
@@ -137,7 +138,7 @@ public class EventController {
 
     }
 
-    //Test success..
+    //Test
     @PostMapping("/updateEvent")
     public ResponseEntity<String> updateEvent(@RequestBody EventJoinDto eventJoinDto) throws Exception {
         //eventId로 찾아서 수정, 아니면 예외처리
@@ -167,9 +168,6 @@ public class EventController {
     @PostMapping("/hire/registerHire")
     public ResponseEntity<String> registerHire(@RequestBody HireJoinDto hireJoinDto) throws Exception {
 
-        hireJoinDto.setEventId(236L);
-        hireJoinDto.setCompanyId(999L);
-
         int rowCnt = eventService.registerHire(hireJoinDto);
 
         if (rowCnt == 1) {
@@ -179,12 +177,12 @@ public class EventController {
         }
     }
 
-    //Test success..
-    @GetMapping("/hire/getAllHires/{eventId}")
-    public ResponseEntity<List<Map<String, Object>>> getAllHires(@PathVariable Long eventId) throws Exception {
+    //Test success
+    @GetMapping("/hire/getAllHires/{hireEventId}")
+    public ResponseEntity<List<Map<String, Object>>> getAllHires(@PathVariable Long hireEventId) throws Exception {
         // eventId와 일치하는 이벤트들울 보여줌 (종류와 이름)
         try {
-            List<Map<String, Object>> hireList = eventService.getAllHires(eventId);
+            List<Map<String, Object>> hireList = eventService.getAllHires(hireEventId);
             return ResponseEntity.ok().headers(header).body(hireList);
 
         } catch (Exception e) {
@@ -193,7 +191,7 @@ public class EventController {
         }
     }
 
-    //Test success..
+    //Test success
     @GetMapping("/hire/getHire/{hireId}")
     public ResponseEntity<Map<String, Object>> getHire(@PathVariable Long hireId) throws Exception {
         // eventId와 일치하는 이벤트들울 보여줌 (종류와 이름)
@@ -221,6 +219,7 @@ public class EventController {
     }
 
 
+    //Test success
     @GetMapping("/staff/{eventId}/status")
     public ResponseEntity<Map<String, Object>> getEventStatus(@PathVariable Long eventId) throws Exception {
         Map<String, Object> map1 = eventService.selCloseEvent(eventId);
