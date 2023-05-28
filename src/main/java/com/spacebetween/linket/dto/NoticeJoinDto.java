@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class NoticeJoinDto {
     private Long noticeId;
-    private Long eventId;
-    private Long companyId;
+    private Long noticeEventId;
+    private Long noticeCompanyId;
     private String noticeTitle;
     private String noticeContent;
     private String regDate;
@@ -13,10 +13,10 @@ public class NoticeJoinDto {
 
     public NoticeJoinDto(){}
 
-    public NoticeJoinDto(Long noticeId, Long eventId, Long companyId, String noticeTitle, String noticeContent, String regDate, LocalDateTime lastUpdatedDate) {
+    public NoticeJoinDto(Long noticeId, Long noticeEventId, Long noticeCompanyId, String noticeTitle, String noticeContent, String regDate, LocalDateTime lastUpdatedDate) {
         this.noticeId = noticeId;
-        this.eventId = eventId;
-        this.companyId = companyId;
+        this.noticeEventId = noticeEventId;
+        this.noticeCompanyId = noticeCompanyId;
         this.noticeTitle = noticeTitle;
         this.noticeContent = noticeContent;
         this.regDate = regDate;
@@ -31,20 +31,20 @@ public class NoticeJoinDto {
         this.noticeId = noticeId;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Long getNoticeEventId() {
+        return noticeEventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setNoticeEventId(Long noticeEventId) {
+        this.noticeEventId = noticeEventId;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getNoticeCompanyId() {
+        return noticeCompanyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setNoticeCompanyId(Long noticeCompanyId) {
+        this.noticeCompanyId = noticeCompanyId;
     }
 
     public String getNoticeTitle() {
@@ -83,8 +83,8 @@ public class NoticeJoinDto {
     public String toString() {
         return "NoticeJoinDto{" +
                 "noticeId=" + noticeId +
-                ", eventId=" + eventId +
-                ", companyId=" + companyId +
+                ", eventId=" + noticeEventId +
+                ", companyId=" + noticeCompanyId +
                 ", noticeTitle='" + noticeTitle + '\'' +
                 ", noticeContent='" + noticeContent + '\'' +
                 ", regDate='" + regDate + '\'' +

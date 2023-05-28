@@ -3,8 +3,8 @@ package com.spacebetween.linket.dto;
 
 public class TicketJoinDto {
     private Long ticketId; // 티켓 아이디 자동생성
-    private Long eventId;
-    private Long companyId;
+    private Long ticketEventId;
+    private Long ticketCompanyId;
     private String email;
     private String serialNum; // 일련번호
     private String ticketReg; // 티켓 등록여부 (일련번호 사용성여부 파악, default: 'N')
@@ -15,10 +15,10 @@ public class TicketJoinDto {
 
     public TicketJoinDto(){}
 
-    public TicketJoinDto(Long ticketId, Long eventId, Long companyId, String email, String serialNum, String ticketReg, String ticketStatus, String regDate, String lastUpdatedDate, String seat) {
+    public TicketJoinDto(Long ticketId, Long ticketEventId, Long ticketCompanyId, String email, String serialNum, String ticketReg, String ticketStatus, String regDate, String lastUpdatedDate, String seat) {
         this.ticketId = ticketId;
-        this.eventId = eventId;
-        this.companyId = companyId;
+        this.ticketEventId = ticketEventId;
+        this.ticketCompanyId = ticketCompanyId;
         this.email = email;
         this.serialNum = serialNum;
         this.ticketReg = ticketReg;
@@ -36,20 +36,20 @@ public class TicketJoinDto {
         this.ticketId = ticketId;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Long getTicketEventId() {
+        return ticketEventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setTicketEventId(Long ticketEventId) {
+        this.ticketEventId = ticketEventId;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getTicketCompanyId() {
+        return ticketCompanyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setTicketCompanyId(Long ticketCompanyId) {
+        this.ticketCompanyId = ticketCompanyId;
     }
 
     public String getEmail() {
@@ -108,8 +108,8 @@ public class TicketJoinDto {
     public String toString() {
         return "TicketJoinDto{" +
                 "ticketId=" + ticketId +
-                ", eventId=" + eventId +
-                ", companyId=" + companyId +
+                ", eventId=" + ticketEventId +
+                ", companyId=" + ticketCompanyId +
                 ", email='" + email + '\'' +
                 ", serialNum='" + serialNum + '\'' +
                 ", ticketReg=" + ticketReg +

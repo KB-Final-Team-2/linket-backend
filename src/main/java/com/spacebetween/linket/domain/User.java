@@ -4,6 +4,7 @@ package com.spacebetween.linket.domain;
 public class User {
 
     private String email; // 사용자 이메일
+    private int userCompanyId;
     private String password; // 사용자 비밀번호
     private String userName; // 사용자 이름
     private String birthdate; // 생년월일
@@ -17,5 +18,5 @@ public class User {
     private String enabled; // 회원 탈퇴여부
     private String lastUpdatedDate; // 회원정보 수정일자
 
-    private int companyId;
+
 }

@@ -3,7 +3,7 @@ package com.spacebetween.linket.dto;
 public class EventJoinDto {
 
     private Long eventId; // 행사 아이디 자동생성
-    private Long companyId; // 기업 아이디
+    private Long eventCompanyId; // 기업 아이디
     private String eventName; // 행사명
     private String eventType; // 행사 종류
     private String place; // 행사 장소
@@ -21,9 +21,9 @@ public class EventJoinDto {
 
     public EventJoinDto(){}
 
-    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String placeId, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String lastUpdatedDate, String deletedDate, String link) {
+    public EventJoinDto(Long eventId, Long eventCompanyId, String eventName, String eventType, String place, String placeId, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String lastUpdatedDate, String deletedDate, String link) {
         this.eventId = eventId;
-        this.companyId = companyId;
+        this.eventCompanyId = eventCompanyId;
         this.eventName = eventName;
         this.eventType = eventType;
         this.place = place;
@@ -40,10 +40,10 @@ public class EventJoinDto {
         this.link = link;
     }
 
-    public EventJoinDto(Long eventId, Long companyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String lastUpdatedDate, String deletedDate, String link) {
+    public EventJoinDto(Long eventId, Long eventCompanyId, String eventName, String eventType, String place, String eventImage, String eventInq, String eventDesc, String eventStatus, String startDate, String endDate, String regDate, String lastUpdatedDate, String deletedDate, String link) {
 
         this.eventId = eventId;
-        this.companyId = companyId;
+        this.eventCompanyId = eventCompanyId;
         this.eventName = eventName;
         this.eventType = eventType;
         this.place = place;
@@ -66,8 +66,8 @@ public class EventJoinDto {
     }
 
     //registerEvent()
-    public EventJoinDto(Long companyId, String eventName, String eventType, String startDate, String endDate, String place, String eventInq, String eventImage, String eventDesc, String link) {
-        this.companyId = companyId;
+    public EventJoinDto(Long eventCompanyId, String eventName, String eventType, String startDate, String endDate, String place, String eventInq, String eventImage, String eventDesc, String link) {
+        this.eventCompanyId = eventCompanyId;
         this.eventName = eventName;
         this.eventType = eventType;
         this.startDate = startDate;
@@ -88,12 +88,12 @@ public class EventJoinDto {
         this.eventId = eventId;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getEventCompanyId() {
+        return eventCompanyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setEventCompanyId(Long eventCompanyId) {
+        this.eventCompanyId = eventCompanyId;
     }
 
     public String getEventName() { return eventName; }
@@ -208,7 +208,7 @@ public class EventJoinDto {
     public String toString() {
         return "EventJoinDto{" +
                 "eventId=" + eventId +
-                ", companyId=" + companyId +
+                ", companyId=" + eventCompanyId +
                 ", eventName='" + eventName + '\'' +
                 ", eventType='" + eventType + '\'' +
                 ", place='" + place + '\'' +

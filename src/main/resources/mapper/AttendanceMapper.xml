@@ -45,14 +45,14 @@
     <update id="startBnt" parameterType="AttendanceJoinDto">
         UPDATE attendance
         SET att_start_bnt=#{attStartBnt}
-        WHERE att_event_id=#{eventId} AND att_date=#{attDate}
+        WHERE att_event_id=#{attEventId} AND att_date=#{attDate}
     </update>
 
     <!-- Staff가 해당 event에 해당하는 part-time에 퇴근 버튼을 활성화 / 비활성화 합니다. -->
     <update id="endBnt" parameterType="AttendanceJoinDto">
         UPDATE attendance
         SET att_end_bnt=#{attEndBnt}
-        WHERE att_event_id=#{eventId} AND att_date=#{attDate}
+        WHERE att_event_id=#{attEventId} AND att_date=#{attDate}
     </update>
 
     <!-- Part 직원이 자신의 출근 현황을 조회합니다. -->
@@ -61,21 +61,21 @@
                DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
         FROM
             attendance
-        WHERE att_email=#{email} AND att_hire_id=#{hireId} AND att_date=#{attDate}
+        WHERE att_email=#{attEmail} AND att_hire_id=#{attHireId} AND att_date=#{attDate}
     </select>
 
     <!-- Part 직원이 출근 확인 버튼을 눌러 근무를 시작합니다. -->
     <update id="startOfWork" parameterType="AttendanceJoinDto">
         UPDATE attendance
         SET att_start_datetime=now()
-        WHERE att_email=#{email} AND att_event_id=#{eventId} AND att_date=#{attDate}
+        WHERE att_email=#{attEmail} AND att_event_id=#{attEventId} AND att_date=#{attDate}
     </update>
 
     <!-- Part 직원이 퇴근 확인 버튼을 눌러 근무를 끝냅니다. -->
     <update id="endOfWork" parameterType="AttendanceJoinDto">
         UPDATE attendance
         SET att_end_datetime=now()
-        WHERE att_email=#{email} AND att_event_id=#{eventId} AND att_date=#{attDate}
+        WHERE att_email=#{attEmail} AND att_event_id=#{attEventId} AND att_date=#{attDate}
     </update>
 
     <!-- 여기서부터 세건 오빠 부분 -->
@@ -109,6 +109,6 @@
     <delete id="deletePtHire" parameterType="AttendanceJoinDto">
         DELETE FROM
             attendance
-        WHERE att_email = #{email} AND att_hire_id = #{hireId}
+        WHERE att_email = #{attEmail} AND att_hire_id = #{hireId}
     </delete>
 </mapper>

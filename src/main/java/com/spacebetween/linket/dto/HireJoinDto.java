@@ -2,8 +2,8 @@ package com.spacebetween.linket.dto;
 
 public class HireJoinDto {
     private Long hireId;
-    private Long eventId;
-    private Long companyId;
+    private Long hireEventId;
+    private Long hireCompanyId;
     private String workName;
     private Integer workHour;
     private String workStartDay;
@@ -14,10 +14,10 @@ public class HireJoinDto {
 
     public HireJoinDto(){}
 
-    public HireJoinDto(Long hireId, Long eventId, Long companyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, String regDate) {
+    public HireJoinDto(Long hireId, Long hireEventId, Long hireCompanyId, String workName, Integer workHour, String workStartDay, String workEndDay, Integer pay, String edu, String regDate) {
         this.hireId = hireId;
-        this.eventId = eventId;
-        this.companyId = companyId;
+        this.hireEventId = hireEventId;
+        this.hireCompanyId = hireCompanyId;
         this.workName = workName;
         this.workHour = workHour;
         this.workStartDay = workStartDay;
@@ -46,20 +46,20 @@ public class HireJoinDto {
         this.hireId = hireId;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Long getHireEventId() {
+        return hireEventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setHireEventId(Long hireEventId) {
+        this.hireEventId = hireEventId;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getHireCompanyId() {
+        return hireCompanyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setHireCompanyId(Long hireCompanyId) {
+        this.hireCompanyId = hireCompanyId;
     }
     public String getWorkName(){ return workName; }
     public void setWorkName(String workName){this.workName=workName;}
@@ -116,8 +116,8 @@ public class HireJoinDto {
     public String toString() {
         return "HireJoinDto{" +
                 "hireId=" + hireId +
-                ", eventId=" + eventId +
-                ", companyId=" + companyId +
+                ", eventId=" + hireEventId +
+                ", companyId=" + hireCompanyId +
                 ", workName='" + workName + '\'' +
                 ", workHour=" + workHour +
                 ", workStartDay=" + workStartDay +

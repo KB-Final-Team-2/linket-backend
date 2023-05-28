@@ -3,7 +3,7 @@ package com.spacebetween.linket.domain;
 
 public class Event {
     private Long eventId; // 행사 아이디 자동생성
-    private Long companyId;
+    private Long eventCompanyId;
     private String eventName; // 행사명
     private String eventType; // 행사 종류
     private String place; // 행사 장소

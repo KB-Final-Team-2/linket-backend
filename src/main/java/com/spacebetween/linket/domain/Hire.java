@@ -3,8 +3,8 @@ package com.spacebetween.linket.domain;
 
 public class Hire {
     private Long hireId;
-    private Long eventId;
-    private Long companyId;
+    private Long hireEventId;
+    private Long hireCompanyId;
     private String workName;
     private Integer workHour;
     private String workStartDay;
