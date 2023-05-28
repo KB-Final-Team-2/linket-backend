@@ -26,6 +26,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    //test OK
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody UserJoinDto userJoinDto) throws Exception{
         int rowCnt = authService.signup(userJoinDto);
@@ -41,6 +42,7 @@ public class AuthController {
         }
     }
 
+    //test OK
     @PostMapping("/login")
     public ResponseEntity<Map<String,Object>> login(@RequestBody UserJoinDto userJoinDto, HttpSession session) throws Exception{
       
@@ -68,20 +70,24 @@ public class AuthController {
             return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
         }
     }
-      
+
+    //test OK
     @PostMapping("/check-email")
     public ResponseEntity<String> checkEmail(@RequestBody UserJoinDto userJoinDto) throws Exception{
         String email = userJoinDto.getEmail();
-        UserJoinDto passObj = authService.checkEmail(email);
 
-        if(email.equals(userJoinDto.getEmail())){ //이메일이 중복됨
+        try{
+            UserJoinDto passObj = authService.checkEmail(email);
+
+            if(email.equals(passObj.getEmail())){ //이메일이 중복됨
             String success = new String("success");
             return new ResponseEntity<>(success, header, HttpStatus.OK);
-        }
-        else { //이메일이 중복되지 않음
+            }
+        } catch(Exception e){
             String fail = new String("fail");
             return new ResponseEntity<>(fail, header, HttpStatus.BAD_REQUEST);
         }
+        return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/logout")
@@ -92,11 +98,12 @@ public class AuthController {
         return new ResponseEntity<>(new String("success"),header,HttpStatus.OK);
     }
 
+    //test OK
     @GetMapping("/withdrawal")
     public ResponseEntity<String> withdrawal(HttpSession session) throws Exception{
         String email = (String)session.getAttribute("email");
 
-        int rowCnt = authService.updateUser("eee@eee.com");
+        int rowCnt = authService.updateUser(email);
         if(rowCnt==1){ // 탈퇴 성공
             session.invalidate();
             String success = new String("success");
