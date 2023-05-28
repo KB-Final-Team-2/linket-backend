@@ -34,8 +34,8 @@
 
     <!--Staff가 Part 직원들의 출근 여부를 조회합니다.-->
     <select id="getAllAtts" parameterType="long" resultType="CamelHashMap">
-        SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i'), DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i'),
-               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
+        SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i') AS att_date, DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i') AS att_start_datetime,
+               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i') AS att_end_datetime, att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') AS reg_date
         FROM
             attendance
         WHERE att_event_id=#{VALUES}
@@ -57,8 +57,8 @@
 
     <!-- Part 직원이 자신의 출근 현황을 조회합니다. -->
     <select id="getMyAtt" parameterType="AttendanceJoinDto" resultType="CamelHashMap">
-        SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i'), DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i'),
-               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i'), att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
+        SELECT att_id, att_event_id, att_company_id, att_hire_id, att_email, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i') AS att_date, DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i') AS att_start_datetime,
+               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i') AS att_end_datetime, att_start_bnt, att_end_bnt, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') AS reg_date
         FROM
             attendance
         WHERE att_email=#{attEmail} AND att_hire_id=#{attHireId} AND att_date=#{attDate}
@@ -68,14 +68,14 @@
     <update id="startOfWork" parameterType="AttendanceJoinDto">
         UPDATE attendance
         SET att_start_datetime=now()
-        WHERE att_email=#{attEmail} AND att_event_id=#{attEventId} AND att_date=#{attDate}
+        WHERE att_id=#{attId}
     </update>
 
     <!-- Part 직원이 퇴근 확인 버튼을 눌러 근무를 끝냅니다. -->
     <update id="endOfWork" parameterType="AttendanceJoinDto">
         UPDATE attendance
         SET att_end_datetime=now()
-        WHERE att_email=#{attEmail} AND att_event_id=#{attEventId} AND att_date=#{attDate}
+        WHERE att_id=#{attId}
     </update>
 
     <!-- 여기서부터 세건 오빠 부분 -->
@@ -83,7 +83,7 @@
     <select id="getHire" parameterType="long" resultType="CamelHashMap">
         SELECT hire_id, hire_event_id, hire_company_id, work_name, work_hour,
                DATE_FORMAT(work_start_day, '%Y-%m-%d-%H-%i') as work_start_day, DATE_FORMAT(work_end_day, '%Y-%m-%d-%H-%i') as work_end_day,
-               pay, edu, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')
+               pay, edu, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') as reg_date
         FROM hire
         WHERE hire_id=#{VALUES}
     </select>
@@ -92,13 +92,13 @@
     <insert id="joinPtHire" parameterType="map">
         insert into attendance (att_event_id, att_company_id, att_hire_id, att_email, att_date, att_start_datetime,
                                 att_end_datetime, att_start_bnt, att_end_bnt, reg_date)
-        values (#{att_event_id},#{att_company_id},#{att_hire_id},#{att_email},#{att_date}, #{att_start_datetime}, #{att_end_datetime}, #{att_start_bnt}, #{att_end_bnt}, now());
+        values (#{attEventId},#{attCompanyId},#{attHireId},#{attEmail},#{attDate}, #{attStartDatetime}, #{attEndDatetime}, #{attStartBnt}, #{attEndBnt}, now());
     </insert>
 
     <!-- Part 직원이 등록한 모든 행사 공고를 조회합니다. -->
     <select id="getPtHires" parameterType="string" resultType="CamelHashMap">
         select
-            DISTINCT hire.hire_id, hire.hire_event_id, hire.hire_company_id, hire.work_name, hire.work_hour, DATE_FORMAT(hire.work_start_day, '%Y-%m-%d-%H-%i'), DATE_FORMAT(hire.work_end_day, '%Y-%m-%d-%H-%i'), hire.edu, DATE_FORMAT(hire.reg_date, '%Y-%m-%d-%H-%i')
+            DISTINCT hire.hire_id, hire.hire_event_id, hire.hire_company_id, hire.work_name, hire.work_hour, DATE_FORMAT(hire.work_start_day, '%Y-%m-%d-%H-%i') as work_start_day, DATE_FORMAT(hire.work_end_day, '%Y-%m-%d-%H-%i') as work_end_day, hire.pay, hire.edu, DATE_FORMAT(hire.reg_date, '%Y-%m-%d-%H-%i') as reg_date
         from hire
                  left join attendance
                            on attendance.att_hire_id = hire.hire_id
@@ -109,6 +109,6 @@
     <delete id="deletePtHire" parameterType="AttendanceJoinDto">
         DELETE FROM
             attendance
-        WHERE att_email = #{attEmail} AND att_hire_id = #{hireId}
+        WHERE att_email = #{attEmail} AND att_hire_id = #{attHireId}
     </delete>
 </mapper>
