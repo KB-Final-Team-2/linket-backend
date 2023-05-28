@@ -4,7 +4,7 @@
 <mapper namespace="com.spacebetween.linket.mapper.AuthMapper">
     <!-- 회원가입 -->
     <insert id="signup" parameterType="UserJoinDto">
-        insert into linket.user (email, password, user_name, birthdate, agreement, phone, gender, role, account, reg_date, withdraw_date,
+        insert into user (email, password, user_name, birthdate, agreement, phone, gender, role, account, reg_date, withdraw_date,
                                  enabled, last_updated_date, user_company_id)
         values (#{email},#{password},#{userName},#{birthdate},#{agreement},#{phone},#{gender},#{role},#{account},now(),#{withdrawDate},
                 #{enabled}, #{lastUpdatedDate}, #{userCompanyId})
@@ -14,7 +14,12 @@
     <!-- 로그인 -->
     <select id="login" parameterType="hashmap" resultType="CamelHashMap">
         SELECT
-            email, password, user_name as userName, birthdate, agreement, phone, gender, role, account, withdraw_date, enabled, user_company_id, reg_date, last_updated_date
+            email, password, user_name, birthdate, agreement, phone, gender, role, account,
+            DATE_FORMAT(withdraw_date, '%Y-%m-%d-%H-%i') AS withdraw_date,
+            enabled,
+            user_company_id,
+            DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') AS reg_date,
+            DATE_FORMAT(last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date
         FROM user
         WHERE email=#{email} AND password=#{password}
     </select>
@@ -30,7 +35,7 @@
     <!-- 사용자 회원 탈퇴 -->
     <update id="updateUser" parameterType="string">
         UPDATE user
-        SET enabled='N'
+        SET enabled='N', withdraw_date=now()
         WHERE email=#{VALUES}
     </update>
 </mapper>
