@@ -13,13 +13,13 @@ public interface EventService {
 
     int deleteEvent(EventJoinDto eventJoinDto) throws Exception;
 
-    List<Map<String, Object>> getAllEvents(Long companyId) throws Exception;
+    List<Map<String, Object>> getAllEvents(Long eventCompanyId) throws Exception;
 
     Map<String, Object> getEvent(Long eventId) throws Exception;
 
     int registerHire(HireJoinDto hireJoinDto) throws Exception;
 
-    List<Map<String, Object>> getAllHires(Long eventId) throws Exception;
+    List<Map<String, Object>> getAllHires(Long hireEventId) throws Exception;
 
     Map<String, Object> getHire(Long hireId) throws Exception;
 

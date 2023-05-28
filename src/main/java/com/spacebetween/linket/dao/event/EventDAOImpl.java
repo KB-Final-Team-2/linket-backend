@@ -33,8 +33,8 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public List<Map<String, Object>> getAllEvents(Long companyId) throws Exception {
-        return sqlSession.selectList(NS + "getAllEvents", companyId);
+    public List<Map<String, Object>> getAllEvents(Long eventCompanyId) throws Exception {
+        return sqlSession.selectList(NS + "getAllEvents", eventCompanyId);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public List<Map<String, Object>> getAllHires(Long eventId) throws Exception {
-        return sqlSession.selectList(NS + "getAllHires", eventId);
+    public List<Map<String, Object>> getAllHires(Long hireEventId) throws Exception {
+        return sqlSession.selectList(NS + "getAllHires", hireEventId);
     }
 
     @Override
