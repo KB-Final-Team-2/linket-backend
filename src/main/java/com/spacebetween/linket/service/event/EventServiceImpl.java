@@ -30,8 +30,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Map<String, Object>> getAllEvents(Long companyId) throws Exception {
-        return eventDAO.getAllEvents(companyId);
+    public List<Map<String, Object>> getAllEvents(Long eventCompanyId) throws Exception {
+        return eventDAO.getAllEvents(eventCompanyId);
     }
 
     @Override
@@ -45,8 +45,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Map<String, Object>> getAllHires(Long eventId) throws Exception {
-        return eventDAO.getAllHires(eventId);
+    public List<Map<String, Object>> getAllHires(Long hireEventId) throws Exception {
+        return eventDAO.getAllHires(hireEventId);
     }
 
     @Override

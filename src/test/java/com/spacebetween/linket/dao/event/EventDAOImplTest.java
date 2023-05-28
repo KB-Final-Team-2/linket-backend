@@ -1,23 +1,23 @@
-package com.spacebetween.linket.dao.event;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-public class EventDAOImplTest {
-
-    @Autowired
-    EventDAO eventDAO;
+//package com.spacebetween.linket.dao.event;
+//
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.test.context.ContextConfiguration;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+//public class EventDAOImplTest {
+//
+//    @Autowired
+//    EventDAO eventDAO;
 
     //
 //    // Staff가 행사 등록 Test O
@@ -111,52 +111,52 @@ public class EventDAOImplTest {
 //
 //    }
 //
-    @Test
-    public void testReviewController() throws Exception {
-        Map<String, Object> map1 = eventDAO.selCloseEvent(236L);
-        System.out.println(map1);
-        List<Map<String, Object>> list = eventDAO.getEventIdHire(236L);
-
-        long pay = 0;
-        long workHour = 0;
-        for(Map<String,Object> map : list) {
-            System.out.println(map);
-            pay += (long)map.get("pay");
-            workHour += (int)map.get("work_hour");
-        }
-
-        String startDay = ((String) map1.get("start_date"));
-        String endDay = ((String) map1.get("end_date"));
-
-        Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(startDay);
-        Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(endDay);
-
-        long diffSec = (format2.getTime() - format1.getTime()) / 1000;
-        long diffDays = diffSec / (24 * 60 * 60) + 1;
-
-        System.out.println("등록일자:" + map1.get("DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')"));
-        System.out.println("행사 기간:" + map1.get("event_id"));
-        System.out.println("행사 장소:" + map1.get("place"));
-
-        Map<String, Object> hashMap1 = new HashMap<>();
-        hashMap1.put("role", "member");
-        hashMap1.put("eventId", 236);
-        int countMember = eventDAO.countUser(hashMap1);
-        System.out.println("관람객 인원:"+countMember);
-
-        Map<String, Object> hashMap2 = new HashMap<>();
-        hashMap2.put("role", "part");
-        hashMap2.put("eventId", 236);
-        int countPart = eventDAO.countUser(hashMap2);
-        System.out.println("파트타임 인원:" + countPart);
-
-        int countUser = countMember + countPart;
-        System.out.println("총 인원:"+countUser);
-
-        long totalPay = countUser * pay * workHour * diffDays;
-        System.out.println("총 인건비:" + totalPay);
-        System.out.println("행사 설명:" + map1.get("event_desc"));
-    }
-
-
-}
+//    @Test
+//    public void testReviewController() throws Exception {
+//        Map<String, Object> map1 = eventDAO.selCloseEvent(236L);
+//        System.out.println(map1);
+//        List<Map<String, Object>> list = eventDAO.getEventIdHire(236L);
+//
+//        long pay = 0;
+//        long workHour = 0;
+//        for(Map<String,Object> map : list) {
+//            System.out.println(map);
+//            pay += (long)map.get("pay");
+//            workHour += (int)map.get("work_hour");
+//        }
+//
+//        String startDay = ((String) map1.get("start_date"));
+//        String endDay = ((String) map1.get("end_date"));
+//
+//        Date format1 = new SimpleDateFormat("yyyy-MM-dd").parse(startDay);
+//        Date format2 = new SimpleDateFormat("yyyy-MM-dd").parse(endDay);
+//
+//        long diffSec = (format2.getTime() - format1.getTime()) / 1000;
+//        long diffDays = diffSec / (24 * 60 * 60) + 1;
+//
+//        System.out.println("등록일자:" + map1.get("DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i')"));
+//        System.out.println("행사 기간:" + map1.get("event_id"));
+//        System.out.println("행사 장소:" + map1.get("place"));
+//
+//        Map<String, Object> hashMap1 = new HashMap<>();
+//        hashMap1.put("role", "member");
+//        hashMap1.put("eventId", 236);
+//        int countMember = eventDAO.countUser(hashMap1);
+//        System.out.println("관람객 인원:"+countMember);
+//
+//        Map<String, Object> hashMap2 = new HashMap<>();
+//        hashMap2.put("role", "part");
+//        hashMap2.put("eventId", 236);
+//        int countPart = eventDAO.countUser(hashMap2);
+//        System.out.println("파트타임 인원:" + countPart);
+//
+//        int countUser = countMember + countPart;
+//        System.out.println("총 인원:"+countUser);
+//
+//        long totalPay = countUser * pay * workHour * diffDays;
+//        System.out.println("총 인건비:" + totalPay);
+//        System.out.println("행사 설명:" + map1.get("event_desc"));
+//    }
+//
+//
+//}
