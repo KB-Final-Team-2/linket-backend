@@ -26,12 +26,14 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    //test OK
     @GetMapping
     public ResponseEntity<Map<String,Object>> getUser(HttpSession session) throws Exception{
         String email = (String)session.getAttribute("email");
         Map<String,Object> map = userService.getUser(email);
 
-        if("aaa@aaa.com".equals(map.get("email"))) {
+        if(email.equals(map.get("email"))) {
             if(map.get("agreement").equals("1"))
                 map.put("agreement", new Boolean(true));
             else
@@ -43,31 +45,26 @@ public class UserController {
             return new ResponseEntity<>(null,header, HttpStatus.BAD_REQUEST);
     }
 
+    //test OK
     @PostMapping("/{password}")
-    public ResponseEntity<Map<String,Object>> checkUserPwd(@PathVariable String password, HttpSession session) throws Exception{
-        //session에서 얻어온 email 정보
-        String sessionEmail = (String)session.getAttribute("email");
+    public ResponseEntity<String> checkUserPwd(@PathVariable String password, HttpSession session) throws Exception{
         //session에서 얻어온 password 정보
         String sessionPassword = (String)session.getAttribute("password");
 
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("email", sessionEmail);
-        hashMap.put("password", sessionPassword);
+        if(password.equals(sessionPassword)){ // password 확인 성공
+            String success = new String("success");
 
-        Map<String,Object> map = userService.checkUserPwd(hashMap);
-        if(password.equals(map.get("password"))){ // password 확인 성공
-            if(map.get("agreement").equals("1"))
-                map.put("agreement", new Boolean(true));
-            else
-                map.put("agreement", new Boolean(false));
-
-            return new ResponseEntity<>(map, header, HttpStatus.OK);
+            return new ResponseEntity<>(success, header, HttpStatus.OK);
         }
-        else
+        else {
+            String fail = new String("fail");
+
             return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PostMapping("/user/{phone}")
+    //test OK
+    @PostMapping("/phone/{phone}")
     public ResponseEntity<String> updateUserPhone(@PathVariable String phone, HttpSession session) throws Exception{
         String email = (String)session.getAttribute("email");
 
@@ -87,7 +84,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/{password}")
+    //test OK
+    @PostMapping("/password/{password}")
     public ResponseEntity<String> updateUserPassword(@PathVariable String password, HttpSession session) throws Exception{
         String email = (String)session.getAttribute("email");
 
