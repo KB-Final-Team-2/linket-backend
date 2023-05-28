@@ -1,14 +1,11 @@
 package com.spacebetween.linket.dto;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 public class AttendanceJoinDto {
     private Long attId; // 출결 아이디
-    private Long hireId;
-    private Long eventId;
-    private Long companyId;
-    private String email;
+    private Long attHireId;
+    private Long attEventId;
+    private Long attCompanyId;
+    private String attEmail;
     private String attDate; // 참여일
     private String attStartDatetime; // 출석일시
     private String attEndDatetime; // 퇴근일시
@@ -19,12 +16,12 @@ public class AttendanceJoinDto {
     //기본 생성자
     public AttendanceJoinDto(){}
 
-    public AttendanceJoinDto(Long attId, Long hireId, Long eventId, Long companyId, String email, String attDate, String attStartDatetime, String attEndDatetime, String attStartBnt, String attEndBnt, String regDate) {
+    public AttendanceJoinDto(Long attId, Long attHireId, Long attEventId, Long attCompanyId, String attEmail, String attDate, String attStartDatetime, String attEndDatetime, String attStartBnt, String attEndBnt, String regDate) {
         this.attId = attId;
-        this.hireId = hireId;
-        this.eventId = eventId;
-        this.companyId = companyId;
-        this.email = email;
+        this.attHireId = attHireId;
+        this.attEventId = attEventId;
+        this.attCompanyId = attCompanyId;
+        this.attEmail = attEmail;
         this.attDate = attDate;
         this.attStartDatetime = attStartDatetime;
         this.attEndDatetime = attEndDatetime;
@@ -33,9 +30,9 @@ public class AttendanceJoinDto {
         this.regDate = regDate;
     }
 
-    public AttendanceJoinDto(String email, Long eventId){
-        this.email = email;
-        this.eventId = eventId;
+    public AttendanceJoinDto(String attEmail, Long attEventId){
+        this.attEmail = attEmail;
+        this.attEventId = attEventId;
     }
 
 
@@ -47,36 +44,36 @@ public class AttendanceJoinDto {
         this.attId = attId;
     }
 
-    public Long getHireId() {
-        return hireId;
+    public Long getAttHireId() {
+        return attHireId;
     }
 
-    public void setHireId(Long hireId) {
-        this.hireId = hireId;
+    public void setAttHireId(Long attHireId) {
+        this.attHireId = attHireId;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Long getAttEventId() {
+        return attEventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setAttEventId(Long attEventId) {
+        this.attEventId = attEventId;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getAttCompanyId() {
+        return attCompanyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setAttCompanyId(Long attCompanyId) {
+        this.attCompanyId = attCompanyId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAttEmail() {
+        return attEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAttEmail(String attEmail) {
+        this.attEmail = attEmail;
     }
 
     public String getAttDate() {
@@ -131,10 +128,10 @@ public class AttendanceJoinDto {
     public String toString() {
         return "AttendanceJoinDto{" +
                 "attId=" + attId +
-                ", hireId=" + hireId +
-                ", eventId=" + eventId +
-                ", companyId=" + companyId +
-                ", email='" + email + '\'' +
+                ", hireId=" + attHireId +
+                ", eventId=" + attEventId +
+                ", companyId=" + attCompanyId +
+                ", email='" + attEmail + '\'' +
                 ", attDate='" + attDate + '\'' +
                 ", attStartDatetime='" + attStartDatetime + '\'' +
                 ", attEndDatetime='" + attEndDatetime + '\'' +

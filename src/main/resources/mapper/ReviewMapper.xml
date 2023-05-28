@@ -8,7 +8,7 @@
     <insert id="registerReview" parameterType="ReviewJoinDto">
         INSERT INTO linket.review (review_ticket_id, review_event_id, review_company_id, rate_facil_chair, rate_facil_rest,
                                    rate_staff_in, rate_staff_ticket, rate_event_content, rate_event_go, review_etc, reg_date)
-        VALUES (#{ticketId}, #{eventId}, #{companyId}, #{rateFacilChair}, #{rateFacilRest},
+        VALUES (#{reviewTicketId}, #{reviewEventId}, #{reviewCompanyId}, #{rateFacilChair}, #{rateFacilRest},
                 #{rateStaffIn}, #{rateStaffTicket}, #{rateEventContent}, #{rateEventGo}, #{reviewEtc}, DEFAULT)
     </insert>
 
@@ -19,7 +19,7 @@
             rate_event_content, rate_event_go, review_etc, DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') AS reg_date
         FROM review
         WHERE
-            review_event_id = #{eventId}
+            review_event_id = #{reviewEventId}
     </select>
 
 
@@ -28,7 +28,7 @@
         SELECT COUNT(review_ticket_id)
         FROM review
         WHERE
-            review_ticket_id=#{ticketId}
+            review_ticket_id=#{reviewTicketId}
     </select>
 
     <!--  member가 자신의 리뷰를 모두 조회합니다.  -->
@@ -39,6 +39,6 @@
         FROM review d
             RIGHT JOIN ticket e ON d.review_ticket_id = e.ticket_id
             RIGHT JOIN event f ON d.review_event_id = f.event_id
-        WHERE e.ticket_email = #{email}
+        WHERE e.ticket_email = #{ticketEmail}
     </select>
 </mapper>

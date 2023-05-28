@@ -3,9 +3,9 @@ package com.spacebetween.linket.dto;
 
 public class ReviewJoinDto {
     private Long reviewId; // 리뷰 아이디 자동생성
-    private Long ticketId;
-    private Long eventId;
-    private Long companyId;
+    private Long reviewTicketId;
+    private Long reviewEventId;
+    private Long reviewCompanyId;
     private Integer rateFacilChair;
     private Integer rateFacilRest;
     private Integer rateStaffIn;
@@ -16,11 +16,11 @@ public class ReviewJoinDto {
     private String regDate;
     public ReviewJoinDto(){}
 
-    public ReviewJoinDto(Long reviewId, Long ticketId, Long eventId, Long companyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc, String regDate) {
+    public ReviewJoinDto(Long reviewId, Long reviewTicketId, Long reviewEventId, Long reviewCompanyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc, String regDate) {
         this.reviewId = reviewId;
-        this.ticketId = ticketId;
-        this.eventId = eventId;
-        this.companyId = companyId;
+        this.reviewTicketId = reviewTicketId;
+        this.reviewEventId = reviewEventId;
+        this.reviewCompanyId = reviewCompanyId;
         this.rateFacilChair = rateFacilChair;
         this.rateFacilRest = rateFacilRest;
         this.rateStaffIn = rateStaffIn;
@@ -31,10 +31,10 @@ public class ReviewJoinDto {
         this.regDate = regDate;
     }
 
-    public ReviewJoinDto(Long ticketId, Long eventId, Long companyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc) {
-        this.ticketId = ticketId;
-        this.eventId = eventId;
-        this.companyId = companyId;
+    public ReviewJoinDto(Long reviewTicketId, Long reviewEventId, Long reviewCompanyId, Integer rateFacilChair, Integer rateFacilRest, Integer rateStaffIn, Integer rateStaffTicket, Integer rateEventContent, Integer rateEventGo, String reviewEtc) {
+        this.reviewTicketId = reviewTicketId;
+        this.reviewEventId = reviewEventId;
+        this.reviewCompanyId = reviewCompanyId;
         this.rateFacilChair = rateFacilChair;
         this.rateFacilRest = rateFacilRest;
         this.rateStaffIn = rateStaffIn;
@@ -52,28 +52,28 @@ public class ReviewJoinDto {
         this.reviewId = reviewId;
     }
 
-    public Long getTicketId() {
-        return ticketId;
+    public Long getReviewTicketId() {
+        return reviewTicketId;
     }
 
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
+    public void setReviewTicketId(Long reviewTicketId) {
+        this.reviewTicketId = reviewTicketId;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Long getReviewEventId() {
+        return reviewEventId;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setReviewEventId(Long reviewEventId) {
+        this.reviewEventId = reviewEventId;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getReviewCompanyId() {
+        return reviewCompanyId;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setReviewCompanyId(Long reviewCompanyId) {
+        this.reviewCompanyId = reviewCompanyId;
     }
 
     public Integer getRateFacilChair() {
@@ -144,9 +144,9 @@ public class ReviewJoinDto {
     public String toString() {
         return "ReviewJoinDto{" +
                 "reviewId=" + reviewId +
-                ", ticketId=" + ticketId +
-                ", eventId=" + eventId +
-                ", companyId=" + companyId +
+                ", ticketId=" + reviewTicketId +
+                ", eventId=" + reviewEventId +
+                ", companyId=" + reviewCompanyId +
                 ", rateFacilChair=" + rateFacilChair +
                 ", rateFacilRest=" + rateFacilRest +
                 ", rateStaffIn=" + rateStaffIn +

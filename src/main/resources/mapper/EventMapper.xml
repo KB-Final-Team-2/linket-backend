@@ -40,7 +40,7 @@
     <insert id="registerEvent" parameterType="EventJoinDto">
         insert into linket.Event(event_company_id, event_name, event_type, start_date, end_date, place, event_inq,
                                  event_image, event_desc, reg_date, link)
-        values (#{companyId}, #{eventName}, #{eventType}, #{startDate}, #{endDate}, #{place}, #{eventInq},
+        values (#{eventCompanyId}, #{eventName}, #{eventType}, #{startDate}, #{endDate}, #{place}, #{eventInq},
                 #{eventImage}, #{eventDesc}, DEFAULT, #{link})
     </insert>
 
@@ -123,7 +123,7 @@
     <insert id="registerHire" parameterType="HireJoinDto">
         insert into Linket.hire(hire_event_id, hire_company_id, work_name, work_hour, work_start_day,
                                 work_end_day, pay, edu, reg_date)
-        values (#{eventId}, #{companyId}, #{workName}, #{workHour}, #{workStartDay}, #{workEndDay}, #{pay},
+        values (#{hireEventId}, #{hireCompanyId}, #{workName}, #{workHour}, #{workStartDay}, #{workEndDay}, #{pay},
                 #{edu}, DEFAULT)
     </insert>
 

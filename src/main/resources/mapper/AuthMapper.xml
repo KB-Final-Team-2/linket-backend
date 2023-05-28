@@ -7,7 +7,7 @@
         insert into linket.user (email, password, user_name, birthdate, agreement, phone, gender, role, account, reg_date, withdraw_date,
                                  enabled, last_updated_date, user_company_id)
         values (#{email},#{password},#{userName},#{birthdate},#{agreement},#{phone},#{gender},#{role},#{account},now(),#{withdrawDate},
-                #{enabled}, #{lastUpdatedDate}, #{companyId})
+                #{enabled}, #{lastUpdatedDate}, #{userCompanyId})
     </insert>
 
 

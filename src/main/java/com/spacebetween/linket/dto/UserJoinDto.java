@@ -1,9 +1,8 @@
 package com.spacebetween.linket.dto;
 
-import java.time.LocalDateTime;
-
 public class UserJoinDto {
     private String email; // 사용자 이메일
+    private long userCompanyId;
     private String password; // 사용자 비밀번호
     private String userName; // 사용자 이름
     private String birthdate; // 생년월일
@@ -16,9 +15,9 @@ public class UserJoinDto {
     private String withdrawDate; // 회원탈퇴일자
     private String enabled; // 회원 탈퇴여부
     private String lastUpdatedDate; // 회원정보 수정일자
-    private long companyId;
 
-    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, String gender, String role, String account, String regDate, String withdrawDate, String enabled, String lastUpdatedDate, long companyId) {
+
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, String gender, String role, String account, String regDate, String withdrawDate, String enabled, String lastUpdatedDate, long userCompanyId) {
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -32,10 +31,10 @@ public class UserJoinDto {
         this.withdrawDate = withdrawDate;
         this.enabled = enabled;
         this.lastUpdatedDate = lastUpdatedDate;
-        this.companyId = companyId;
+        this.userCompanyId = userCompanyId;
     }
 
-    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, String gender, String role, String account, String withdrawDate, String enabled, String lastUpdatedDate, long companyId) {
+    public UserJoinDto(String email, String password, String userName, String birthdate, int agreement, String phone, String gender, String role, String account, String withdrawDate, String enabled, String lastUpdatedDate, long userCompanyId) {
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -48,7 +47,7 @@ public class UserJoinDto {
         this.withdrawDate = withdrawDate;
         this.enabled = enabled;
         this.lastUpdatedDate = lastUpdatedDate;
-        this.companyId = companyId;
+        this.userCompanyId = userCompanyId;
     }
 
     public UserJoinDto(){
@@ -159,12 +158,12 @@ public class UserJoinDto {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public long getCompanyId() {
-        return companyId;
+    public long getUserCompanyId() {
+        return userCompanyId;
     }
 
-    public void setCompanyId(long companyId) {
-        this.companyId = companyId;
+    public void setUserCompanyId(long userCompanyId) {
+        this.userCompanyId = userCompanyId;
     }
 
     @Override
@@ -183,7 +182,7 @@ public class UserJoinDto {
                 ", withdrawDate='" + withdrawDate + '\'' +
                 ", enabled='" + enabled + '\'' +
                 ", lastUpdatedDate='" + lastUpdatedDate + '\'' +
-                ", companyId=" + companyId +
+                ", companyId=" + userCompanyId +
                 '}';
     }
 }

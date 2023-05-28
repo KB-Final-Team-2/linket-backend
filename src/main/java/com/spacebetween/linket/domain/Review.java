@@ -4,9 +4,9 @@ package com.spacebetween.linket.domain;
 public class Review {
 
     private Long reviewId; // 리뷰 아이디 자동생성
-    private Long ticketId;
-    private Long eventId;
-    private Long companyId;
+    private Long reviewTicketId;
+    private Long reviewEventId;
+    private Long reviewCompanyId;
     private Integer rateFacilChair;
     private Integer rateFacilRest;
     private Integer rateStaffIn;
