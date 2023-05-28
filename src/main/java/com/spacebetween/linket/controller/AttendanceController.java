@@ -31,23 +31,24 @@ public class AttendanceController {
     @Autowired
     private AttendanceService attendanceService;
 
+    //test OK
     @GetMapping("/staff/{eventId}")
     public ResponseEntity<List<Map<String,Object>>> getAllAtts(@PathVariable Long eventId) throws Exception {
         List<Map<String,Object>> list = attendanceService.getAllAtts(eventId);
 
         for(Map<String,Object> map : list){
-            String startStr = (String)map.get("att_start_bnt");
-            String endStr = (String)map.get("att_end_bnt");
+            String startStr = (String)map.get("attStartBnt");
+            String endStr = (String)map.get("attEndBnt");
 
             if(startStr.equals("N"))
-                map.put("att_start_bnt", new Boolean("false"));
+                map.put("attStartBnt", new Boolean("false"));
             else
-                map.put("att_start_bnt", new Boolean("true"));
+                map.put("attStartBnt", new Boolean("true"));
 
             if(endStr.equals("N"))
-                map.put("att_end_bnt", new Boolean("false"));
+                map.put("attEndBnt", new Boolean("false"));
             else
-                map.put("att_end_bnt", new Boolean("true"));
+                map.put("attEndBnt", new Boolean("true"));
         }
 
         if (list != null)
@@ -57,11 +58,12 @@ public class AttendanceController {
             return new ResponseEntity<>(null, header, HttpStatus.BAD_REQUEST);
     }
 
+    //test OK
     @PostMapping("/staff/start")
     public ResponseEntity<String> startBnt(@RequestBody AttendanceJoinDto attendanceJoinDto) throws Exception{
         int rowCnt = attendanceService.startBnt(attendanceJoinDto);
 
-        if(rowCnt==1){
+        if(rowCnt>0){
             String success = new String("success");
             return new ResponseEntity<>(success,header,HttpStatus.OK);
         }
@@ -71,11 +73,12 @@ public class AttendanceController {
         }
     }
 
+    //test OK
     @PostMapping("/staff/end")
     public ResponseEntity<String> endBnt(@RequestBody AttendanceJoinDto attendanceJoinDto) throws Exception{
         int rowCnt = attendanceService.endBnt(attendanceJoinDto);
 
-        if(rowCnt==1){
+        if(rowCnt>0){
             String success = new String("success");
             return new ResponseEntity<>(success,header,HttpStatus.OK);
         }
@@ -84,24 +87,26 @@ public class AttendanceController {
             return new ResponseEntity<>(fail,header,HttpStatus.BAD_REQUEST);
         }
     }
+
+    //test OK
     @PostMapping("/part-time/{hireId}")
     public ResponseEntity<Map<String, Object>> getMyAtt(@PathVariable Long hireId, @RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
-        attendanceJoinDto.setEmail((String)session.getAttribute("email"));
-        attendanceJoinDto.setEventId(hireId);
+        attendanceJoinDto.setAttEmail((String)session.getAttribute("email"));
+        attendanceJoinDto.setAttHireId(hireId);
 
         Map<String,Object> map = attendanceService.getMyAtt(attendanceJoinDto);
-        String startStr = (String)map.get("att_start_bnt");
-        String endStr = (String)map.get("att_end_bnt");
+        String startStr = (String)map.get("attStartBnt");
+        String endStr = (String)map.get("attEndBnt");
 
         if(startStr.equals("N"))
-            map.put("att_start_bnt", new Boolean(false));
+            map.put("attStartBnt", new Boolean(false));
         else
-            map.put("att_start_bnt", new Boolean(true));
+            map.put("attStartBnt", new Boolean(true));
 
         if(endStr.equals("N"))
-            map.put("att_end_bnt", new Boolean(false));
+            map.put("attEndBnt", new Boolean(false));
         else
-            map.put("att_end_bnt", new Boolean(true));
+            map.put("attEndBnt", new Boolean(true));
 
 
         if(map!=null)
@@ -110,9 +115,9 @@ public class AttendanceController {
             return new ResponseEntity<>(null,header,HttpStatus.BAD_REQUEST);
     }
 
+    //test OK
     @PostMapping("/part-time/start")
-    public ResponseEntity<String> startOfWork(@RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
-//        attendanceJoinDto.setEmail((String)session.getAttribute("email"));
+    public ResponseEntity<String> startOfWork(@RequestBody AttendanceJoinDto attendanceJoinDto) throws Exception{
         int rowCnt = attendanceService.startOfWork(attendanceJoinDto);
 
         if(rowCnt==1){
@@ -125,9 +130,9 @@ public class AttendanceController {
         }
     }
 
+    //test OK
     @PostMapping("/part-time/end")
     public ResponseEntity<String> endOfWork(@RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
-//        attendanceJoinDto.setEmail((String)session.getAttribute("email"));
         int rowCnt = attendanceService.endOfWork(attendanceJoinDto);
 
         if(rowCnt==1){
@@ -140,12 +145,13 @@ public class AttendanceController {
         }
     }
 
+    //test OK
     @PostMapping("/join/{hireId}")
     public ResponseEntity<String> joinPtHire(@PathVariable Long hireId, HttpSession session) throws Exception {
         Map<String, Object> map = attendanceService.getHire(hireId);
 
-        String workStartDay = (String) map.get("work_start_day");
-        String workEndDay = (String) map.get("work_end_day");
+        String workStartDay = (String) map.get("workStartDay");
+        String workEndDay = (String) map.get("workEndDay");
 
         int startDayYear = Integer.parseInt(workStartDay.substring(0, 4));
         int startDayMonth = Integer.parseInt(workStartDay.substring(5, 7));
@@ -160,16 +166,15 @@ public class AttendanceController {
             String calDay = startDayYear + "-" + startDayMonth + "-" + startDayDay;
             Map<String, Object> temp = new HashMap<>();
 
-            temp.put("att_id", map.get("hire_id"));
-            temp.put("att_event_id", map.get("hire_event_id"));
-            temp.put("att_company_id", map.get("hire_company_id"));
-            temp.put("att_hire_id", String.valueOf(hireId));
-            temp.put("att_email", (String)session.getAttribute("email"));
-            temp.put("att_date", calDay);
-            temp.put("att_start_datetime", null);
-            temp.put("att_end_datetime", null);
-            temp.put("att_start_bnt", "N");
-            temp.put("att_end_bnt", "N");
+            temp.put("attEventId", map.get("hireEventId"));
+            temp.put("attCompanyId", map.get("hireCompanyId"));
+            temp.put("attHireId", String.valueOf(hireId));
+            temp.put("attEmail", (String)session.getAttribute("email"));
+            temp.put("attDate", calDay);
+            temp.put("attStartDatetime", null);
+            temp.put("attEndDatetime", null);
+            temp.put("attStartBnt", "N");
+            temp.put("attEndBnt", "N");
 
             int rowCnt = attendanceService.joinPtHire(temp);
             if(rowCnt == 1)
@@ -202,6 +207,7 @@ public class AttendanceController {
         }
     }
 
+    //test OK
     @GetMapping("/part-time/{email}")
     public ResponseEntity<List<Map<String,Object>>> getPtHires(@PathVariable String email) throws Exception{
         email += ".com";
@@ -213,11 +219,12 @@ public class AttendanceController {
             return new ResponseEntity<>(null,header,HttpStatus.BAD_REQUEST);
     }
 
+    //test OK
     @DeleteMapping("/part-time/{hireId}")
-    public ResponseEntity<String> deletePtHire(@PathVariable Long hireId, @RequestBody AttendanceJoinDto attendanceJoinDto, HttpSession session) throws Exception{
-//        attendanceJoinDto.setEmail((String)session.getAttribute("email"));
-        attendanceJoinDto.setEmail("bbb@bbb.com");
-        attendanceJoinDto.setEventId(hireId);
+    public ResponseEntity<String> deletePtHire(@PathVariable Long hireId, HttpSession session) throws Exception{
+        AttendanceJoinDto attendanceJoinDto = new AttendanceJoinDto();
+        attendanceJoinDto.setAttEmail((String)session.getAttribute("email"));
+        attendanceJoinDto.setAttHireId(hireId);
 
         int rowCnt = attendanceService.deletePtHire(attendanceJoinDto);
 
