@@ -92,6 +92,19 @@
         ORDER BY att_email
     </select>
 
+    <!-- part - time 자신이 선택한 공고의 모든 Attendance를 조회하는 기능 -->
+    <select id="getHireMyAtts" parameterType="AttendanceJoinDto" resultType="CamelHashMap">
+        SELECT att_email,
+               att_id, att_event_id, att_company_id,
+               att_hire_id, DATE_FORMAT(att_date, '%Y-%m-%d-%H-%i') AS att_date,
+               DATE_FORMAT(att_start_datetime, '%Y-%m-%d-%H-%i') AS att_start_datetime,
+               DATE_FORMAT(att_end_datetime, '%Y-%m-%d-%H-%i') AS att_end_datetime,
+               att_start_bnt, att_end_bnt,
+               DATE_FORMAT(reg_date, '%Y-%m-%d-%H-%i') AS reg_date
+        FROM attendance
+        WHERE att_hire_id=#{attHireId} AND att_email=#{attEmail}
+    </select>
+
     <!-- 여기서부터 세건 오빠 부분 -->
     <!-- 해당하는 공고 정보를 가져옵니다. -->
     <select id="getHire" parameterType="long" resultType="CamelHashMap">

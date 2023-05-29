@@ -14,6 +14,7 @@ public interface AttendanceService {
     int startOfWork(AttendanceJoinDto attendanceJoinDto) throws Exception;
     int endOfWork(AttendanceJoinDto attendanceJoinDto) throws Exception;
     List<Map<String,Object>> getHireAllAtts(long attHireId) throws Exception;
+    List<Map<String,Object>> getHireMyAtts(AttendanceJoinDto attendanceJoinDto) throws Exception;
     //다시 봐야 할 것
     //Part 자신이 참여하는 행사 공고에 등록합니다
     Map<String,Object> getHire(long eventId) throws Exception;

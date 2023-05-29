@@ -51,6 +51,11 @@ public class AttendanceServiceImpl implements AttendanceService{
     }
 
     @Override
+    public List<Map<String, Object>> getHireMyAtts(AttendanceJoinDto attendanceJoinDto) throws Exception {
+        return attendanceDAO.getHireMyAtts(attendanceJoinDto);
+    }
+
+    @Override
     public Map<String,Object> getHire(long eventId) throws Exception {
         return attendanceDAO.getHire(eventId);
     }

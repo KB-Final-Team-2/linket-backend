@@ -249,6 +249,21 @@ public class AttendanceController {
             return new ResponseEntity<>(list, header, HttpStatus.BAD_REQUEST);
     }
 
+    //test OK
+    @GetMapping("/part-time/hireId/{hireId}")
+    public ResponseEntity<List<Map<String,Object>>> getHireMyAtts(@PathVariable long hireId, HttpSession session) throws Exception{
+        AttendanceJoinDto attendanceJoinDto = new AttendanceJoinDto();
+        attendanceJoinDto.setAttEmail((String)session.getAttribute("email"));
+        attendanceJoinDto.setAttHireId(hireId);
+
+        List<Map<String,Object>> list = attendanceService.getHireMyAtts(attendanceJoinDto);
+
+        if(list!=null)
+            return new ResponseEntity<>(list,header,HttpStatus.OK);
+        else
+            return new ResponseEntity<>(null,header,HttpStatus.BAD_REQUEST);
+    }
+
     static private boolean check(int month, int day){
         if(month==1 && day > 31){
             return true;
