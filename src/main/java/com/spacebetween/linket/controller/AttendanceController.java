@@ -238,6 +238,17 @@ public class AttendanceController {
         }
     }
 
+    @GetMapping("/part-time/list/{hireId}")
+    public ResponseEntity<List<Map<String,Object>>> getHireAllAtts(@PathVariable long hireId) throws Exception{
+        List<Map<String,Object>> list = attendanceService.getHireAllAtts(hireId);
+
+        if(list != null)
+            return new ResponseEntity<>(list, header, HttpStatus.OK);
+
+        else
+            return new ResponseEntity<>(list, header, HttpStatus.BAD_REQUEST);
+    }
+
     static private boolean check(int month, int day){
         if(month==1 && day > 31){
             return true;
