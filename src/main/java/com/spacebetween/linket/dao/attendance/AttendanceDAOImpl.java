@@ -47,6 +47,11 @@ public class AttendanceDAOImpl implements AttendanceDAO{
     }
 
     @Override
+    public List<Map<String, Object>> getHireAllAtts(long attHireId) throws Exception {
+        return sqlSession.selectList(NS+"getHireAllAtts", attHireId);
+    }
+
+    @Override
     public Map<String,Object> getHire(long eventId) throws Exception {
         return sqlSession.selectOne(NS+"getHire",eventId);
     }
