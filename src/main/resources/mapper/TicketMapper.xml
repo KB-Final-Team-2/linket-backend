@@ -25,7 +25,7 @@
 
     <!-- 티켓 전체 조회 -->
     <select id="getAllTickets" parameterType="string" resultType="CamelHashMap">
-        SELECT d.event_name,d.event_type,d.place,d.event_image,d.event_inq,d.event_desc,d.event_status,
+        SELECT d.event_name,d.event_type,d.place,d.place_id,d.event_image,d.event_inq,d.event_desc,d.event_status,
                d.start_date, d.end_date, d.link, e.ticket_id, e.ticket_event_id, e.ticket_company_id,
                e.ticket_email, e.serial_num, e.ticket_reg, e.ticket_status,
                DATE_FORMAT(e.reg_date, '%Y-%m-%d-%H-%i') AS reg_date, DATE_FORMAT(e.last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date, e.seat
@@ -37,7 +37,7 @@
 
     <!-- 티켓 단일 조회 -->
     <select id="getTicket" parameterType="long" resultType="CamelHashMap">
-        SELECT d.event_name,d.event_type,d.place,d.event_image,d.event_inq,d.event_desc,d.event_status,
+        SELECT d.event_name,d.event_type,d.place,d.place_id,d.event_image,d.event_inq,d.event_desc,d.event_status,
                d.start_date, d.end_date, d.link, e.ticket_id, e.ticket_event_id, e.ticket_company_id,
                e.ticket_email, e.serial_num, e.ticket_reg, e.ticket_status,
                DATE_FORMAT(e.reg_date, '%Y-%m-%d-%H-%i') AS reg_date, DATE_FORMAT(e.last_updated_date, '%Y-%m-%d-%H-%i') AS last_updated_date, e.seat
